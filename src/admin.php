@@ -12,16 +12,20 @@
         <meta name="keywords" content="">
         <meta name="author" content="">
         
-		<title>WhoBorrow</title>
+		<title>WhoBorrow - Admin</title>
 	</head>
 	
     <body>
         <div class='wrapper'>
+			<!-- image placeholder -->
+			<div style="text-align: center">
+				<img src="img/tempLogo.jpg">
+			</div>
             <!-- login box-->
             <div id='login-box'>
-                <form id='login' action='index.php' method='post' accept-charset='UTF-8'>
+                <form id='login' action='login.php' method='post' accept-charset='UTF-8'>
                     <fieldset>
-                        <legend>Login</legend>
+                        <legend>WhoBorrow Admin</legend>
                         
                         <div class='login_help_text'>* required fields</div>
                         
@@ -44,28 +48,8 @@
                 </form>
             </div>
             <!-- end of login box-->      
-              
-            <br>
-            <div id='search-box'>
-                <form action="results.php" method="post">
-                    <input type="text" query="itemName"><br><br>
-                    <input type="submit" value="Borrow!">
-                </form>
-            </div>
         </div>
-		
-		<?php
-			$dbconn = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=m4tthews") 
-						or die('Could not connect: ' . pg_last_error());
-			
-			$query = 'SELECT * FROM "Test"';
-			$result = pg_query($query) 
-						or die ('Query Failed' . pg_last_error());
-			
-			while ($row = pg_fetch_row($result)){
-				echo "<option value=\"".$row[0]."\">".$row[0]."</option><br>";
-			}
-		?>
+
         <footer>
             <p>&copy; Lim Pei Lend You</p>
         </footer>
@@ -96,11 +80,6 @@
             #login-box .container {
                 margin-top: 8px;
                 margin-bottom: 10px;
-            }
-            
-            #search-box {
-                margin: 0 auto;
-                text-align: center;
             }
             
             footer {
