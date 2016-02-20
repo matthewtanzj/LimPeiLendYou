@@ -75,7 +75,7 @@
 			<br>
             <!-- login box-->
             <div id='login-box'>
-                <form id='login' action='admin.php' method='POST' accept-charset='UTF-8'>
+                <form id='login' action='admin-index.php' method='POST' accept-charset='UTF-8'>
                         <h3>WhoBorrow Admin</h3>
      
                         <div class='container'>

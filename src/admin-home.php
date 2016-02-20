@@ -4,7 +4,7 @@
 	if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 		
 	} else {
-		header("Location: http://localhost/whoborrow/src/admin.php" );
+		header("Location: http://localhost/whoborrow/src/admin-index.php" );
 	}
 ?>
 
@@ -47,16 +47,17 @@
 									Manage Tables<b class="caret"></b>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="questions.php">Questions</a></li>
-									<li><a href="addquestion.php">Add Question</a></li>
-									<li><a href="upload.php">Upload CSV</a></li>
+									<li><a href="admin-users.php">Users</a></li>
+									<li><a href="admin-items.php">Items</a></li>
+									<li><a href="admin-loans.php">Loans</a></li>
+									<li><a href="admin-reviews.php">Reviews</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
 								<p class="navbar-text">Logged in as <?php print $_SESSION['username']; ?></p>
 							</li>
 							<li class="dropdown">
-								<p class="navbar-text"><a href="logout.php">Logout</a></p>
+								<p class="navbar-text"><a href="admin-logout.php">Logout</a></p>
 							</li>
 						</ul>
 					</div>
