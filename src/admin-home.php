@@ -1,40 +1,11 @@
 <?php
-	if (isset($_POST["submit"])) {
-		// Store form input as variables to be queried
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-	
-		if (!$_POST['username']) {
-			$errUsername = "<p class=\"text-danger\">Please enter your username</p>";
-		}
-		if (!$_POST['password']) {
-			$errPassword = "<p class=\"text-danger\">Please enter your password</p>";
-		}
-		
-		// Authenticate user credentials
-		if ($_POST['username'] && $_POST['password']) {
-			// Connect to database
-			$dbconn = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=m4tthews") 
-						or die('Could not connect: ' . pg_last_error());
-						
-			$query = "SELECT * 
-						FROM test
-						WHERE '$username' = name
-						AND '$password' = password";
-						
-			$result = pg_query($query) 
-						or die ('Query Failed' . pg_last_error());
-						
-			$num_rows = pg_num_rows($result);
 
-			if ($num_rows == 0) {
-				$loginResult = "<p class=\"text-danger\">Incorrect Username/Password</p>";
-			} else {
-				$loginResult = "<p class=\"text-success\">Login Succeeded! Redirecting in 3 seconds.</p>";
-				header("refresh: 3; url=http://localhost/whoborrow/src/login.php" );
-			}
-		}
-	}	
+	session_start();
+	if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+		
+	} else {
+		header("Location: http://localhost/whoborrow/src/admin.php" );
+	}
 ?>
 
 <html lang="en">
@@ -50,7 +21,7 @@
         <meta name="keywords" content="">
         <meta name="author" content="">
         
-		<title>WhoBorrow - Admin</title>
+		<title>Admin Home</title>
 		
 		<!-- Bootstrap -->
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -63,40 +34,37 @@
 	
     <body>
         <div class='wrapper'>
-			<!-- image placeholder -->
-			<div style="text-align: center">
-				<img src="img/tempLogo.jpg">
+			<!-- nav bar -->
+			<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+				<div class="container">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="index.php">WhoBorrow Admin</a>
+					</div>
+					<div class="navbar-collapse collapse navbar-right">
+						<ul class="nav navbar-nav">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									Manage Tables<b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="questions.php">Questions</a></li>
+									<li><a href="addquestion.php">Add Question</a></li>
+									<li><a href="upload.php">Upload CSV</a></li>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<p class="navbar-text">Logged in as <?php print $_SESSION['username']; ?></p>
+							</li>
+							<li class="dropdown">
+								<p class="navbar-text"><a href="logout.php">Logout</a></p>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
-			<br>
-            <!-- login box-->
-            <div id='login-box'>
-                <form id='login' action='admin.php' method='POST' accept-charset='UTF-8'>
-                        <h3>WhoBorrow Admin</h3>
-     
-                        <div class='container'>
-                            <label for='username' >Username*:</label><br/>
-                            <input type='text' name='username' maxlength="50"/><br/>
-                            <span id='login_username_errorloc' class='error'></span>
-							<?php echo $errUsername;?>
-                        </div>
-						
-                        <div class='container'>
-                            <label for='password' >Password*:</label><br/>
-                            <input type='password' name='password' maxlength="50" /><br/>
-                            <span id='login_password_errorloc' class='error'></span>
-							<?php echo $errPassword;?>
-                        </div>
-						
-                        <div class='container'>
-                            <input type="submit" name="submit" value="submit" />
-                        </div>
-						<?php echo $loginResult;?>
-						<div class='login_help_text'>* required fields</div>
-                        <div class='login_help_text'><a href='#'>Forgot Password?</a></div>
-                </form>
-            </div>
-            <!-- end of login box-->      
-        </div>
+			<!-- end of nav bar -->
+			
+		</div>
 
         <footer>
             <p>&copy; Lim Pei Lend You</p>
@@ -109,30 +77,6 @@
 				padding-top: 3%;
 			}
 			
-            #login-box {
-				margin: 0 auto;
-                text-align: left;
-				width: 30%;
-				padding-left: 20px;
-                border:1px solid #ccc;
-                -moz-border-radius: 10px;
-                -webkit-border-radius: 10px;
-                -khtml-border-radius: 10px;
-                border-radius: 10px;  
-            }
-            
-            #login-box .login_help_text {
-                font-family : Arial, sans-serif;
-                font-size: 0.8em;
-                color:#333; 
-            }
-            
-            #login-box .container {
-                margin-top: 8px;
-                margin-bottom: 10px;
-				padding-left: 0px;	
-            }
-            
             footer {
                 margin: 0 auto;
                 width: 100%;

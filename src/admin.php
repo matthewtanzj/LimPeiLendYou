@@ -1,4 +1,7 @@
 <?php
+	session_start();
+	$_SESSION['loggedin'] = false;
+	
 	if (isset($_POST["submit"])) {
 		// Store form input as variables to be queried
 		$username = $_POST['username'];
@@ -31,7 +34,9 @@
 				$loginResult = "<p class=\"text-danger\">Incorrect Username/Password</p>";
 			} else {
 				$loginResult = "<p class=\"text-success\">Login Succeeded! Redirecting in 3 seconds.</p>";
-				header("refresh: 3; url=http://localhost/whoborrow/src/login.php" );
+				$_SESSION['loggedin'] = true;
+				$_SESSION['username'] = $username;
+				header("refresh: 3; url=http://localhost/whoborrow/src/admin-home.php" );
 			}
 		}
 	}	
