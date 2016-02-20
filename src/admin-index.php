@@ -16,13 +16,11 @@
 		
 		// Authenticate user credentials
 		if ($_POST['username'] && $_POST['password']) {
-			// Connect to database
-			$dbconn = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=m4tthews") 
-						or die('Could not connect: ' . pg_last_error());
-						
+			include 'include/db_connect.php';
+            
 			$query = "SELECT * 
 						FROM test
-						WHERE '$username' = name
+						WHERE '$username' = username
 						AND '$password' = password";
 						
 			$result = pg_query($query) 

@@ -1,0 +1,20 @@
+CREATE TABLE user (
+	id INT NOT NULL SERIAL PRIMARY KEY,
+	username VARCHAR(64) NOT NULL UNIQUE,
+	password VARCHAR(64) NOT NULL,
+	usertype SMALLINT NOT NULL,
+	email VARCHAR(64) NOT NULL UNIQUE,
+	handphone VARCHAR(64),
+	country VARCHAR(64),
+	created TIMESTAMP NOT NULL,
+	lastmodified TIMESTAMP NOT NULL
+);
+
+CREATE TABLE item (
+	id INT NOT NULL SERIAL PRIMARY KEY
+	name VARCHAR(64) NOT NULL,
+	description VARCHAR(256),
+	userid REFERENCES user(id)
+	created TIMESTAMP NOT NULL,
+	lastmodified TIMESTAMP NOT NULL
+);
