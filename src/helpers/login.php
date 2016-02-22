@@ -12,22 +12,16 @@ if (!$_POST['password']) {
 
 // Authenticate user credentials
 if ($_POST['username'] && $_POST['password']) {
-	include 'include/db_connect.php';
-    
-	$query = "SELECT * 
-				FROM member
-				WHERE username = '$username'
-				AND password = '$password'";
-				
-	$result = pg_query($query) 
-				or die ('Query Failed' . pg_last_error());
-				
-	$num_rows = pg_num_rows($result);
+	// include 'include/db_connect.php';
+	include('models/memberModel.php');
+	$memberModel = new memberModel();
 
-	if ($num_rows == 0) {
-		$loginResult = "<p class=\"text-danger\">Incorrect Username/Password</p>";
-	} else {
+	$result = $memberModel->getByUsernameAndPassword($username, $password);
+
+	if (pg_num_rows($result) == 1) {
 		$_SESSION['loggedin'] = true;
 		$_SESSION['username'] = $username;
+	} else {
+		$loginResultMessage = "<p class=\"text-danger\">Incorrect Username/Password</p>";
 	}
 }
