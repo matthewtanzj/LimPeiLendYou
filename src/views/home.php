@@ -48,7 +48,7 @@
                     </ul>
                 </li>
             <?php else: ?>
-                <li><a href="" data-toggle="modal" data-target=".bs-example-modal-sm">Login</a></li>
+                <li><a id="loginButton" href="" data-toggle="modal" data-target=".loginModal">Login</a></li>
                 <li><a href="">Sign Up</a></li>
             <?php endif; ?>
           </ul>
@@ -67,7 +67,7 @@
       </div><!-- /.col-lg-6 -->
     </div> <!-- /container -->
 
-    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal fade loginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <!-- login box-->
@@ -81,14 +81,14 @@
                         <label for='username' >Username*:</label><br/>
                         <input type='text' name='username' maxlength="50"/><br/>
                         <span id='login_username_errorloc' class='error'></span>
-                        <?php echo $loginErrorMessage;?>
+                        <?php echo $usernameErrorMessage;?>
                     </div>
                     
                     <div class='container'>
                         <label for='password' >Password*:</label><br/>
                         <input type='password' name='password' maxlength="50" /><br/>
                         <span id='login_password_errorloc' class='error'></span>
-                        <?php echo $loginErrorMessage;?>
+                        <?php echo $passwordErrorMessage;?>
                     </div>
                     
                     <div class='container'>
@@ -110,3 +110,14 @@
 
   </body>
 </html>
+
+<script>
+    // show login modal if has login error
+    if (<?php echo isset($hasError) ? "true" : "false"; ?>) {
+        console.log('here');
+        $("#loginButton").click();
+    }
+</script>
+
+
+

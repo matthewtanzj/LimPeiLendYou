@@ -15,7 +15,8 @@ class HomeController {
 		if (!isset($_SESSION['loggedin'])) {
 			$_SESSION['loggedin'] = false;
 		}
-		$loginErrorMessage = '';
+		$usernameErrorMessage = '';
+		$passwordErrorMessage = '';
 		$loginResultMessage = '';
 
 		// catch logout action

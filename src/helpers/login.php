@@ -4,10 +4,13 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 if (!$_POST['username']) {
-	$errUsername = "<p class=\"text-danger\">Please enter your username</p>";
+	$hasError = true;
+	$usernameErrorMessage = "<p class=\"text-danger\">Please enter your username</p>";
 }
+
 if (!$_POST['password']) {
-	$errPassword = "<p class=\"text-danger\">Please enter your password</p>";
+	$hasError = true;
+	$passwordErrorMessage = "<p class=\"text-danger\">Please enter your password</p>";
 }
 
 // Authenticate user credentials
@@ -22,6 +25,7 @@ if ($_POST['username'] && $_POST['password']) {
 		$_SESSION['loggedin'] = true;
 		$_SESSION['username'] = $username;
 	} else {
+		$hasError = true;
 		$loginResultMessage = "<p class=\"text-danger\">Incorrect Username/Password</p>";
 	}
 }
