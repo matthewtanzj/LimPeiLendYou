@@ -49,7 +49,7 @@
                 </li>
             <?php else: ?>
                 <li><a id="loginButton" href="" data-toggle="modal" data-target=".loginModal">Login</a></li>
-                <li><a href="">Sign Up</a></li>
+                 <li><a id="signupButton" href="" data-toggle="modal" data-target=".signupModal">Sign Up</a></li>
             <?php endif; ?>
           </ul>
         </div><!--/.nav-collapse -->
@@ -72,7 +72,7 @@
         <div class="modal-content">
           <!-- login box-->
             <div class='container' id='login-box'>
-                <form id='login' action='' method='POST' accept-charset='UTF-8'>
+                <form id='login' action='?action=login' method='POST' accept-charset='UTF-8'>
                     <div class='container'>
                         <h4><b>Login</b></h4>
                     </div>
@@ -92,6 +92,7 @@
                     </div>
                     
                     <div class='container'>
+                        <br>
                         <input type="submit" name="submit" value="submit" />
                         <?php echo $loginResultMessage;?>
                     </div>
@@ -108,14 +109,60 @@
       </div>
     </div>
 
+    <div class="modal fade signupModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class='container' id='login-box'>
+                <form id='signup' action='?action=signup' method='POST' accept-charset='UTF-8'>
+                    <div class='container'>
+                        <h4><b>Sign Up</b></h4>
+                    </div>
+ 
+                    <div class='container'>
+                        <label for='username' >Username*:</label><br/>
+                        <input type='text' name='username' maxlength="50"/><br/>
+                        <span id='login_username_errorloc' class='error'></span>
+                        <?php echo $signupUsernameErrorMessage;?>
+                    </div>
+                    
+                    <div class='container'>
+                        <label for='password' >Password*:</label><br/>
+                        <input type='password' name='password' maxlength="50" /><br/>
+                        <span id='login_password_errorloc' class='error'></span>
+                        <?php echo $signupPasswordErrorMessage;?>
+                    </div>
+                    
+                    <div class='container'>
+                        <br>
+                        <input type="submit" name="submit" value="Sign Up" />
+                        <?php echo $signupErrorMessage;?>
+                    </div>
+
+
+                    <div class='container'>
+                      <h5>* required fields</h5>
+                    </div>
+                </form>
+            </div>
+            <!-- end of signup box-->   
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
 
 <script>
     // show login modal if has login error
-    if (<?php echo isset($hasError) ? "true" : "false"; ?>) {
+    if (<?php echo isset($loginError) ? "true" : "false"; ?>) {
         console.log('here');
         $("#loginButton").click();
+    }
+
+    // show signup modal if has signup error
+    if (<?php echo isset($signupError) ? "true" : "false"; ?>) {
+        console.log('here');
+        $("#signupButton").click();
     }
 </script>
 

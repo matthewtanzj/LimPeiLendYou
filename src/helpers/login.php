@@ -4,18 +4,17 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 if (!$_POST['username']) {
-	$hasError = true;
+	$loginError = true;
 	$usernameErrorMessage = "<p class=\"text-danger\">Please enter your username</p>";
 }
 
 if (!$_POST['password']) {
-	$hasError = true;
+	$loginError = true;
 	$passwordErrorMessage = "<p class=\"text-danger\">Please enter your password</p>";
 }
 
 // Authenticate user credentials
 if ($_POST['username'] && $_POST['password']) {
-	// include 'include/db_connect.php';
 	include('models/memberModel.php');
 	$memberModel = new memberModel();
 
@@ -25,7 +24,7 @@ if ($_POST['username'] && $_POST['password']) {
 		$_SESSION['loggedin'] = true;
 		$_SESSION['username'] = $username;
 	} else {
-		$hasError = true;
+		$loginError = true;
 		$loginResultMessage = "<p class=\"text-danger\">Incorrect Username/Password</p>";
 	}
 }
