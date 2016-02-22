@@ -1,10 +1,3 @@
-<?php
-    session_start();
-    $loggedin = false;
-    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-        $loggedin = true;
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -47,8 +40,13 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <?php if($loggedin): ?>
-                <li><a href=""><?php print $_SESSION['username']; ?></a></li>
+            <?php if($_SESSION['loggedin']): ?>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['username']; ?> <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="home?action=logout">Logout</a></li>
+                    </ul>
+                </li>
             <?php else: ?>
                 <li><a href="" data-toggle="modal" data-target=".bs-example-modal-sm">Login</a></li>
                 <li><a href="">Sign Up</a></li>
@@ -74,7 +72,7 @@
         <div class="modal-content">
           <!-- login box-->
             <div class='container' id='login-box'>
-                <form id='login' action='login.php' method='POST' accept-charset='UTF-8'>
+                <form id='login' action='' method='POST' accept-charset='UTF-8'>
                     <div class='container'>
                         <h4><b>Login</b></h4>
                     </div>
