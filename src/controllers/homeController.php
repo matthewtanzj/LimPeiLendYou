@@ -21,16 +21,16 @@ class HomeController {
 		// catch logout action
 		if (!empty($_GET)) {
 			if ($_GET['action'] == 'logout') {
-				include('helper/logout.php');
+				include('helpers/logout.php');
 			}
 		}
 
 		// catch login action
 		if (!$_SESSION['loggedin'] && isset($_POST["submit"])) {
-			include('helper/login.php');
+			include('helpers/login.php');
 		}
 
-		include('view/home.php');
+		include('views/home.php');
 	}
 
 }
