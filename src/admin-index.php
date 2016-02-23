@@ -1,43 +1,18 @@
 <?php
 	session_start();
-	$_SESSION['loggedin'] = false;
 	
-	if (isset($_POST["submit"])) {
-		// Store form input as variables to be queried
-		$username = $_POST['username'];
-		$password = $_POST['password'];
+	if (!isset($_SESSION['loggedin'])) {
+			$_SESSION['loggedin'] = false;
+		}
 	
-		if (!$_POST['username']) {
-			$errUsername = "<p class=\"text-danger\">Please enter your username</p>";
-		}
-		if (!$_POST['password']) {
-			$errPassword = "<p class=\"text-danger\">Please enter your password</p>";
-		}
-		
-		// Authenticate user credentials
-		if ($_POST['username'] && $_POST['password']) {
-			include 'include/db_connect.php';
-            
-			$query = "SELECT * 
-						FROM test
-						WHERE '$username' = username
-						AND '$password' = password";
-						
-			$result = pg_query($query) 
-						or die ('Query Failed' . pg_last_error());
-						
-			$num_rows = pg_num_rows($result);
+	if (!$_SESSION['loggedin'] && isset($_POST["submit"])) {
+		include("include/db_connect.php");
+		include('helpers/login.php');
 
-			if ($num_rows == 0) {
-				$loginResult = "<p class=\"text-danger\">Incorrect Username/Password</p>";
-			} else {
-				$loginResult = "<p class=\"text-success\">Login Succeeded! Redirecting in 3 seconds.</p>";
-				$_SESSION['loggedin'] = true;
-				$_SESSION['username'] = $username;
-				header("refresh: 3; url=http://localhost/whoborrow/src/admin-home.php" );
-			}
+		if ($_SESSION['loggedin'] == true) {
+			header("Location: http://localhost/whoborrow/src/admin-home.php" );
 		}
-	}	
+	}
 ?>
 
 <html lang="en">
@@ -80,20 +55,20 @@
                             <label for='username' >Username*:</label><br/>
                             <input type='text' name='username' maxlength="50"/><br/>
                             <span id='login_username_errorloc' class='error'></span>
-							<?php echo $errUsername;?>
+							<?php echo $usernameErrorMessage;?>
                         </div>
 						
                         <div class='container'>
                             <label for='password' >Password*:</label><br/>
                             <input type='password' name='password' maxlength="50" /><br/>
                             <span id='login_password_errorloc' class='error'></span>
-							<?php echo $errPassword;?>
+							<?php echo $passwordErrorMessage;?>
                         </div>
 						
                         <div class='container'>
                             <input type="submit" name="submit" value="submit" />
                         </div>
-						<?php echo $loginResult;?>
+						<?php echo $loginResultMessage;?>
 						<div class='login_help_text'>* required fields</div>
                         <div class='login_help_text'><a href='#'>Forgot Password?</a></div>
                 </form>
