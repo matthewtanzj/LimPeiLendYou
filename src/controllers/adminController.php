@@ -17,42 +17,44 @@ class adminController {
 		{
 			$_SESSION['loggedin'] = false;
 		}
-		$usernameErrorMessage = '';
-		$passwordErrorMessage = '';
-		$loginResultMessage = '';
 			
 		if ($this->userIsLoggedIn())
-		{ 
+		{
+			include("views/admin/admin-home.php"); // shows home page
 			if (!empty($_GET)) // GET is not empty
 			{
-				if ($_GET['action'] == 'logout') 
+				if ($_GET['action'] == 'logout') // (logs out/destroy session) and redirect to login page
 				{
 					session_start();
 					session_destroy();				
 					header("Location: admin-index.php");					
 				}
-			}
-			else
-			{
-				include("views/admin/admin-home.php"); // empty GET, display home page
-			}
+				else if ($_GET['action'] == 'member') 
+				{
+					include('models/tableModel.php');
+					$tableName = 'member'; // stub
+					$tableModel = new tableModel();
+					$content = $tableModel->convertPostgresTableIntoHTML($tableName);
+					include('views/admin/admin-tableview.php'); // shows the table nav-tabs component	
+				}
+			}	
 		} 
-		else 
+		else // user is not logged in
 		{
-			if (isset($_POST["submit"])) 
+			if (isset($_POST["submit"])) // user attempts to log in
 			{
 				include('helpers/login.php');
 				if($this->userIsLoggedIn()) 
 				{
-					echo "Success. Redirecting";
-					header("Location: http://localhost/whoborrow/src/admin-index.php" );// redirect if admin successfully logs in
+					header("Location: admin-index.php" );// redirect if admin successfully logs in
 				}
 			}
-			include("views/admin/admin-login.php");
+			include("views/admin/admin-login.php"); // show login page
 		}
 	}
 
-	private function userIsLoggedIn() {
+	private function userIsLoggedIn() 
+	{
 		if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'])
 		{
 			return true;
