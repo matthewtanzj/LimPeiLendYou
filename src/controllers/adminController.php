@@ -34,13 +34,13 @@ class adminController {
 							$_GET['action'] == 'item_image' || 
 							$_GET['action'] == 'item_availability' ||
 							$_GET['action'] == 'message' || 
-							$_GET['action'] == 'review')
+							$_GET['action'] == 'review') // admin views content of a table
 				{
 					include('controllers/tableController.php');
 					$tableName = $_GET['action'];
 					$tableController = new tableController();
 					$content = $tableController->convertPostgresTableIntoHTML($tableName);
-					include('views/admin/admin-tableview.php'); // shows the table nav-tabs component	
+					include('views/admin/admin-tableview.php'); // shows the view which will echo the table content and includes logic for table manipulation
 				}
 			}	
 		} 

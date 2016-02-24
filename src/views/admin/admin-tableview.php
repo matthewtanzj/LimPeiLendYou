@@ -30,9 +30,9 @@
 		</thead>
 		<tbody>
 			<tr class="odd">
-				<td><span class="xedit" id="1">Test1a</span></td>
-				<td>Test1b</td>
-				<td>Test1c</td>
+				<td><span class="xedit" id="1">10</span></td>
+				<td>Jacky</td>
+				<td>Jacky</td>
 				<td>Test1c</td>
 				<td>Test1c</td>
 				<td>Test1c</td>
@@ -43,6 +43,10 @@
 				<td><span class="xedit" id="2">Test2a</span></td>
 				<td>Test2b</td>
 				<td>Test2c</td>
+				<td>Test1c</td>
+				<td>Test1c</td>
+				<td>Test1c</td>
+				<td>Test1c</td>
 				<td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">Delete</button></td>
 			</tr>
 			<!-- Following PHP Code will go here -->
@@ -80,18 +84,34 @@
 	});
 	
 	function deleteRow(row) {
-		var index = row.parentNode.parentNode.rowIndex; // getting row index of <tr>
-		var response = window.confirm("Delete Row?");
+		
+		var response = window.confirm("Confirm deletion of row?");
+		
 		if (response === true) {
+			
+			// getting row index of <tr>
+			var index = row.parentNode.parentNode.rowIndex;
+			
+			// get the primary key of the row to be deleted
+			var element = $(document.getElementById("datatable").rows[index].cells[0].innerHTML); //convert string to JQuery element
+			element.find("span").remove(); //remove span elements
+			var primaryKey = element.html(); //get back string of primary key
+			
+			// get table name from the GET parameter
+			var tableName = decodeURIComponent(window.location.search.match(/(\?|&)action\=([^&]*)/)[2]);
+			
+			// delete row in frontend
 			document.getElementById("datatable").deleteRow(index);
+			
+			// perform ajax call to update database
 			$.ajax({
-				url: "index2.php",
+				url: "controllers/tableController.php?deleteKey=" + primaryKey + "&table=" + tableName,
 				type: 'GET',
 				success: function(s) {
-					
+					console.log(s);
 				},
 				error: function(e) {
-					alert('error deleting');
+					console.log(e);
 				}
 			});
 		}

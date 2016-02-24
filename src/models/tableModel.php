@@ -9,22 +9,13 @@ class tableModel {
 	public function retrieveEntireTable($tableName) 
 	{
 		$query = "SELECT * FROM $tableName";
-		$result = pg_query($query) or die ('Query Failed' . pg_last_error());
-		var_dump($result);
+		$result = pg_query($query);
 		return $result;
 	}
 	
-	public function convertPostgresTableIntoHTML($tableName)
+	public function deleteRowFromTable($tableName, $primaryKey)
 	{
-		$query = "SELECT * FROM $tableName";
-		$result = pg_query($query) or die ('Query Failed' . pg_last_error());
-		
-		$content = "";
-		
-		while ($row = pg_fetch_row($result)) {
-			$content = $content . "Username: $row[1] , Password: $row[2]";
-			$content = $content . "<br />\n";
-		}
-		return $content;
+		$query = "DELETE FROM $tableName WHERE $primaryKey = id";
+		$result = pg_query($query);
 	}
 }
