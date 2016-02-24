@@ -28,10 +28,10 @@ CREATE TABLE item (
 CREATE TABLE item_image (
 	id SERIAL PRIMARY KEY,
 	item_id INT,
-	image_url VARCHAR(256),
+	image_url VARCHAR(256) NOT NULL,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE,
+	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE
 );
 
 CREATE TABLE item_availability (
@@ -55,7 +55,7 @@ CREATE TABLE review (
 	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (reviewer_id) REFERENCES member(id),
 	FOREIGN KEY (reviewee_id) REFERENCES member(id) ON DELETE CASCADE,
-	CHECK (reviewer_id != reviewee_id)	
+	CHECK (reviewer_id != reviewee_id)
 );
 
 CREATE TABLE message (
