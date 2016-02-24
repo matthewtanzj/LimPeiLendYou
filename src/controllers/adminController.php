@@ -26,13 +26,18 @@ class adminController {
 				if ($_GET['action'] == 'logout') // (logs out/destroy session) and redirect to login page
 				{
 					session_start();
-					session_destroy();				
-					header("Location: admin-index.php");					
+					session_destroy();
+					header("Location: admin-index.php");
 				}
-				else if ($_GET['action'] == 'member') 
+				else if ($_GET['action'] == 'member' ||
+							$_GET['action'] == 'item' ||
+							$_GET['action'] == 'item_image' || 
+							$_GET['action'] == 'item_availability' ||
+							$_GET['action'] == 'message' || 
+							$_GET['action'] == 'review')
 				{
 					include('models/tableModel.php');
-					$tableName = 'member'; // stub
+					$tableName = $_GET['action'];
 					$tableModel = new tableModel();
 					$content = $tableModel->convertPostgresTableIntoHTML($tableName);
 					include('views/admin/admin-tableview.php'); // shows the table nav-tabs component	
@@ -44,9 +49,18 @@ class adminController {
 			if (isset($_POST["submit"])) // user attempts to log in
 			{
 				include('helpers/login.php');
-				if($this->userIsLoggedIn()) 
+				if($this->userIsLoggedIn())
 				{
-					header("Location: admin-index.php" );// redirect if admin successfully logs in
+					if ($_SESSION['usertype'] == 'admin')
+					{
+						header("Location: admin-index.php" );// redirect if admin successfully logs in
+					}
+					else
+					{
+						session_start();
+						session_destroy();	
+						$loginResultMessage = "<p class=\"text-danger\">Only administrator accounts can be used to log in.</p>";
+					}		
 				}
 			}
 			include("views/admin/admin-login.php"); // show login page

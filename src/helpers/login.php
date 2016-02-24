@@ -23,6 +23,8 @@ if ($_POST['username'] && $_POST['password']) {
 	if (pg_num_rows($result) == 1) {
 		$_SESSION['loggedin'] = true;
 		$_SESSION['username'] = $username;
+		$row = pg_fetch_row($result);
+		$_SESSION['usertype'] = $row[4]; //TODO remove magic number
 	} else {
 		$loginError = true;
 		$loginResultMessage = "<p class=\"text-danger\">Incorrect Username/Password</p>";
