@@ -45,7 +45,7 @@ CREATE TABLE item_availability (
 	CHECK (date_start <= date_end)
 );
 
-CREATE TABLE reviews (
+CREATE TABLE review (
 	id SERIAL PRIMARY KEY,
 	content VARCHAR(256) NOT NULL,
 	has_like SMALLINT NOT NULL CHECK(has_like = 1 OR has_like = 0),
@@ -58,7 +58,7 @@ CREATE TABLE reviews (
 	CHECK (reviewer_id != reviewee_id)	
 );
 
-CREATE TABLE messages (
+CREATE TABLE message (
 	id SERIAL PRIMARY KEY,
 	item_id INT NOT NULL REFERENCES item(id) ON DELETE CASCADE,
 	content VARCHAR(256) NOT NULL,
