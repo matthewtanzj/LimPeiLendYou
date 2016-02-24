@@ -6,11 +6,18 @@ class tableModel {
         
     }
 	
+	public function retrieveEntireTable($tableName) 
+	{
+		$query = "SELECT * FROM $tableName";
+		$result = pg_query($query) or die ('Query Failed' . pg_last_error());
+		var_dump($result);
+		return $result;
+	}
+	
 	public function convertPostgresTableIntoHTML($tableName)
 	{
 		$query = "SELECT * FROM $tableName";
-					
-		$result = pg_query($query) or die ('Query Failed' . pg_last_error());;
+		$result = pg_query($query) or die ('Query Failed' . pg_last_error());
 		
 		$content = "";
 		

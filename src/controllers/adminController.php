@@ -36,10 +36,10 @@ class adminController {
 							$_GET['action'] == 'message' || 
 							$_GET['action'] == 'review')
 				{
-					include('models/tableModel.php');
+					include('controllers/tableController.php');
 					$tableName = $_GET['action'];
-					$tableModel = new tableModel();
-					$content = $tableModel->convertPostgresTableIntoHTML($tableName);
+					$tableController = new tableController();
+					$content = $tableController->convertPostgresTableIntoHTML($tableName);
 					include('views/admin/admin-tableview.php'); // shows the table nav-tabs component	
 				}
 			}	
