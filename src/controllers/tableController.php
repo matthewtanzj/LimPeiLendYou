@@ -12,11 +12,7 @@ class tableController {
 	{	
 		$tableModel = new tableModel();
 		$result = $tableModel->retrieveEntireTable($tableName);
-		
-		while ($row = pg_fetch_row($result)) {
-			$content = $content . "ID: $row[0], Username: $row[1] , Password: $row[2]";
-			$content = $content . "<br />\n";
-		}
+		$content = $this->generateTableViewContent($result);
 		return $content;
 	}
 	
@@ -28,6 +24,29 @@ class tableController {
 		$tableModel = new tableModel();
 		$tableModel->deleteRowFromTable($tableName, $primaryKey);
 		echo "deleting id: " . $primaryKey . " from table: " . $tableName;
+	}
+	
+	private function generateTableViewContent($result)
+	{
+		$content = "";
+		$counter = 1; // for styling odd/even row
+		while ($row = pg_fetch_row($result)) {
+			if ($counter % 2 == 0) 
+			{ 
+				$content = $content . "<tr class='odd'>";
+			}
+			else 
+			{ 
+				$content = $content . "<tr class='even'>";
+			}
+			foreach ($row as $value)
+			{
+				$content = $content . "<td><span class='xedit'>" . $value . "</span></td>";
+			}
+			$content = $content . "<td><button type=\"button\" class=\"btn btn-danger\" onclick=\"deleteRow(this)\">Delete</button></td></tr>";
+			$counter++;
+		}
+		return $content;
 	}
 }
 

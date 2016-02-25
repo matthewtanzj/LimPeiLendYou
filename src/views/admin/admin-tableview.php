@@ -1,58 +1,74 @@
 <div class='wrapper'>
 	<table class= "table table-striped table-bordered table-hover dataTable" id="datatable">
 		<thead>
-			<tr>
-				<th colspan="1" rowspan="1" style="width: 180px;" tabindex="0">
-					ID
-				</th>
-				<th colspan="1" rowspan="1" style="width: 220px;" tabindex="0">
-					Username
-				</th>
-				<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-					Password
-				</th>
-				<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-					Email
-				</th>
-				<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-					Account Type
-				</th>
-				<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-					Is Valid
-				</th>
-				<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-					Created At
-				</th>
-				<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-					Updated At
-				</th>
-			</tr>
+			<?php if($_GET['action'] == 'member'): ?>
+				<tr>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						ID
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Username
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Password
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Email
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Account Type
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Is Valid
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Created At
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Updated At
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Action
+					</th>
+				</tr>
+			<?php endif; ?>
+			<?php if($_GET['action'] == 'item'): ?>
+				<tr>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						ID
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Item
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Password
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Email
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Account Type
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Is Valid
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Created At
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Updated At
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Action
+					</th>
+				</tr>
+            <?php endif; ?>		
 		</thead>
 		<tbody>
-			<tr class="odd">
-				<td><span class="xedit" id="1">10</span></td>
-				<td>Jacky</td>
-				<td>Jacky</td>
-				<td>Test1c</td>
-				<td>Test1c</td>
-				<td>Test1c</td>
-				<td>Test1c</td>
-				<td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">Delete</button></td>
-			</tr>
-			<tr class="even">
-				<td><span class="xedit" id="2">Test2a</span></td>
-				<td>Test2b</td>
-				<td>Test2c</td>
-				<td>Test1c</td>
-				<td>Test1c</td>
-				<td>Test1c</td>
-				<td>Test1c</td>
-				<td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">Delete</button></td>
-			</tr>
 			<!-- Following PHP Code will go here -->
+			<?php echo $content ?>
 		</tbody>
 	</table>
-	<?php echo $content ?>
 </div>
 
 <script>
@@ -74,10 +90,12 @@
 					}
 					if(s == 'error') {
 						alert('Error Processing your Request!');
+						location.reload();
 					}
 				},
 				error: function(e){
 					alert('Error Processing your Request!!');
+					location.reload();
 				}
 			});
 		});
@@ -121,7 +139,7 @@
 <style>
 	.wrapper {
 	margin: 0 auto;
-	width: 80%;
+	width: 90%;
 	padding-top: 5%;
 	}
 </style>
