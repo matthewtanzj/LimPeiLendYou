@@ -1,3 +1,11 @@
+<style>
+	.wrapper {
+	margin: 0 auto;
+	width: 90%;
+	padding-top: 5%;
+	}
+</style>
+
 <div class='wrapper'>
 	<table class= "table table-striped table-bordered table-hover dataTable" id="datatable">
 		<thead>
@@ -94,7 +102,7 @@
 					}
 				},
 				error: function(e){
-					alert('Error Processing your Request!!');
+					alert('Error: Invalid datatype!');
 					location.reload();
 				}
 			});
@@ -135,11 +143,3 @@
 		}
 	}
 </script>
-
-<style>
-	.wrapper {
-	margin: 0 auto;
-	width: 90%;
-	padding-top: 5%;
-	}
-</style>
