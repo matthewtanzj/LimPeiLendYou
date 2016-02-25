@@ -46,16 +46,22 @@
 						ID
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Item
+						Item Name
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Password
+						Category
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Email
+						Price
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Account Type
+						Description
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Location
+					</th>
+					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+						Owner ID
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
 						Is Valid
