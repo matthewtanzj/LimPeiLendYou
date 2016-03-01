@@ -44,7 +44,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['username']; ?> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="home?action=logout">Logout</a></li>
+                        <li><a href="index.php?action=logout">Logout</a></li>
                     </ul>
                 </li>
             <?php else: ?>
