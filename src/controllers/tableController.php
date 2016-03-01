@@ -39,9 +39,24 @@ class tableController {
 			{ 
 				$content = $content . "<tr class='even'>";
 			}
+			/*
+			$columnCounter = 0; // we can set uneditable columns using this counter
 			foreach ($row as $value)
-			{
-				$content = $content . "<td><span class='xedit'>" . $value . "</span></td>";
+			{	
+				if ($columnCounter == 0) {
+					$content = $content . "<td><span>" . $value . "</span></td>";
+				} else {
+					$content = $content . "<td><span class='xedit'>" . $value . "</span></td>";
+				}
+				$columnCounter++;
+			}
+			*/
+			for ($i = 0; $i < sizeof($row); $i++) {
+				if ($i == 0) {
+					$content = $content . "<td><span>" . $row[$i] . "</span></td>";
+				} else {
+					$content = $content . "<td><span class='xedit'>" . $row[$i] . "</span></td>";
+				}
 			}
 			$content = $content . "<td><button type=\"button\" class=\"btn btn-danger\" onclick=\"deleteRow(this)\">Delete</button></td></tr>";
 			$counter++;
