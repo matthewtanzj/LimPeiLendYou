@@ -18,4 +18,11 @@ class tableModel {
 		$query = "DELETE FROM $tableName WHERE $primaryKey = id";
 		$result = pg_query($query);
 	}
+	
+	public function editRowFromTable($tableName, $primaryKey, $columnName, $value)
+	{
+		$query = "UPDATE $tableName SET $columnName = '$value' WHERE id = '$primaryKey'";
+		$result = pg_query($query);
+	}
+	
 }

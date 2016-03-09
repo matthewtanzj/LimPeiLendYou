@@ -24,7 +24,7 @@
 						email
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						member_type
+						account_type
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
 						is_valid
@@ -61,7 +61,7 @@
 						location
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						member_id
+						owner_id
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
 						is_valid
@@ -103,6 +103,7 @@
 		$(document).on('click','.editable-submit',function(){
 			//var childHTML = $(this).closest('td').children('span');
 			//var gridContent = $('.input-sm').val();
+			var editLocation = $(this).closest('td').children('span');
 			var id = $(this).closest('td').children('span').attr('id');
 			var row = id.split("_")[0];
 			var col = id.split("_")[1];
@@ -117,7 +118,7 @@
 			var colName = getContentOfGrid(0, col);
 			
 			// 4. get content of the edited grid
-			var gridContent = getContentOfGrid(row, col);
+			var gridContent = $('.input-sm').val();
 			
 			console.log("table name: " + tableName);
 			console.log("primary key: " + primaryKey);
@@ -125,26 +126,26 @@
 			console.log("cell content: " + gridContent);
 			
 			// 5. perform ajax call to update database
-			/*
 			$.ajax({
-				url: "process.php?id="+x+"&data="+y,
+				url: "controllers/tableController.php?editTable=" + tableName + "&table=" + tableName + "&primaryKey=" + primaryKey + 
+						"&colName=" + colName + "&value=" + gridContent,
 				type: 'GET',
 				success: function(s){
 					console.log(s);
 					if(s == 'status'){
-						$(z).html(y);
+						$(editLocation).html(gridContent);
 					}
 					if(s == 'error') {
 						alert('Error Processing your Request!');
-						//location.reload();
+						location.reload();
 					}
 				},
 				error: function(e){
+					console.log(e);
 					alert('Error: Invalid datatype!');
-					//location.reload();
+					location.reload();
 				}
 			});
-			*/
 		});
 	});
 	

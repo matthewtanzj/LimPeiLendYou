@@ -23,7 +23,16 @@ class tableController {
 		include("../models/tableModel.php");
 		$tableModel = new tableModel();
 		$tableModel->deleteRowFromTable($tableName, $primaryKey);
-		echo "deleting id: " . $primaryKey . " from table: " . $tableName;
+		//echo "deleting id: " . $primaryKey . " from table: " . $tableName;
+	}
+	
+	public function editFromDatabase($tableName, $primaryKey, $columnName, $value)
+	{
+		include("../config/database.php");
+		include("../include/db_connect.php");
+		include("../models/tableModel.php");
+		$tableModel = new tableModel();
+		$tableModel->editRowFromTable($tableName, $primaryKey, $columnName, $value);
 	}
 	
 	private function generateTableViewContent($result)
@@ -39,18 +48,7 @@ class tableController {
 			{ 
 				$content = $content . "<tr class='even'>";
 			}
-			/*
-			$columnCounter = 0; // we can set uneditable columns using this counter
-			foreach ($row as $value)
-			{	
-				if ($columnCounter == 0) {
-					$content = $content . "<td><span>" . $value . "</span></td>";
-				} else {
-					$content = $content . "<td><span class='xedit'>" . $value . "</span></td>";
-				}
-				$columnCounter++;
-			}
-			*/
+
 			for ($i = 0; $i < sizeof($row); $i++) {
 				if ($i == 0) {
 					$content = $content . "<td><span>" . $row[$i] . "</span></td>";
@@ -71,3 +69,14 @@ if (isset($_GET['deleteKey']) && isset($_GET['table'])) {
 	$tableController = new tableController();
 	$tableController->deleteFromDatabase($tableName, $primaryKey);
 }
+
+if (isset($_GET['editTable']) && isset($_GET['table']) &&
+	isset($_GET['primaryKey']) && isset($_GET['colName']) && isset($_GET['value']) ) {
+	$tableName = $_GET['table'];
+	$primaryKey = $_GET['primaryKey'];
+	$columnName = $_GET['colName'];
+	$newValue = $_GET['value'];
+	$tableController = new tableController();
+	$tableController->editFromDatabase($tableName, $primaryKey, $columnName, $newValue);
+}
+
