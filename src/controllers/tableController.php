@@ -50,7 +50,7 @@ class tableController {
 			}
 
 			for ($i = 0; $i < sizeof($row); $i++) {
-				if ($i == 0) {
+				if ($i == 0 || $i == sizeof($row)-1 || $i == sizeof($row)-2) {
 					$content = $content . "<td><span>" . $row[$i] . "</span></td>";
 				} else {
 					$content = $content . "<td><span class='xedit' id=" . $counter . "_" .$i . ">" . $row[$i] . "</span></td>";
