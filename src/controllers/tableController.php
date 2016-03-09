@@ -55,7 +55,7 @@ class tableController {
 				if ($i == 0) {
 					$content = $content . "<td><span>" . $row[$i] . "</span></td>";
 				} else {
-					$content = $content . "<td><span class='xedit'>" . $row[$i] . "</span></td>";
+					$content = $content . "<td><span class='xedit' id=" . $counter . "_" .$i . ">" . $row[$i] . "</span></td>";
 				}
 			}
 			$content = $content . "<td><button type=\"button\" class=\"btn btn-danger\" onclick=\"deleteRow(this)\">Delete</button></td></tr>";

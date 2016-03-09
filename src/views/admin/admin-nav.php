@@ -2,7 +2,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#">WhoBorrow Admin</a>
+			<a class="navbar-brand" href="admin-index.php">WhoBorrow Admin</a>
 		</div>
 		<div class="navbar-collapse collapse navbar-right">
 			<ul class="nav navbar-nav">

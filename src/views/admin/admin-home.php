@@ -1,35 +1,20 @@
-<html lang="en">
+<div class="wrapper">
+	<div class="col-md-6">
+		<h1>User Statistics</h1>
+		<div>
+			<h4>Total registered users:</h4><?php echo "100"?>
+		</div>
+		<p>hello world</p>
+	</div>
+	<div class="col-md-6">
+		<p>hello world</p>
+	</div>
+</div>
 
-<html>
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <meta name="description" content="">
-        <meta name="keywords" content="">
-        <meta name="author" content="">
-
-        <title>WhoBorrow - Admin</title>
-
-        <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="js/jquery-1.12.1.min.js"></script>
-		<!--
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		-->
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-		<!-- for live table edit -->
-		<link href="css/bootstrap-editable.css" rel="stylesheet"/>
-		<script src="js/bootstrap-editable.min.js"></script>
-
-    </head>
-
-    <body>
-		<?php include("views/admin/admin-nav.php");?>  
-    </body>
-
-</html>
+<style>
+	.wrapper {
+	margin: 0 auto;
+	width: 90%;
+	padding-top: 5%;
+	}
+</style>

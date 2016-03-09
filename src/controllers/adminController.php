@@ -20,7 +20,7 @@ class adminController {
 			
 		if ($this->userIsLoggedIn())
 		{
-			include("views/admin/admin-home.php"); // shows home page
+			include("views/admin/admin-header.php"); // shows home page
 			if (!empty($_GET)) // GET is not empty
 			{
 				if ($_GET['action'] == 'logout') // (logs out/destroy session) and redirect to login page
@@ -42,7 +42,11 @@ class adminController {
 					$content = $tableController->convertPostgresTableIntoHTML($tableName);
 					include('views/admin/admin-tableview.php'); // shows the view which will echo the table content and includes logic for table manipulation
 				}
-			}	
+			}
+			else // empty get, display homepage
+			{
+				include('views/admin/admin-home.php');
+			}
 		} 
 		else // user is not logged in
 		{
