@@ -8,7 +8,7 @@ class tableModel {
 	
 	public function retrieveEntireTable($tableName) 
 	{
-		$query = "SELECT * FROM $tableName";
+		$query = "SELECT * FROM $tableName ORDER BY id";
 		$result = pg_query($query);
 		return $result;
 	}
@@ -21,7 +21,7 @@ class tableModel {
 	
 	public function editRowFromTable($tableName, $primaryKey, $columnName, $value)
 	{
-		$query = "UPDATE $tableName SET $columnName = '$value' WHERE id = '$primaryKey'";
+		$query = "UPDATE $tableName SET $columnName = '$value', updated_at = CURRENT_TIMESTAMP WHERE id = '$primaryKey'";
 		$result = pg_query($query);
 	}
 	

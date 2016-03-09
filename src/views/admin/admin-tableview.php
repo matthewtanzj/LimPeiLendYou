@@ -138,7 +138,7 @@
 					if(s == 'error') {
 						alert('Error Processing your Request!');
 						location.reload();
-					}
+					}		
 				},
 				error: function(e){
 					console.log(e);
