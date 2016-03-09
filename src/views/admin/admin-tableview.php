@@ -12,68 +12,68 @@
 			<?php if($_GET['action'] == 'member'): ?>
 				<tr>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						ID
+						id
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Username
+						username
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Password
+						password
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Email
+						email
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Account Type
+						member_type
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Is Valid
+						is_valid
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Created At
+						created_at
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Updated At
+						updated_at
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Action
+						action
 					</th>
 				</tr>
 			<?php endif; ?>
 			<?php if($_GET['action'] == 'item'): ?>
 				<tr>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						ID
+						id
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Item Name
+						name
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Category
+						category
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Price
+						price
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Description
+						description
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Location
+						location
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Owner ID
+						member_id
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Is Valid
+						is_valid
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Created At
+						created_at
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Updated At
+						updated_at
 					</th>
 					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						Action
+						action
 					</th>
 				</tr>
             <?php endif; ?>		

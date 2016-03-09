@@ -3,11 +3,11 @@ CREATE TABLE member (
 	username VARCHAR(64) NOT NULL UNIQUE,
 	password VARCHAR(64) NOT NULL,
 	email VARCHAR(64) NOT NULL UNIQUE,
-	member_type VARCHAR(32) NOT NULL,
+	account_type VARCHAR(32) NOT NULL,
 	is_valid SMALLINT DEFAULT 1 CHECK(is_valid = 1 OR is_valid = 0),
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	CHECK (member_type = 'admin' OR member_type = 'member')
+	CHECK (account_type = 'admin' OR account_type = 'member')
 );
 
 CREATE TABLE item (
@@ -17,11 +17,11 @@ CREATE TABLE item (
 	price float NOT NULL,
 	description VARCHAR(256),
 	location VARCHAR(128) NOT NULL,
-	member_id INT,
+	owner_id INT,
 	is_valid SMALLINT DEFAULT 1,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (member_id) REFERENCES member(id) ON DELETE CASCADE,
+	FOREIGN KEY (owner_id) REFERENCES member(id) ON DELETE CASCADE,
 	CHECK (is_valid = 1 OR is_valid = 0)
 );
 
