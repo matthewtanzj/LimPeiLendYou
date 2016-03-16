@@ -9,6 +9,15 @@
 	<div class="col-md-6">
 		<h1>User Statistics</h1>
 		<p>Total registered users:<?php echo $memberModel->getTotalUsers()?></p>
+		<?php 
+			$salt = bin2hex(openssl_random_pseudo_bytes(120));
+			$password = "zhengjie";
+			$encryptedPassword = crypt($password, $salt);
+			$query = "INSERT INTO salt VALUES('$salt')";
+			$result = pg_query($query);
+			var_dump($salt);
+			var_dump($encryptedPassword);
+		?>
 	</div>
 	<div class="col-md-6">
 		<p>hello world</p>

@@ -3,11 +3,6 @@ class tableModel {
 
     public function __construct()
     {
-        /*
-		$salt = bin2hex(openssl_random_pseudo_bytes(120));
-		crypt($password, $salt);
-		$salt;
-		*/
     }
 	
 	public function retrieveEntireTable($tableName) 
@@ -25,7 +20,19 @@ class tableModel {
 	
 	public function editRowFromTable($tableName, $primaryKey, $columnName, $value)
 	{
-		$query = "UPDATE $tableName SET $columnName = '$value', updated_at = CURRENT_TIMESTAMP WHERE id = '$primaryKey'";
-		$result = pg_query($query);
+		// value edited is a password -> generate new salt and encrypt it
+		if($tableName == "member" && $columnName == "password") {
+			$salt = bin2hex(openssl_random_pseudo_bytes(120));
+			$encryptedValue = crypt($value, $salt);
+			$query = "UPDATE $tableName SET $columnName = '$encryptedValue', salt = '$salt', updated_at = CURRENT_TIMESTAMP WHERE id = '$primaryKey'";
+			$result = pg_query($query);
+			echo $encryptedValue;
+		} 
+		else 
+		{
+			$query = "UPDATE $tableName SET $columnName = '$value', updated_at = CURRENT_TIMESTAMP WHERE id = '$primaryKey'";
+			$result = pg_query($query);
+			echo $value;
+		}
 	}
 }

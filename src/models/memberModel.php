@@ -5,13 +5,20 @@ class MemberModel {
     {
         
     }
-
+	
+	public function getPasswordSaltAccountType($username)
+	{
+		$query = "SELECT password, salt, account_type FROM member WHERE username = '$username'";
+		$result = pg_query($query);
+		return $result;
+	}
+	
     public function getByUsernameAndPassword($username, $password)
     {
     	$query = "SELECT * 
-            FROM member 
-            WHERE username = '" . $username . "' 
-            AND password = '" . $password . "'";
+				FROM member 
+				WHERE username = '" . $username . "' 
+				AND password = '" . $password . "'";
 				
 		$result = pg_query($query);
 
@@ -49,12 +56,15 @@ class MemberModel {
 		return $totalUsers;
 	}
 	
-	public function addUser($username, $password, $email, $accountType) {
-		$tableName = "member";
+	public function addUser($username, $password, $email, $accountType) {	
 		// INSERT INTO member VALUES(DEFAULT, '123', '123', '123@hotmail.com', 'admin', '1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-		$query = "INSERT INTO $tableName VALUES(DEFAULT, '$username', '$password', '$email', '$accountType', '1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
-		var_dump($query);
+		$salt = bin2hex(openssl_random_pseudo_bytes(120));
+		$encryptedPassword = crypt($password, $salt);
+		
+		$query = "INSERT INTO member 
+					VALUES(DEFAULT, '$username', '$encryptedPassword', '$salt', 
+							'$email', '$accountType', '1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
 		$result = pg_query($query);
-		return $result;
+		return $result; // true if successfully inserted, false otherwise
 	}
 }

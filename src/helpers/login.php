@@ -17,15 +17,23 @@ if (!$_POST['password']) {
 if ($_POST['username'] && $_POST['password']) {
 	include('models/memberModel.php');
 	$memberModel = new memberModel();
-
-	$result = $memberModel->getByUsernameAndPassword($username, $password);
-
-	if (pg_num_rows($result) == 1) {
+	
+	//$result = $memberModel->getByUsernameAndPassword($username, $password); // will get password + salt
+	$result = $memberModel->getPasswordSaltAccountType($username);
+	$row = pg_fetch_row($result); // [0] contains password, [1] contains salt, [2] contains account type
+	$desiredPassword = $row[0];
+	$salt = $row[1];
+	$accountType = $row[2];
+	$userPassword = crypt($password, $salt); // hash given password with salt
+	
+	if ($userPassword == $desiredPassword)
+	{
 		$_SESSION['loggedin'] = true;
 		$_SESSION['username'] = $username;
-		$row = pg_fetch_row($result);
-		$_SESSION['usertype'] = $row[4]; //TODO remove magic number
-	} else {
+		$_SESSION['usertype'] = $accountType; //TODO remove magic number
+	}
+	else 
+	{
 		$loginError = true;
 		$loginResultMessage = "<p class=\"text-danger\">Incorrect Username/Password</p>";
 	}

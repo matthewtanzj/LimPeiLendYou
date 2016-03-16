@@ -2,6 +2,7 @@ CREATE TABLE member (
 	id SERIAL PRIMARY KEY,
 	username VARCHAR(64) NOT NULL UNIQUE,
 	password VARCHAR(64) NOT NULL,
+	salt CHAR(240) NOT NULL UNIQUE,
 	email VARCHAR(64) NOT NULL UNIQUE,
 	account_type VARCHAR(32) NOT NULL,
 	is_valid SMALLINT DEFAULT 1 CHECK(is_valid = 1 OR is_valid = 0),
