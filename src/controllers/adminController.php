@@ -38,6 +38,10 @@ class adminController {
 				{
 					include('views/admin/admin-tableview.php'); // shows the view which will echo the table content and includes logic for table manipulation
 				}
+				else if ($_GET['action'] == 'add-admin') 
+				{
+					include('views/admin/admin-register.php');
+				}
 			}
 			else // empty get, display homepage
 			{

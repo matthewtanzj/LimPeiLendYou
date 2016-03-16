@@ -77,7 +77,7 @@
 				$tableName = $_GET['action'];
 				$tableController = new tableController();
 				$content = $tableController->convertPostgresTableIntoHTML($tableName);
-				echo $content 
+				echo $content;
 			?>
 		</tbody>
 	</table>

@@ -3,7 +3,11 @@ class tableModel {
 
     public function __construct()
     {
-        
+        /*
+		$salt = bin2hex(openssl_random_pseudo_bytes(120));
+		crypt($password, $salt);
+		$salt;
+		*/
     }
 	
 	public function retrieveEntireTable($tableName) 
@@ -24,12 +28,4 @@ class tableModel {
 		$query = "UPDATE $tableName SET $columnName = '$value', updated_at = CURRENT_TIMESTAMP WHERE id = '$primaryKey'";
 		$result = pg_query($query);
 	}
-	
-	public function getTotalUsers() {
-		$tableName = "member";
-		$result = $this->retrieveEntireTable($tableName);
-		$totalUsers = pg_num_rows($result);
-		return $totalUsers;
-	}
-	
 }

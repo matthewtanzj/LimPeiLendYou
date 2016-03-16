@@ -1,13 +1,14 @@
 <?php
 	include('models/tableModel.php');
+	include('models/memberModel.php');
 	$tableModel = new tableModel();
+	$memberModel = new memberModel();
 ?>
 
 <div class="wrapper">
 	<div class="col-md-6">
 		<h1>User Statistics</h1>
-			<p>Total registered users:<?php echo $tableModel->getTotalUsers()?></p>
-			<p></p><?php echo $tableModel->getTotalUsers()?>
+		<p>Total registered users:<?php echo $memberModel->getTotalUsers()?></p>
 	</div>
 	<div class="col-md-6">
 		<p>hello world</p>
