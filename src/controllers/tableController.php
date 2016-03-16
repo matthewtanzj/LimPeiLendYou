@@ -8,6 +8,11 @@ class tableController {
 		include('models/tableModel.php');
 	}
 
+	/* 
+	 * Function called by admin in the table view
+	 * It will convert all the content in the database into formatted HTML table
+	 * by calling a helper function <generateTableViewContent>
+	 */
 	public function convertPostgresTableIntoHTML($tableName)
 	{	
 		$tableModel = new tableModel();
@@ -16,6 +21,11 @@ class tableController {
 		return $content;
 	}
 	
+	/* 
+	 * Function called by admin in the table view
+	 * It will delete a row in a specific database given the primary key
+	 * Has additional include as it will be called as a asynchronous PHP script
+	 */
 	public function deleteFromDatabase($tableName, $primaryKey)
 	{
 		include("../config/database.php");
@@ -23,9 +33,13 @@ class tableController {
 		include("../models/tableModel.php");
 		$tableModel = new tableModel();
 		$tableModel->deleteRowFromTable($tableName, $primaryKey);
-		//echo "deleting id: " . $primaryKey . " from table: " . $tableName;
 	}
 	
+	/* 
+	 * Function called by admin in the table view
+	 * It will edit a row in a specific database given the primary key and new value
+	 * Has additional include as it will be called as a asynchronous PHP script
+	 */
 	public function editFromDatabase($tableName, $primaryKey, $columnName, $value)
 	{
 		include("../config/database.php");
@@ -62,6 +76,9 @@ class tableController {
 		return $content;
 	}
 }
+
+// checks that will be called as scripts by ajax table edit/delete
+// TODO: move them to separate scripts
 
 if (isset($_GET['deleteKey']) && isset($_GET['table'])) {
 	$tableName = $_GET['table'];

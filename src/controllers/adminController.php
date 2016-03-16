@@ -12,7 +12,7 @@ class adminController {
 	{
 		session_start();
 		
-		// initialize
+		// initialize loggedin status
 		if (!isset($_SESSION['loggedin'])) 
 		{
 			$_SESSION['loggedin'] = false;
@@ -23,12 +23,12 @@ class adminController {
 			include("views/admin/admin-header.php"); // shows home page
 			if (!empty($_GET)) // GET is not empty
 			{
-				if ($_GET['action'] == 'logout') // (logs out/destroy session) and redirect to login page
+				if ($_GET['action'] == 'logout') 
 				{
-					session_start();
-					session_destroy();
-					header("Location: admin-index.php");
+					// (logs out/destroy session) and redirect to login page
+					$this->logOutAndRedirectTo("Location: admin-index.php");
 				}
+				// admin views specific database tables
 				else if ($_GET['action'] == 'member' ||
 							$_GET['action'] == 'item' ||
 							$_GET['action'] == 'item_image' || 
@@ -36,10 +36,6 @@ class adminController {
 							$_GET['action'] == 'message' || 
 							$_GET['action'] == 'review') // admin views content of a table
 				{
-					include('controllers/tableController.php');
-					$tableName = $_GET['action'];
-					$tableController = new tableController();
-					$content = $tableController->convertPostgresTableIntoHTML($tableName);
 					include('views/admin/admin-tableview.php'); // shows the view which will echo the table content and includes logic for table manipulation
 				}
 			}
@@ -62,7 +58,7 @@ class adminController {
 					else
 					{
 						session_start();
-						session_destroy();	
+						session_destroy();
 						$loginResultMessage = "<p class=\"text-danger\">Only administrator accounts can be used to log in.</p>";
 					}		
 				}
@@ -71,6 +67,7 @@ class adminController {
 		}
 	}
 
+	// helper functions
 	private function userIsLoggedIn() 
 	{
 		if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'])
@@ -81,6 +78,13 @@ class adminController {
 		{
 			return false;
 		}
+	}
+	
+	private function logOutAndRedirectTo($home)
+	{
+		session_start();
+		session_destroy();
+		header($home);
 	}
 }
 

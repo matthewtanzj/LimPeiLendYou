@@ -1,3 +1,7 @@
+<!--
+	Called by the admin controller if the user has not logged in
+-->
+
 <html lang="en">
 
 <html>

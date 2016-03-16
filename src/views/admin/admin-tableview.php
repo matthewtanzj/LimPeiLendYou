@@ -1,11 +1,3 @@
-<style>
-	.wrapper {
-	margin: 0 auto;
-	width: 90%;
-	padding-top: 5%;
-	}
-</style>
-
 <div class='wrapper'>
 	<table class= "table table-striped table-bordered table-hover dataTable" id="datatable">
 		<thead>
@@ -80,7 +72,13 @@
 		</thead>
 		<tbody>
 			<!-- Following PHP Code will go here -->
-			<?php echo $content ?>
+			<?php 
+				include('controllers/tableController.php');
+				$tableName = $_GET['action'];
+				$tableController = new tableController();
+				$content = $tableController->convertPostgresTableIntoHTML($tableName);
+				echo $content 
+			?>
 		</tbody>
 	</table>
 </div>
@@ -222,3 +220,11 @@
 	}
 	
 </script>
+
+<style>
+	.wrapper {
+	margin: 0 auto;
+	width: 90%;
+	padding-top: 5%;
+	}
+</style>

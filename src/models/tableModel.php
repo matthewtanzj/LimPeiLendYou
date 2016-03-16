@@ -25,4 +25,11 @@ class tableModel {
 		$result = pg_query($query);
 	}
 	
+	public function getTotalUsers() {
+		$tableName = "member";
+		$result = $this->retrieveEntireTable($tableName);
+		$totalUsers = pg_num_rows($result);
+		return $totalUsers;
+	}
+	
 }
