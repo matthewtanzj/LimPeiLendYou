@@ -25,15 +25,6 @@ class MemberModel {
         return $result;
     }
 
-    public function insertMember($username, $password)
-    {
-        $query = "INSERT INTO member (username, password) VALUES ('" . $username ."', '" . $password . "')";
-
-        $result = pg_query($query);
-
-        return $result;
-    }
-
     public function memberExist($username)
     {
         $result = false;

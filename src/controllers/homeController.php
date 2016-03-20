@@ -20,6 +20,7 @@ class HomeController {
 		$loginResultMessage = '';
 		$signupUsernameErrorMessage = '';
 		$signupPasswordErrorMessage = '';
+		$signupEmailErrorMessage = '';
 		$signupErrorMessage = '';
 
 		

@@ -134,6 +134,13 @@
                         <span id='login_password_errorloc' class='error'></span>
                         <?php echo $signupPasswordErrorMessage;?>
                     </div>
+
+                    <div class='container'>
+                        <label for='email' >Email*:</label><br/>
+                        <input type='email' name='email' maxlength="50" /><br/>
+                        <span id='login_password_errorloc' class='error'></span>
+                        <?php echo $signupEmailErrorMessage;?>
+                    </div>
                     
                     <div class='container'>
                         <br>

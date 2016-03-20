@@ -4,6 +4,7 @@ $memberModel = new memberModel();
 
 $username = $_POST['username'];
 $password = $_POST['password'];
+$email = $_POST['email'];
 
 if (!$_POST['username']) {
 	$signupError = true;
@@ -15,13 +16,18 @@ if (!$_POST['password']) {
 	$signupPasswordErrorMessage = "<p class=\"text-danger\">Please enter a password</p>";
 }
 
+if (!$_POST['email']) {
+	$signupError = true;
+	$signupEmailErrorMessage = "<p class=\"text-danger\">Please enter an email</p>";
+}
+
 if ($_POST['username'] && $_POST['password']) {
 	if ($memberModel->memberExist($username)) { // check if have existing username
 		$signupError = true;
 		$signupErrorMessage = "<p class=\"text-danger\">Existing username!</p>";
 	} else {
 		// insert member
-		$result = $memberModel->insertMember($username, $password);
+		$result = $memberModel->addUser($username, $password, $email, 'member');
 
 		if (!$result) {
 			$signupError = true;
