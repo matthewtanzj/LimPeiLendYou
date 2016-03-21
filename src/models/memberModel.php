@@ -38,6 +38,20 @@ class MemberModel {
 
         return $result;
     }
+
+    public function emailExist($email)
+    {
+        $result = false;
+
+        $query = "SELECT COUNT(*) FROM member where email = '" . $email . "'";
+        $count = pg_fetch_row(pg_query($query));
+
+        if ($count[0] > 0) {
+            $result = true;
+        }
+
+        return $result;
+    }
 	
 	public function getTotalUsers() {
 		$tableName = "member";
