@@ -71,3 +71,17 @@ CREATE TABLE message (
 	FOREIGN KEY (receiver_id) REFERENCES member(id),
 	CHECK (sender_id != receiver_id)
 );
+
+CREATE TABLE loan_request (
+	id SERIAL PRIMARY KEY,
+	item_id INT NOT NULL REFERENCES item(id) ON DELETE CASCADE,
+	borrower_id INT NOT NULL REFERENCES member(id) ON DELETE CASCADE,
+	date_start DATE NOT NULL,
+	date_end DATE NOT NULL,
+	status VARCHAR(32) NOT NULL,
+	price_offer FLOAT NOT NULL,
+	is_valid SMALLINT DEFAULT 1,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	CHECK (status = 'accepted' OR status = 'declined' OR status = 'pending')
+);
