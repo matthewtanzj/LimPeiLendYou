@@ -21,10 +21,13 @@ if (!$_POST['email']) {
 	$signupEmailErrorMessage = "<p class=\"text-danger\">Please enter an email</p>";
 }
 
-if ($_POST['username'] && $_POST['password']) {
+if ($_POST['username'] && $_POST['password'] && $_POST['email']) {
 	if ($memberModel->memberExist($username)) { // check if have existing username
 		$signupError = true;
 		$signupErrorMessage = "<p class=\"text-danger\">Existing username!</p>";
+	} else if ($memberModel->emailExist($email)){
+		$signupError = true;
+		$signupErrorMessage = "<p class=\"text-danger\">Existing email!</p>";
 	} else {
 		// insert member
 		$result = $memberModel->addUser($username, $password, $email, 'member');
