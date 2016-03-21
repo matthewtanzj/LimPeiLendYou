@@ -2,3 +2,8 @@ body {
   min-height: 2000px;
   padding-top: 70px;
 }
+
+.trending-section .thumbnail {
+    margin-right: 10px;
+    margin-left: 10px;
+}

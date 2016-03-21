@@ -1,8 +1,6 @@
-<html lang="en">
+
 <!-- Fixed navbar -->
-    <?php
-        session_start();
-    ?>
+
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">

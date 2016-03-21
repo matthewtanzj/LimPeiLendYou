@@ -1,44 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Landing Page</title>
+        <title>WhoBorrow?</title>
 
         <!-- Bootstrap -->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="js/jquery-1.12.1.min.js"></script>
-		<!--
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		-->
+        <script src="js/jquery-1.12.1.min.js"></script>
+        <!--
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        -->
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet">
     </head>
-  <body>
+    <body>
+
     <!-- Fixed navbar -->
-    <div id="includeNavbar"></div>
-
-
+    <?php include 'views/navbar.php' ?>
 
     <div class="container">
-      <div class="col-lg-offset-3 col-lg-6">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for...">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Search!</button>
-          </span>
-        </div><!-- /input-group -->
-      </div><!-- /.col-lg-6 -->
+        
+
+        <div class="row">
+            <!-- Category box -->
+            <div class="col-lg-2">
+                <?php include 'views/category.php' ?>
+            </div>
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Search!</button>
+                    </span>
+                </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+        
+
+            <!-- Trending Section -->
+            <div class="trending-section col-lg-10">
+                <h3>Trending Items</h3>
+            </div>
+        </div>
+
     </div> <!-- /container -->
 
+    <!-- modals -->
     <div class="modal fade loginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -144,9 +159,10 @@
         $("#signupButton").click();
     }
 
-    $(function(){
-      $("#includeNavbar").load("views/navbar.php"); 
-    });
+    <?php foreach($trendingItemNameArray as $name) { ?>
+        $(".trending-section").append("<div class='thumbnail col-lg-2'><img src='...' alt=''><div class='caption'><span><?php echo $name ?></span></div></div>")
+    <?php } ?>
+    
 </script>
 
 

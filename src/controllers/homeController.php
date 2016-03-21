@@ -23,7 +23,7 @@ class HomeController {
 		$signupEmailErrorMessage = '';
 		$signupErrorMessage = '';
 
-		
+		// actions for login logout & signup
 		if (!empty($_GET)) {
 			if ($_GET['action'] == 'logout') {
 				include('helpers/logout.php');
@@ -40,6 +40,21 @@ class HomeController {
 			}
 		}
 
+		// load trending items
+		include('models/itemModel.php');
+		$itemModel = new itemModel();
+		$result = $itemModel->getItemIdByMostLoanrequest();
+		$trendingItemIdArray = pg_fetch_all($result);
+
+		$trendingItemNameArray = [];
+		for ($i = 0; $i < 5; $i++) {
+			$result = $itemModel->getById($trendingItemIdArray[$i]["item_id"]);
+			$item = pg_fetch_array($result);
+			$trendingItemNameArray[] = $item["name"];
+		}
+
+
+		// load view
 		include('views/home.php');
 	}
 
