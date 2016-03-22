@@ -4,7 +4,7 @@ include("controllers/homeController.php");
 include("controllers/itemController.php");
 
 
-if (!empty($_GET)) {
+if (!empty($_GET['page'])) {
 	switch ($_GET['page']) {
 		case 'item':
 			$item = new itemController();

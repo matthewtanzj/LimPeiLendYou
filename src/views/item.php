@@ -77,6 +77,18 @@
 </html>
 
 <script>
+    // show login modal if has login error
+    if (<?php echo isset($loginError) ? "true" : "false"; ?>) {
+        console.log('here');
+        $("#loginButton").click();
+    }
+
+    // show signup modal if has signup error
+    if (<?php echo isset($signupError) ? "true" : "false"; ?>) {
+        console.log('here');
+        $("#signupButton").click();
+    }
+
     $('#myTabs a').click(function (e) {
         e.preventDefault()
         $(this).tab('show')
