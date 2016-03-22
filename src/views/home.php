@@ -28,8 +28,6 @@
     <?php include 'views/navbar.php' ?>
 
     <div class="container">
-        
-
         <div class="row">
             <!-- Category box -->
             <div class="col-lg-2">
@@ -43,6 +41,10 @@
                     </span>
                 </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
+
+            <form action="?page=item" method="POST">
+                <input type="submit" value="test button">
+            </form>
         
 
             <!-- Trending Section -->

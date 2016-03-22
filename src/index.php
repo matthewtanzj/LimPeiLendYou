@@ -1,8 +1,22 @@
 <?php
 include("include/db_connect.php");
 include("controllers/homeController.php");
-
-$home = new homeController();
-$home->view();
+include("controllers/itemController.php");
 
 
+if (!empty($_GET)) {
+	switch ($_GET['page']) {
+		case 'item':
+			$item = new itemController();
+			$item->view();
+			break;
+		
+		default:
+			$home = new homeController();
+			$home->view();
+			break;
+	}
+} else {
+	$home = new homeController();
+	$home->view();
+}
