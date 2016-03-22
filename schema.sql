@@ -15,7 +15,7 @@ CREATE TABLE item (
 	id SERIAL PRIMARY KEY,
 	name VARCHAR(64) NOT NULL,
 	category VARCHAR(64) NOT NULL,
-	price float NOT NULL,
+	price MONEY NOT NULL,
 	description VARCHAR(256),
 	location VARCHAR(128) NOT NULL,
 	owner_id INT,
