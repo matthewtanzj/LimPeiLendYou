@@ -46,12 +46,13 @@ class HomeController {
 		$result = $itemModel->getItemIdByMostLoanrequest();
 		$trendingItemIdArray = pg_fetch_all($result);
 
-		$trendingItemNameArray = [];
+		$trendingItemArray = [];
 		for ($i = 0; $i < 5; $i++) {
 			$result = $itemModel->getById($trendingItemIdArray[$i]["item_id"]);
-			$item = pg_fetch_array($result);
-			$trendingItemNameArray[] = $item["name"];
+			$trendingItemArray[] = pg_fetch_array($result);
 		}
+
+
 
 
 		// load view

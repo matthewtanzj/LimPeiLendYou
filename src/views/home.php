@@ -132,7 +132,6 @@
                         <?php echo $signupErrorMessage;?>
                     </div>
 
-
                     <div class='container'>
                       <h5>* required fields</h5>
                     </div>
@@ -159,8 +158,12 @@
         $("#signupButton").click();
     }
 
-    <?php foreach($trendingItemNameArray as $name) { ?>
-        $(".trending-section").append("<div class='thumbnail col-lg-2'><img src='...' alt=''><div class='caption'><span><?php echo $name ?></span></div></div>")
+    var count = 0;
+    <?php foreach($trendingItemArray as $item) { ?>
+        if (count < 5) {
+             count++;
+            $(".trending-section").append("<div class='thumbnail col-lg-2'><a href=''><img src='...' alt=''></a><div class='caption'><span style='font-size:16px;''><?php echo $item['name'] ?></span><br><span style='color:grey;'><?php echo $item['price'] ?></span></div></div>");
+        }
     <?php } ?>
     
 </script>
