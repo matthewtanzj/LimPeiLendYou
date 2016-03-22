@@ -164,7 +164,7 @@
     <?php foreach($trendingItemArray as $item) { ?>
         if (count < 5) {
              count++;
-            $(".trending-section").append("<div class='thumbnail col-lg-2'><a href=''><img src='...' alt=''></a><div class='caption'><span style='font-size:16px;''><?php echo $item['name'] ?></span><br><span style='color:grey;'><?php echo $item['price'] ?></span></div></div>");
+            $(".trending-section").append("<div class='thumbnail col-lg-2'><a href='?page=item&id=<?php echo $item['id'] ?>'><img src='...' alt=''></a><div class='caption'><span style='font-size:16px;''><?php echo $item['name'] ?></span><br><span style='color:grey;'><?php echo $item['price'] ?></span></div></div>");
         }
     <?php } ?>
     
