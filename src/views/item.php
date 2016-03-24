@@ -41,26 +41,33 @@
                             <h3 class="panel-title" style="font-size:200%"><?php echo  $item['name'] ?></h3>
                         </div>
                         <div class="panel-body">
-                            <p>Owner: <?php echo $item['owner_name'] ?></p>
-                            <p>Price: <?php echo $item['price'] ?></p>
-                            <p>Location: <?php echo $item['location'] ?></p>
-                            <p>Available Dates: below insert calendar</p>
+                            <p><b>Owner:</b> <?php echo $item['owner_name'] ?></p>
+                            <p><b>Price:</b> <?php echo $item['price'] ?></p>
+                            <p><b>Location:</b> <?php echo $item['location'] ?></p>
+                            <p><b>Description:</b></p>
+                            <?php echo $item['description'] ?>
                         </div>
                     </div>
                 </div><!-- /.col-lg-5 -->
             </div>
 
             <div class="row">
-                <!-- Trending Section -->
                 <div>
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#description" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
+                        <li role="presentation" class="active"><a href="#borrow" aria-controls="home" role="tab" data-toggle="tab">Borrow</a></li>
                         <li role="presentation"><a href="#comments" aria-controls="profile" role="tab" data-toggle="tab">Comments</a></li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade in active" id="description"><?php echo $item['description'] ?></div>
+                        <div role="tabpanel" class="tab-pane fade in active" id="borrow">
+                            <br>
+                            <?php
+                                include 'helpers/calendar.php';
+                                $calendar = new Calendar();
+                                echo $calendar->show();
+                            ?>
+                        </div>
                         <div role="tabpanel" class="tab-pane fade" id="comments">
                             <div class="form-group">
                                 <br>
@@ -92,8 +99,46 @@
     $('#myTabs a').click(function (e) {
         e.preventDefault()
         $(this).tab('show')
-    })
+    });
     
+
+    $('li.clickable').each(function() {
+        <?php foreach ($freeDates as $date) {?>
+            if (<?php echo $date ?> == this.value) {
+                this.style.backgroundColor = "rgb(202, 255, 216)";
+            }
+        <?php } ?>
+    });
+
+    $(function() {
+        // make the cursor over <li> element to be a pointer instead of default
+        $('li.clickable').css('cursor', 'pointer')
+        // iterate through all <li> elements with CSS class = "clickable"
+        // and bind onclick event to each of them
+        .click(function() {
+            console.log(this.value);
+            // change color
+            if (this.style.backgroundColor != "rgb(208, 230, 255)") {
+                this.style.backgroundColor = "rgb(208, 230, 255)";
+            } else {
+                var inArray = false;
+
+                <?php foreach ($freeDates as $date) {?>
+                    if (<?php echo $date ?> == this.value) {
+                        inArray = true;
+                    }
+                <?php } ?>
+
+                if (inArray) {
+                    console.log("here");
+                    this.style.backgroundColor = "rgb(202, 255, 216)";
+                } else {
+                    this.style.backgroundColor = "";
+                }                
+            }
+            
+        });
+    });
 </script>
 
 
