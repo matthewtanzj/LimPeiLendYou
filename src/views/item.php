@@ -51,6 +51,8 @@
                 </div><!-- /.col-lg-5 -->
             </div>
 
+            <a name="calendarTab" ></a>
+
             <div class="row">
                 <div>
                     <!-- Nav tabs -->
@@ -62,11 +64,33 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active" id="borrow">
                             <br>
-                            <?php
-                                include 'helpers/calendar.php';
-                                $calendar = new Calendar();
-                                echo $calendar->show();
-                            ?>
+                            <div class="col-lg-7">
+                                <?php
+                                    include 'helpers/calendar.php';
+                                    $calendar = new Calendar();
+                                    echo $calendar->show();
+                                ?>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="panel-body">
+                                    <div class="input-group col-lg-6 input-group-sm">
+                                        <b>Choosen Dates:</b>
+                                        <br>
+                                        <span id="start">nil</span>
+                                        &nbsp;&nbsp;&nbsp;to&nbsp;&nbsp;&nbsp;
+                                        <span id="end">nil</span>
+                                    </div><!-- /input-group -->
+                                    <br>
+                                    <div class="input-group col-lg-5 input-group-sm">
+                                        <b>Price:</b> <input type="text" class="form-control" value="<?php echo $item['price'] ?>">
+                                    </div><!-- /input-group -->
+                                    <br>
+                                    <div class="input-group col-lg-5">
+                                        <button type="submit" class="btn btn-default">Borrow!</button>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="comments">
                             <div class="form-group">
@@ -101,7 +125,7 @@
         $(this).tab('show')
     });
     
-
+    // change green for available dates
     $('li.clickable').each(function() {
         <?php foreach ($freeDates as $date) {?>
             if (<?php echo $date ?> == this.value) {
@@ -110,31 +134,70 @@
         <?php } ?>
     });
 
+    var firstClick = true;
+    var firstDate = 0;
+    // change to blue when available dates are clicked
     $(function() {
         // make the cursor over <li> element to be a pointer instead of default
         $('li.clickable').css('cursor', 'pointer')
         // iterate through all <li> elements with CSS class = "clickable"
         // and bind onclick event to each of them
         .click(function() {
-            console.log(this.value);
+
             // change color
-            if (this.style.backgroundColor != "rgb(208, 230, 255)") {
-                this.style.backgroundColor = "rgb(208, 230, 255)";
-            } else {
-                var inArray = false;
+            if (this.style.backgroundColor == "rgb(208, 230, 255)" || this.style.backgroundColor == "rgb(202, 255, 216)") {
+                if (firstClick) {
+                    firstDate = this.value;
+                    firstClick = false;
+                    this.style.backgroundColor = "rgb(208, 230, 255)"; //blue
+                    $('#start').html(this.value + '-' + '<?php echo $month ?>' + '-' + '<?php echo $year ?>');
+                    $('#end').html(this.value + '-' + '<?php echo $month ?>' + '-' + '<?php echo $year ?>');
+                } else { // already have first click
 
-                <?php foreach ($freeDates as $date) {?>
-                    if (<?php echo $date ?> == this.value) {
-                        inArray = true;
+                    if (this.value != firstDate) { // not the first date
+
+                        var start = 0;
+                        var end = 0;
+                        if (this.value < firstDate) {
+                            start = this.value;
+                            end = firstDate;
+                        } else {
+                            start = firstDate;
+                            end = this.value;
+                        }
+
+                        $('#start').html(start + '-' + '<?php echo $month ?>' + '-' + '<?php echo $year ?>');
+                        $('#end').html(end + '-' + '<?php echo $month ?>' + '-' + '<?php echo $year ?>');
+
+                        $('li.clickable').each(function() {
+
+                            <?php foreach ($freeDates as $date) {?>
+                                if (<?php echo $date ?> == this.value) {
+                                    if (this.value >= start && this.value <= end  ) {
+                                        this.style.backgroundColor = "rgb(208, 230, 255)"; //blue
+                                    } else {
+                                        this.style.backgroundColor = "rgb(202, 255, 216)" //green
+                                    }
+                                }
+                            <?php } ?>
+                        });         
+
+                    } else { // clicked on first date
+                        $('li.clickable').each(function() {
+                            <?php foreach ($freeDates as $date) {?>
+                                if (<?php echo $date ?> == this.value) {
+                                    this.style.backgroundColor = "rgb(202, 255, 216)"; // change back all to green
+                                }
+                            <?php } ?>
+                        });
+
+                        $('#start').html('nil');
+                        $('#end').html('nil');
+
+                        firstClick = true;
                     }
-                <?php } ?>
 
-                if (inArray) {
-                    console.log("here");
-                    this.style.backgroundColor = "rgb(202, 255, 216)";
-                } else {
-                    this.style.backgroundColor = "";
-                }                
+                }
             }
             
         });
