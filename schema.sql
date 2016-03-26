@@ -51,7 +51,7 @@ CREATE TABLE loan_request (
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (owner, item_name) REFERENCES item(owner, item_name) ON DELETE CASCADE,
 	PRIMARY KEY (owner, item_name, borrower, date_start),
-	CHECK (date_start <= date_end)
+	CHECK (date_start <= date_end),
 	CHECK (status = 'accepted' OR status = 'declined' OR status = 'pending')
 );
 
