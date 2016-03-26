@@ -55,6 +55,16 @@ CREATE TABLE loan_request (
 	CHECK (status = 'accepted' OR status = 'declined' OR status = 'pending')
 );
 
+CREATE TABLE comment (
+	item_name VARCHAR(64),
+	owner VARCHAR(32),
+	commenter VARCHAR (32) REFERENCES member(username) ON DELETE CASCADE,
+	content VARCHAR (256) NOT NULL,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (owner, item_name) REFERENCES item(owner, item_name) ON DELETE CASCADE,
+	PRIMARY KEY (owner, item_name, commenter, created_at)
+);
+
 CREATE TABLE review (
 	reviewer VARCHAR(32),
 	reviewee VARCHAR(32),
