@@ -1,87 +1,82 @@
 CREATE TABLE member (
-	id SERIAL PRIMARY KEY,
-	username VARCHAR(64) NOT NULL UNIQUE,
-	password VARCHAR(64) NOT NULL,
-	salt CHAR(240) NOT NULL UNIQUE,
+	username VARCHAR(32) PRIMARY KEY,
+	password VARCHAR(32) NOT NULL,
+	salt CHAR(240) NOT NULL,
 	email VARCHAR(64) NOT NULL UNIQUE,
-	account_type VARCHAR(32) NOT NULL,
-	is_valid SMALLINT DEFAULT 1 CHECK(is_valid = 1 OR is_valid = 0),
-	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	CHECK (account_type = 'admin' OR account_type = 'member')
+	account_type VARCHAR(6) NOT NULL,
+	last_logged_in TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	CHECK (account_type = 'admin' OR account_type = 'member'),
 );
 
 CREATE TABLE item (
-	id SERIAL PRIMARY KEY,
-	name VARCHAR(64) NOT NULL,
+	item_name VARCHAR(64) NOT NULL,
+	owner VARCHAR(32) REFERENCES member(username) ON DELETE CASCADE,
 	category VARCHAR(64) NOT NULL,
 	price MONEY NOT NULL,
 	description VARCHAR(256),
 	location VARCHAR(128) NOT NULL,
-	owner_id INT,
 	is_valid SMALLINT DEFAULT 1,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (owner_id) REFERENCES member(id) ON DELETE CASCADE,
+	PRIMARY KEY (owner, item_name),
 	CHECK (is_valid = 1 OR is_valid = 0)
 );
 
 CREATE TABLE item_image (
-	id SERIAL PRIMARY KEY,
-	item_id INT,
+	item_name VARCHAR(64),
+	owner VARCHAR(32),
 	image_url VARCHAR(256) NOT NULL,
-	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE
+	FOREIGN KEY (owner, item_name) REFERENCES item(owner, item_name) ON DELETE CASCADE,
+	PRIMARY KEY (item_name, owner, image_url)
 );
 
 CREATE TABLE item_availability (
-	id SERIAL PRIMARY KEY,
-	item_id INT,
+	item_name VARCHAR(64),
+	owner VARCHAR(32),
 	date_start DATE NOT NULL,
 	date_end DATE NOT NULL,
-	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (item_id) REFERENCES item(id) ON DELETE CASCADE,
+	FOREIGN KEY (owner, item_name) REFERENCES item(owner, item_name) ON DELETE CASCADE,
+	PRIMARY KEY (owner, item_name, date_start, date_end),
 	CHECK (date_start <= date_end)
 );
 
-CREATE TABLE review (
-	id SERIAL PRIMARY KEY,
-	content VARCHAR(256) NOT NULL,
-	has_like SMALLINT NOT NULL CHECK(has_like = 1 OR has_like = 0),
-	reviewer_id INT,
-	reviewee_id INT,
-	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (reviewer_id) REFERENCES member(id),
-	FOREIGN KEY (reviewee_id) REFERENCES member(id) ON DELETE CASCADE,
-	CHECK (reviewer_id != reviewee_id)
-);
-
-CREATE TABLE message (
-	id SERIAL PRIMARY KEY,
-	item_id INT NOT NULL REFERENCES item(id) ON DELETE CASCADE,
-	content VARCHAR(256) NOT NULL,
-	sender_id INT,
-	receiver_id INT,
-	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (sender_id) REFERENCES member(id),
-	FOREIGN KEY (receiver_id) REFERENCES member(id),
-	CHECK (sender_id != receiver_id)
-);
-
 CREATE TABLE loan_request (
-	id SERIAL PRIMARY KEY,
-	item_id INT NOT NULL REFERENCES item(id) ON DELETE CASCADE,
-	borrower_id INT NOT NULL REFERENCES member(id) ON DELETE CASCADE,
+	item_name VARCHAR(64),
+	owner VARCHAR(32),
+	borrower VARCHAR(32) REFERENCES member(username) ON DELETE CASCADE,
 	date_start DATE NOT NULL,
 	date_end DATE NOT NULL,
 	status VARCHAR(32) NOT NULL,
 	price_offer FLOAT NOT NULL,
 	is_valid SMALLINT DEFAULT 1,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (owner, item_name) REFERENCES item(owner, item_name) ON DELETE CASCADE,
+	PRIMARY KEY (owner, item_name, borrower, date_start),
+	CHECK (date_start <= date_end)
 	CHECK (status = 'accepted' OR status = 'declined' OR status = 'pending')
+);
+
+CREATE TABLE review (
+	reviewer VARCHAR(32),
+	reviewee VARCHAR(32),
+	content VARCHAR(256) NOT NULL,
+	has_like SMALLINT NOT NULL CHECK (has_like = 1 OR has_like = 0),
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	FOREIGN KEY (reviewer) REFERENCES member(username) ON DELETE CASCADE,
+	FOREIGN KEY (reviewee) REFERENCES member(username) ON DELETE CASCADE,
+	PRIMARY KEY (reviewer, reviewee, created_at),
+	CHECK (reviewer != reviewee)
+);
+
+CREATE TABLE message (
+	item_name VARCHAR(64),
+	item_owner VARCHAR(32),
+	sender VARCHAR(32),
+	receiver VARCHAR(32),
+	content VARCHAR(256) NOT NULL,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	FOREIGN KEY (item_name, item_owner) REFERENCES item(item_name, owner) ON DELETE CASCADE,
+	FOREIGN KEY (sender) REFERENCES member(username) ON DELETE CASCADE,
+	FOREIGN KEY (receiver) REFERENCES member(username) ON DELETE CASCADE,
+	PRIMARY KEY (item_name, item_owner, sender, receiver, created_at),
+	CHECK (sender != receiver)
 );
