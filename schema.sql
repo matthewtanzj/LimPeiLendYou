@@ -5,7 +5,7 @@ CREATE TABLE member (
 	email VARCHAR(64) NOT NULL UNIQUE,
 	account_type VARCHAR(6) NOT NULL,
 	last_logged_in TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	CHECK (account_type = 'admin' OR account_type = 'member'),
+	CHECK (account_type = 'admin' OR account_type = 'member')
 );
 
 CREATE TABLE item (
