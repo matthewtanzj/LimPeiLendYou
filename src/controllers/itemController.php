@@ -8,10 +8,12 @@ class ItemController {
 	public function view()
 	{
 		session_start();
-		$id = -1;
+		$owner = '';
+		$itemName = '';
 
-		if (!empty($_GET['id'])) {
-			$id = $_GET['id'];
+		if (!empty($_GET['owner']) && !empty($_GET['item'])) {
+			$owner = $_GET['owner'];
+			$itemName = $_GET['item'];
 		}
 
 
@@ -23,14 +25,11 @@ class ItemController {
 		$memberModel = new memberModel();
 		$itemAvailabilityModel = new itemAvailabilityModel();
 
-		$result = $itemModel->getById($id);
+		$result = $itemModel->getByKey($owner, $itemName);
 		$item = pg_fetch_array($result);
 
-		$result = $memberModel->getNameById($item['owner_id']);
-		$item['owner_name'] = pg_fetch_array($result)['username'];
-
 		// get all available dates
-		$result = $itemAvailabilityModel->getAllById($item['id']);
+		$result = $itemAvailabilityModel->getAllByItemKey($owner, $itemName);
 		$availabilityArray = pg_fetch_all($result);
 
 		if ($availabilityArray) {
@@ -64,8 +63,6 @@ class ItemController {
 	    		}
 	    	}
 		}
-		
-
 
 		include('views/item.php');
 

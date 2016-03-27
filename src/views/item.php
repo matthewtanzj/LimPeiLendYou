@@ -38,10 +38,10 @@
                 <div class="col-lg-5">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title" style="font-size:200%"><?php echo  $item['name'] ?></h3>
+                            <h3 class="panel-title" style="font-size:200%"><?php echo  $item['item_name'] ?></h3>
                         </div>
                         <div class="panel-body">
-                            <p><b>Owner:</b> <?php echo $item['owner_name'] ?></p>
+                            <p><b>Owner:</b> <?php echo $item['owner'] ?></p>
                             <p><b>Price:</b> <?php echo $item['price'] ?></p>
                             <p><b>Location:</b> <?php echo $item['location'] ?></p>
                             <p><b>Description:</b></p>

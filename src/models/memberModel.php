@@ -67,16 +67,9 @@ class MemberModel {
 		$encryptedPassword = crypt($password, $salt);
 		
 		$query = "INSERT INTO member 
-					VALUES('$username', '$encryptedPassword', '$salt', 
-							'$email', '$accountType')";
+					VALUES('$username', '$encryptedPassword', '$salt', '$email', '$accountType')";
 		$result = pg_query($query);
 		return $result; // true if successfully inserted, false otherwise
 	}
 
-    public function getNameById($id)
-    {
-        $query = "SELECT m.username FROM member m WHERE m.id = ". $id ." AND m.is_valid = 1";
-
-        return pg_query($query);
-    }
 }

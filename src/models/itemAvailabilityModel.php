@@ -6,9 +6,9 @@ class ItemAvailabilityModel {
         
     }
 
-    public function getAllById($itemId)
+    public function getAllByItemKey($owner, $itemName)
     {
-        $query = "SELECT * FROM item_availability i WHERE i.item_id = ". $itemId;
+        $query = "SELECT * FROM item_availability i WHERE i.owner = '". $owner . "' AND i.item_name = '". $itemName ."'";
 
         return pg_query($query);
     }

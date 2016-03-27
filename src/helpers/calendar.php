@@ -147,9 +147,9 @@ class Calendar {
          
         return
             '<div class="header">'.
-                '<a class="prev" href="'.$this->naviHref.'?page='.$_GET['page'].'&id='.$_GET['id'].'&month='.sprintf('%02d',$preMonth).'&year='.$preYear.'#calendarTab">Prev</a>'.
+                '<a class="prev" href="'.$this->naviHref.'?page='.$_GET['page'].'&owner='.$_GET['owner'].'&item='.$_GET['item'].'&month='.sprintf('%02d',$preMonth).'&year='.$preYear.'#calendarTab">Prev</a>'.
                     '<span class="title">'.date('Y M',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).'</span>'.
-                '<a class="next" href="'.$this->naviHref.'?page='.$_GET['page'].'&id='.$_GET['id'].'&month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'#calendarTab">Next</a>'.
+                '<a class="next" href="'.$this->naviHref.'?page='.$_GET['page'].'&owner='.$_GET['owner'].'&item='.$_GET['item'].'&month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'#calendarTab">Next</a>'.
             '</div>';
     }
          
