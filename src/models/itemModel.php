@@ -6,13 +6,13 @@ class ItemModel {
         
     }
 
-    public function getItemIdByMostLoanrequest()
+    public function getItemKeyByMostLoanrequest()
     {
-    	$query = "SELECT l.item_id
+    	$query = "SELECT l.owner, l.item_name
 				FROM loan_request l
                 WHERE is_valid = 1
-				GROUP BY l.item_id
-                ORDER BY count(l.item_id) DESC
+				GROUP BY l.owner, l.item_name
+                ORDER BY count(l.item_name) DESC
 				";
 				
 		$result = pg_query($query);
