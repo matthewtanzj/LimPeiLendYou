@@ -20,9 +20,12 @@ class ItemModel {
         return $result;
     }
 
-    public function getById($id)
+    public function getByKey($owner, $itemName)
     {
-        $query = "SELECT * FROM item i WHERE i.id = ". $id ." AND i.is_valid = 1";
+        $query = "SELECT * FROM item i 
+                WHERE i.owner = '". $owner ."' 
+                AND i.item_name = '". $itemName ."' 
+                AND i.is_valid = 1";
 
         return pg_query($query);
     }
