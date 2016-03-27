@@ -32,34 +32,27 @@ class ItemController {
 		$result = $itemAvailabilityModel->getAllByItemKey($owner, $itemName);
 		$availabilityArray = pg_fetch_all($result);
 
+		$freeDates = [];
 		if ($availabilityArray) {
-			$year  = null;
-	        $month = null;
-	        if(null==$year&&isset($_GET['year'])){
-	            $year = $_GET['year'];
-	            $month = $_GET['month'];
-	        }else if(null==$year){
-	            $year = date("Y",time());  
-	            $month = date("m",time());
-	        }
+			
 
-	    	$freeDates = [];
 	    	foreach($availabilityArray as $availability) { 
-
 	    		$startDate=strtotime($availability['date_start']);
 	    		$endDate=strtotime($availability['date_end']);
 
-	    		if (intval($year) == intval(date("Y",$startDate)) && intval($month) == intval(date("m",$startDate))) { 
-	    			if (intval(date("m", $endDate)) != intval($month)) {
-	    				$end = 31;
-	    			} else {
-	    				$end = intval(date("d",  $endDate));
-	    			}
+	    		$yearStart = intval(date("Y",$startDate));
+	    		$monthStart = intval(date("m",$startDate));
+	    		$dateStart = intval(date("d",$startDate));
+	    		$yearEnd = intval(date("Y",$endDate));
+	    		$monthEnd = intval(date("m",$endDate));
+	    		$dateEnd = intval(date("d",$endDate));
 
-	    			for ($i = intval(date("d", $startDate)); $i <= $end; $i++) {
-	    				$freeDates[] = $i;
+	    		for ($y = $yearStart; $y <= $yearEnd; $y++) {
+	    			for ($m = $monthStart; $m <= $monthEnd; $m++) {
+	    				for ($d = $dateStart; $d <= $dateEnd; $d++) {
+	    					$freeDates[] = $d . '-' . $m . '-' . $y;	    		
+				    	}
 	    			}
-	    			
 	    		}
 	    	}
 		}

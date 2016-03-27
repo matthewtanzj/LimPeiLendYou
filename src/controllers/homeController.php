@@ -9,8 +9,6 @@ class HomeController {
 	{
 		session_start();
 
-
-
 		// load trending items
 		include('models/itemModel.php');
 		$itemModel = new itemModel();
