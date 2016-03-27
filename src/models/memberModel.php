@@ -67,8 +67,8 @@ class MemberModel {
 		$encryptedPassword = crypt($password, $salt);
 		
 		$query = "INSERT INTO member 
-					VALUES(DEFAULT, '$username', '$encryptedPassword', '$salt', 
-							'$email', '$accountType', '1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
+					VALUES('$username', '$encryptedPassword', '$salt', 
+							'$email', '$accountType')";
 		$result = pg_query($query);
 		return $result; // true if successfully inserted, false otherwise
 	}
