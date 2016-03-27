@@ -22,22 +22,27 @@
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet">
 
-
-
         <!-- date picker -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.min.css" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.standalone.min.css" >
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
 
-
-
     </head>
     <body>
+
         <!-- Fixed navbar -->
         <?php include 'views/navbar.php' ?>
 
         <div class="container">    
             <div class="row">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Woohoo!</strong> Loan request submitted :D
+                </div>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Oh snap!</strong> Something went wrong D:
+                </div>
                 <!-- pictures area -->
                 <div class="col-lg-7">
                         <a href="#" class="thumbnail">
@@ -57,20 +62,22 @@
                             <p><b>Borrow:</b></p>
                             <div class="panel panel-default" style="border: 0;box-shadow: none;">
                                 <div class="panel-body">
-                                    <b>Choose Dates:</b>
-                                    <br>
-                                    <div class="input-daterange input-group" id="datepicker">
-                                        <input type="text" class="input-sm form-control" name="start" />
-                                        <span class="input-group-addon">to</span>
-                                        <input type="text" class="input-sm form-control" name="end" />
-                                    </div>
-                                    <div class="input-group col-lg-5 input-group-sm">
-                                        <b>Bid Price:</b> <input type="text" class="form-control" value="<?php echo $item['price'] ?>">
-                                    </div><!-- /input-group -->
-                                    <br>
-                                    <div class="input-group col-lg-5">
-                                        <button type="submit" class="btn btn-default">Submit</button>
-                                    </div>
+                                    <form action="?page=item&amp;owner=<?php echo $item['owner']?>&amp;item=<?php echo $item['item_name']?>" method="post">
+                                        <b>Choose Dates:</b>
+                                        <br>
+                                        <div class="input-daterange input-group" id="datepicker">
+                                            <input type="text" class="input-sm form-control" name="start" />
+                                            <span class="input-group-addon">to</span>
+                                            <input type="text" class="input-sm form-control" name="end" />
+                                        </div>
+                                        <div class="input-group col-lg-5 input-group-sm">
+                                            <b>Bid Price:</b> <input type="text" class="input-sm form-control" name="bidPrice" value="<?php echo $item['price'] ?>" />
+                                        </div><!-- /input-group -->
+                                        <br>
+                                        <div class="input-group col-lg-5">
+                                            <button type="submit" class="btn btn-default submitButton">Submit</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -156,6 +163,26 @@
             }
         <?php } ?>
     });
+
+
+    <?php if($_SESSION['loggedin']): ?>
+        $('.submitButton').prop('disabled', false);
+    <?php else: ?>
+        $('.submitButton').prop('disabled', true);
+    <?php endif; ?> 
+
+    // show alert if submit successfully
+    $('.alert-success').hide();
+    $('.alert-danger').hide();
+
+    <?php if ($submitSuccess): ?>
+        $('.alert-success').show();
+    <?php endif; ?>
+    
+    <?php if ($submitError): ?>
+        $('.alert-danger').show();
+    <?php endif; ?>
+
 
   
 </script>

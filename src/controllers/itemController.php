@@ -16,6 +16,9 @@ class ItemController {
 			$itemName = $_GET['item'];
 		}
 
+		
+
+
 
 		// get item info 
 		include('models/itemModel.php');
@@ -28,6 +31,29 @@ class ItemController {
 		$result = $itemModel->getByKey($owner, $itemName);
 		$item = pg_fetch_array($result);
 
+		$submitSuccess = false;
+		$submitError = false;
+		if (!empty($_POST)) {
+			if ($_POST['start'] == '' || $_POST['end'] == '' || $_POST['bidPrice'] == '' ) {
+				$submitError = true;
+			} else {
+				// process loan request
+				$start = $_POST['start'];
+				$end = $_POST['end'];
+				$bidPrice = $_POST['bidPrice'];
+
+				include('models/loanRequestModel.php');
+				$loanRequestModel = new loanRequestModel();
+				$request = $loanRequestModel->addLoanRequest($item['item_name'], $item['owner'], $_SESSION['username'], $start, $end, $bidPrice);
+
+				if ($request) {
+					$submitSuccess = true;
+				} else {
+					$submitError = true;
+				}
+			}
+		}
+
 		// get all available dates
 		$result = $itemAvailabilityModel->getAllByItemKey($owner, $itemName);
 		$availabilityArray = pg_fetch_all($result);
@@ -35,7 +61,6 @@ class ItemController {
 		$freeDates = [];
 		if ($availabilityArray) {
 			
-
 	    	foreach($availabilityArray as $availability) { 
 	    		$startDate=strtotime($availability['date_start']);
 	    		$endDate=strtotime($availability['date_end']);
