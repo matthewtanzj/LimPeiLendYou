@@ -14,17 +14,15 @@ class HomeController {
 		// load trending items
 		include('models/itemModel.php');
 		$itemModel = new itemModel();
-		$result = $itemModel->getItemIdByMostLoanrequest();
+		$result = $itemModel->getItemKeyByMostLoanrequest();
 		$trendingItemIdArray = pg_fetch_all($result);
+
 
 		$trendingItemArray = [];
 		for ($i = 0; $i < 5; $i++) {
-			$result = $itemModel->getById($trendingItemIdArray[$i]["item_id"]);
+			$result = $itemModel->getByKey($trendingItemIdArray[$i]["owner"], $trendingItemIdArray[$i]["item_name"]);
 			$trendingItemArray[] = pg_fetch_array($result);
 		}
-
-
-
 
 		// load view
 		include('views/home.php');
