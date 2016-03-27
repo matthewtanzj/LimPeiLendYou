@@ -46,7 +46,7 @@ CREATE TABLE loan_request (
 	date_start DATE NOT NULL,
 	date_end DATE NOT NULL,
 	status VARCHAR(32) NOT NULL,
-	price_offer FLOAT NOT NULL,
+	price_offer MONEY NOT NULL,
 	is_valid SMALLINT DEFAULT 1,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (owner, item_name) REFERENCES item(owner, item_name) ON DELETE CASCADE,
