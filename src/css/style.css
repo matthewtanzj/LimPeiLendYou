@@ -8,6 +8,11 @@ body {
     margin-left: 10px;
 }
 
+.result-section .thumbnail {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
 /*******************************Calendar Top Navigation*********************************/
 div#calendar{
   margin:0px auto;

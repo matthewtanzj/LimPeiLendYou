@@ -33,7 +33,7 @@
             <div class="col-lg-2">
                 <?php include 'views/category.php' ?>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-10">
                 <?php include 'helpers/searchbar.php' ?>
             </div><!-- /.col-lg-6 -->
             

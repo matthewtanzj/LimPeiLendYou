@@ -64,7 +64,7 @@
       </ul>
 
     <?php if(!empty($_GET['page'])): ?> 
-        <form class="navbar-form navbar-left" role="search">
+        <form class="navbar-form navbar-left" role="search" action="?page=search" method="post">
             <?php include('helpers/searchbar.php'); ?>
         </form>
     <?php endif ?>
@@ -174,3 +174,7 @@
     </div>
   </div>
 </div>
+
+<script>
+    $('#advanceSearchModal').appendTo("body");
+</script>

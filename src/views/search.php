@@ -38,8 +38,8 @@
             </div><!-- /.col-lg-6 -->
             
             <!-- Result Section -->
-            <div class="trending-section col-lg-10">
-                <h3>Results</h3>
+            <div class="result-section col-lg-10">
+                <h3>Showing results for '<?php echo $search ?>'</h3>
             </div>
         </div>
 
@@ -51,7 +51,11 @@
 </html>
 
 <script>
+    // display found items
+    <?php foreach($itemArray as $item) { ?>
+        $(".result-section").append("<div class='thumbnail col-lg-2'><a href='?page=item&owner=<?php echo $item['owner'] ?>&item=<?php echo $item['item_name'] ?>'><img src='...' alt=''></a><div class='caption'><span style='font-size:16px;''><?php echo $item['item_name'] ?></span><br><span style='color:grey;'><?php echo $item['price'] ?></span></div></div>");
 
+    <?php } ?>
     
 </script>
 
