@@ -63,6 +63,12 @@
         </li>
       </ul>
 
+    <?php if(!empty($_GET['page'])): ?> 
+        <form class="navbar-form navbar-left" role="search">
+            <?php include('helpers/search.php'); ?>
+        </form>
+    <?php endif ?>
+
       <ul class="nav navbar-nav navbar-right">
         <?php if($_SESSION['loggedin']): ?>
             <li class="dropdown">

@@ -34,12 +34,7 @@
                 <?php include 'views/category.php' ?>
             </div>
             <div class="col-lg-6">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Search!</button>
-                    </span>
-                </div><!-- /input-group -->
+                <?php include 'helpers/search.php' ?>
             </div><!-- /.col-lg-6 -->
             
             <!-- Trending Section -->
