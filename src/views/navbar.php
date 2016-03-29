@@ -65,7 +65,7 @@
 
     <?php if(!empty($_GET['page'])): ?> 
         <form class="navbar-form navbar-left" role="search">
-            <?php include('helpers/search.php'); ?>
+            <?php include('helpers/searchbar.php'); ?>
         </form>
     <?php endif ?>
 

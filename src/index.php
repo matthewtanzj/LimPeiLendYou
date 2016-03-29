@@ -2,6 +2,7 @@
 include("include/db_connect.php");
 include("controllers/homeController.php");
 include("controllers/itemController.php");
+include("controllers/searchController.php");
 
 
 if (!empty($_GET['page'])) {
@@ -9,6 +10,12 @@ if (!empty($_GET['page'])) {
 		case 'item':
 			$item = new itemController();
 			$item->view();
+			break;
+
+
+		case 'search':
+			$search = new searchController();
+			$search->view();
 			break;
 		
 		default:

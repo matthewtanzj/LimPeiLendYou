@@ -37,9 +37,9 @@
                 <?php include 'helpers/searchbar.php' ?>
             </div><!-- /.col-lg-6 -->
             
-            <!-- Trending Section -->
+            <!-- Result Section -->
             <div class="trending-section col-lg-10">
-                <h3>Trending Items</h3>
+                <h3>Results</h3>
             </div>
         </div>
 
@@ -51,25 +51,7 @@
 </html>
 
 <script>
-    // show login modal if has login error
-    if (<?php echo isset($loginError) ? "true" : "false"; ?>) {
-        console.log('here');
-        $("#loginButton").click();
-    }
 
-    // show signup modal if has signup error
-    if (<?php echo isset($signupError) ? "true" : "false"; ?>) {
-        console.log('here');
-        $("#signupButton").click();
-    }
-
-    var count = 0;
-    <?php foreach($trendingItemArray as $item) { ?>
-        if (count < 5) {
-             count++;
-            $(".trending-section").append("<div class='thumbnail col-lg-2'><a href='?page=item&owner=<?php echo $item['owner'] ?>&item=<?php echo $item['item_name'] ?>'><img src='...' alt=''></a><div class='caption'><span style='font-size:16px;''><?php echo $item['item_name'] ?></span><br><span style='color:grey;'><?php echo $item['price'] ?></span></div></div>");
-        }
-    <?php } ?>
     
 </script>
 
