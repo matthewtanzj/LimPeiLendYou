@@ -24,9 +24,11 @@ class ItemController {
 		include('models/itemModel.php');
 		include('models/memberModel.php');
 		include('models/itemAvailabilityModel.php');
+		include('models/commentModel.php');
 		$itemModel = new itemModel();
 		$memberModel = new memberModel();
 		$itemAvailabilityModel = new itemAvailabilityModel();
+		$commentModel = new commentModel();
 
 		$result = $itemModel->getByKey($owner, $itemName);
 		$item = pg_fetch_array($result);
@@ -34,24 +36,31 @@ class ItemController {
 		$submitSuccess = false;
 		$submitError = false;
 		if (!empty($_POST)) {
-			if ($_POST['start'] == '' || $_POST['end'] == '' || $_POST['bidPrice'] == '' ) {
-				$submitError = true;
-			} else {
-				// process loan request
-				$start = $_POST['start'];
-				$end = $_POST['end'];
-				$bidPrice = $_POST['bidPrice'];
-
-				include('models/loanRequestModel.php');
-				$loanRequestModel = new loanRequestModel();
-				$request = $loanRequestModel->addLoanRequest($item['item_name'], $item['owner'], $_SESSION['username'], $start, $end, $bidPrice);
-
-				if ($request) {
-					$submitSuccess = true;
-				} else {
+			if($_POST['action'] == 'requestLoan') {
+				if ($_POST['start'] == '' || $_POST['end'] == '' || $_POST['bidPrice'] == '' ) {
 					$submitError = true;
+				} else {
+					// process loan request
+					$start = $_POST['start'];
+					$end = $_POST['end'];
+					$bidPrice = $_POST['bidPrice'];
+
+					include('models/loanRequestModel.php');
+					$loanRequestModel = new loanRequestModel();
+					$request = $loanRequestModel->addLoanRequest($item['item_name'], $item['owner'], $_SESSION['username'], $start, $end, $bidPrice);
+
+					if ($request) {
+						$submitSuccess = true;
+					} else {
+						$submitError = true;
+					}
 				}
 			}
+
+			if($_POST['action'] == 'submitComment') {
+				$commentModel->addComment($_POST['item_name'], $_POST['owner'], $_SESSION['username'], $_POST['content']);
+			}
+
 		}
 
 		// get all available dates
@@ -81,6 +90,11 @@ class ItemController {
 	    		}
 	    	}
 		}
+
+		// get all comments
+		date_default_timezone_set("Asia/Singapore");
+		$result = $commentModel->getCommentsByItemKey($owner, $itemName);
+		$commentArray = pg_fetch_all($result);
 
 		include('views/item.php');
 

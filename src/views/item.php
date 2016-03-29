@@ -35,11 +35,11 @@
 
         <div class="container">    
             <div class="row">
-                <div class="alert alert-success alert-dismissible" role="alert">
+                <div class="alert alert-success alert-dismissible" role="alert" style="display: none;">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <strong>Woohoo!</strong> Loan request submitted :D
                 </div>
-                <div class="alert alert-danger alert-dismissible" role="alert">
+                <div class="alert alert-danger alert-dismissible" role="alert" style="display: none;">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <strong>Oh snap!</strong> Something went wrong D:
                 </div>
@@ -63,6 +63,7 @@
                             <div class="panel panel-default" style="border: 0;box-shadow: none;">
                                 <div class="panel-body">
                                     <form action="?page=item&amp;owner=<?php echo $item['owner']?>&amp;item=<?php echo $item['item_name']?>" method="post">
+                                        <input type="hidden" name="action" value="requestLoan">
                                         <b>Choose Dates:</b>
                                         <br>
                                         <div class="input-daterange input-group" id="datepicker">
@@ -75,7 +76,7 @@
                                         </div><!-- /input-group -->
                                         <br>
                                         <div class="input-group col-lg-5">
-                                            <button type="submit" class="btn btn-default submitButton">Submit</button>
+                                            <button type="submit" class="btn btn-default submit-button">Submit</button>
                                         </div>
                                     </form>
                                 </div>
@@ -92,7 +93,7 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#description" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
-                        <li role="presentation"><a href="#comments" aria-controls="profile" role="tab" data-toggle="tab">Comments</a></li>
+                        <li role="presentation"><a href="#comments" aria-controls="profile" role="tab" data-toggle="tab">Comments (<?php echo $commentArray == false ? 0 : sizeof($commentArray) ?>)</a></li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -103,12 +104,19 @@
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="comments">
-                            <div class="form-group">
-                                <br>
-                                <textarea class="form-control" rows="5" id="comment" placeholder="Write a public comment..."></textarea>
-                                <br>
-                                <button type="submit" class="btn btn-default">Comment</button>
-                            </div>
+                            <form action="?page=item&amp;owner=<?php echo $item['owner']?>&amp;item=<?php echo $item['item_name']?>" method="post">
+                                <input type="hidden" name="action" value="submitComment">
+                                <input type="hidden" name="item_name" value="<?php echo $item['item_name']?>">
+                                <input type="hidden" name="owner" value="<?php echo $item['owner']?>">
+                                <div class="form-group">
+                                    <br>
+                                    <div id="show-comments-section"></div>
+                                    <br>
+                                    <textarea class="form-control" rows="5" id="comment" name="content" placeholder="Write a public comment..."></textarea>
+                                    <br>
+                                    <button type="submit" class="btn btn-default submit-button">Comment</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -164,17 +172,14 @@
         <?php } ?>
     });
 
-
+    // allow submit to work if logged in
     <?php if($_SESSION['loggedin']): ?>
-        $('.submitButton').prop('disabled', false);
+        $('.submit-button').prop('disabled', false);
     <?php else: ?>
-        $('.submitButton').prop('disabled', true);
+        $('.submit-button').prop('disabled', true);
     <?php endif; ?> 
 
     // show alert if submit successfully
-    $('.alert-success').hide();
-    $('.alert-danger').hide();
-
     <?php if ($submitSuccess): ?>
         $('.alert-success').show();
     <?php endif; ?>
@@ -182,6 +187,12 @@
     <?php if ($submitError): ?>
         $('.alert-danger').show();
     <?php endif; ?>
+
+    // show comments
+    <?php foreach ($commentArray as $comment) { ?>
+        $('#show-comments-section').append("<ul><b><?php echo $comment['commenter'] ?></b><span style='color:grey; font-size:12px; padding-left:30px;'><?php echo date('d/m/Y', $comment['timestamp']) ?><span style='color:grey; font-size:12px; padding-left:5px;'><?php echo date('g:i a', $comment['timestamp']) ?></span><p><?php echo $comment['content'] ?></p></ul>");
+    <?php } ?>
+    
 
 
   
