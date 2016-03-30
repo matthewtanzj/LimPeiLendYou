@@ -52,7 +52,7 @@
             <!-- user info panel -->
             <div class="row">
                 <div class="col-md-4">
-                    <img src="img/tempLogo.jpg">
+                    <img src="img/display_picture_default.png">
                 </div>
                 <div class="col-md-8">
                     <h2><?php echo $profileName; ?></h2>
