@@ -7,7 +7,7 @@ class tableModel {
 	
 	public function retrieveEntireTable($tableName) 
 	{
-		$query = "SELECT * FROM $tableName ORDER BY id";
+		$query = "SELECT * FROM $tableName ORDER BY username";
 		$result = pg_query($query);
 		return $result;
 	}
@@ -30,7 +30,7 @@ class tableModel {
 		} 
 		else 
 		{
-			$query = "UPDATE $tableName SET $columnName = '$value', updated_at = CURRENT_TIMESTAMP WHERE id = '$primaryKey'";
+			$query = "UPDATE $tableName SET $columnName = '$value' WHERE username = '$primaryKey'";
 			$result = pg_query($query);
 			echo $value;
 		}

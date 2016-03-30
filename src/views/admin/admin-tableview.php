@@ -3,9 +3,6 @@
 		<thead>
 			<?php if($_GET['action'] == 'member'): ?>
 				<tr>
-					<th colspan="1" rowspan="1" style="width: 4%;" tabindex="0">
-						id
-					</th>
 					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
 						username
 					</th>
@@ -15,22 +12,16 @@
 					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
 						salt
 					</th>
-					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
 						email
 					</th>
-					<th colspan="1" rowspan="1" style="width: 4%;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						account_type
 					</th>
-					<th colspan="1" rowspan="1" style="width: 2%;" tabindex="0">
-						is_valid
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						last_logged_in
 					</th>
 					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
-						created_at
-					</th>
-					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
-						updated_at
-					</th>
-					<th colspan="1" rowspan="1" style="width: 5%;" tabindex="0">
 						action
 					</th>
 				</tr>
@@ -121,10 +112,10 @@
 			// 4. get content of the edited grid
 			var gridContent = $('.input-sm').val();
 			
-			//console.log("table name: " + tableName);
-			//console.log("primary key: " + primaryKey);
-			//console.log("column name: " + colName);
-			//console.log("cell content: " + gridContent);
+			console.log("table name: " + tableName);
+			console.log("primary key: " + primaryKey);
+			console.log("column name: " + colName);
+			console.log("cell content: " + gridContent);
 			
 			// 5. perform ajax call to update database
 			$.ajax({
@@ -133,12 +124,12 @@
 				type: 'GET',
 				success: function(s){
 					console.log(s);
-					location.reload();
+					//location.reload();
 				},
 				error: function(e){
 					console.log(e);
 					alert('Error: Invalid datatype!');
-					location.reload();
+					//location.reload();
 				}
 			});
 		});
