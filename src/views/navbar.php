@@ -41,7 +41,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">WhoBorrow?</a>
+      <a class="navbar-brand" href="index.php">WhoBorrow?</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -74,6 +74,7 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['username']; ?> <span class="caret"></span></a>
                 <ul class="dropdown-menu">
+                    <li><a href="index.php?page=profile">Profile</a></li>
                     <li><a href="index.php?action=logout">Logout</a></li>
                 </ul>
             </li>
