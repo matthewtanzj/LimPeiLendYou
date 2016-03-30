@@ -139,57 +139,57 @@
                         <br>
                         <button type="submit" class="btn btn-default submit-button">Review</button>
                     </div>
-                </form>
+                </form> 
                 
-            </div> 
+            </div>
+            <!-- end of review panel-->
+           
+            <!-- items that are available for loan -->
+            <h2>Items for Loan</h2>
+            <div class="row">
+                
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
+                    <div class="caption">
+                    <h3>Hammer</h3>
+                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
+                    <div class="caption">
+                    <h3>Macbook Air</h3>
+                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
+                    <div class="caption">
+                    <h3>Bicycle</h3>
+                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
+                    <div class="caption">
+                    <h3>Fan</h3>
+                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end of items that are available for loan --> 
         </div>
-        <!-- end of review panel-->
-        
-        <!-- items that are available for loan -->
-        <h2>Items for Loan</h2>
-        <div class="row">
-            
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
-                <div class="caption">
-                <h3>Hammer</h3>
-                <p><a href="#" class="btn btn-default" role="button">See More</a></p>
-                </div>
-                </div>
-            </div>
-            
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
-                <div class="caption">
-                <h3>Macbook Air</h3>
-                <p><a href="#" class="btn btn-default" role="button">See More</a></p>
-                </div>
-                </div>
-            </div>
-            
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
-                <div class="caption">
-                <h3>Bicycle</h3>
-                <p><a href="#" class="btn btn-default" role="button">See More</a></p>
-                </div>
-                </div>
-            </div>
-            
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
-                <div class="caption">
-                <h3>Fan</h3>
-                <p><a href="#" class="btn btn-default" role="button">See More</a></p>
-                </div>
-                </div>
-            </div>
-        </div>
-        <!-- end of items that are available for loan -->
         
         <style>
             
