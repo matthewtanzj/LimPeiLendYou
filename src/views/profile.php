@@ -42,7 +42,7 @@
                     <h2><?php echo $profileName; ?></h2>
                     <p>Country</p>
                     <p>Country</p>
-                </div>
+                </div>  
             </div>
             <br>
             <div class="row">
@@ -183,7 +183,7 @@
             
             .wrapper {
                 margin: 0 auto;
-				width: 80%;
+				width: 70%;
                 height: 100%;
             }
             

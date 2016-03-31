@@ -30,4 +30,8 @@ class ItemModel {
         return pg_query($query);
     }
 
+    public function getAllItemsOfUser($owner) {
+        $query = "SELECT * FROM item WHERE owner = '$owner'";
+        return pg_query($query);
+    }
 }
