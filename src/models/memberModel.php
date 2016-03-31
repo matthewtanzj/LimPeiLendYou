@@ -71,5 +71,11 @@ class MemberModel {
 		$result = pg_query($query);
 		return $result; // true if successfully inserted, false otherwise
 	}
+    
+    public function getUserByUsername($username) {
+        $query = "SELECT * FROM member WHERE username = '$username'";
+        $result = pg_query($query);
+        return $result;
+    }
 
 }

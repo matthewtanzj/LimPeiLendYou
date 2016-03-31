@@ -31,22 +31,6 @@
         
         <?php include 'views/navbar.php' ?>
         
-        <?php 
-            // set profile of user to be viewed
-            if (isset($_GET['profile'])) {
-                $profileName = $_GET['profile'];
-            } else {
-                $profileName = $_SESSION['username'];
-            }
-            // query database
-            // if no results, return to home
-            
-            // get username from GET and query database
-            // else get username from session username
-            // from username, can query all items loans, etc
-            // get all reviews of this user
-        ?>
-        
         <div class="wrapper">
             
             <!-- user info panel -->
