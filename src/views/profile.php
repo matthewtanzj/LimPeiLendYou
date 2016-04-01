@@ -31,22 +31,6 @@
         
         <?php include 'views/navbar.php' ?>
         
-        <?php 
-            // set profile of user to be viewed
-            if (isset($_GET['profile'])) {
-                $profileName = $_GET['profile'];
-            } else {
-                $profileName = $_SESSION['username'];
-            }
-            // query database
-            // if no results, return to home
-            
-            // get username from GET and query database
-            // else get username from session username
-            // from username, can query all items loans, etc
-            // get all reviews of this user
-        ?>
-        
         <div class="wrapper">
             
             <!-- user info panel -->
@@ -58,7 +42,7 @@
                     <h2><?php echo $profileName; ?></h2>
                     <p>Country</p>
                     <p>Country</p>
-                </div>
+                </div>  
             </div>
             <br>
             <div class="row">
@@ -70,37 +54,8 @@
                 </div>
             </div>
             <!-- end of user info panel -->
-            
-            <!-- items that are available for loan -->
-            <p>Items available for loan:</p>
-            <ul class="media-list row2">
-                <li class="media">
-                    <div class="media-left">
-                        <a href="#">
-                        <img class="media-object" src="img/tempLogo2.png" alt="img/tempLogo.jpg">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Item 1</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis tellus iaculis, lobortis dui at, iaculis metus.</p>
-                    </div>
-                </li>
-                <li class="media">
-                    <div class="media-left">
-                        <a href="#">
-                        <img class="media-object" src="img/tempLogo2.png" alt="img/tempLogo.jpg">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Item 2</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis tellus iaculis, lobortis dui at, iaculis metus.</p>
-                    </div>
-                </li>
-            </ul>
-            <!-- end of items that are available for loan -->
-            
-            <!-- end of review panel -->
-            
+
+            <!-- start of review panel-->
             <div class="row">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
@@ -168,9 +123,56 @@
                         <br>
                         <button type="submit" class="btn btn-default submit-button">Review</button>
                     </div>
-                </form>
+                </form> 
                 
-            </div> 
+            </div>
+            <!-- end of review panel-->
+           
+            <!-- items that are available for loan -->
+            <h2>Items for Loan</h2>
+            <div class="row">
+                
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
+                    <div class="caption">
+                    <h3>Hammer</h3>
+                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
+                    <div class="caption">
+                    <h3>Macbook Air</h3>
+                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
+                    <div class="caption">
+                    <h3>Bicycle</h3>
+                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
+                    <div class="caption">
+                    <h3>Fan</h3>
+                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end of items that are available for loan --> 
         </div>
         
         <style>
@@ -181,7 +183,7 @@
             
             .wrapper {
                 margin: 0 auto;
-				width: 80%;
+				width: 70%;
                 height: 100%;
             }
             

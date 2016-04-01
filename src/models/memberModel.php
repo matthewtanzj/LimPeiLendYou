@@ -66,10 +66,16 @@ class MemberModel {
 		$salt = bin2hex(openssl_random_pseudo_bytes(120));
 		$encryptedPassword = crypt($password, $salt);
 		
-		$query = "INSERT INTO member 
+		$query = "INSERT INTO member (username, password, salt, email, account_type) 
 					VALUES('$username', '$encryptedPassword', '$salt', '$email', '$accountType')";
 		$result = pg_query($query);
 		return $result; // true if successfully inserted, false otherwise
 	}
+    
+    public function getUserByUsername($username) {
+        $query = "SELECT * FROM member WHERE username = '$username'";
+        $result = pg_query($query);
+        return $result;
+    }
 
 }
