@@ -21,7 +21,7 @@ class SearchController {
 			
 			if ($_POST['action'] == 'search' && !empty($_POST['search'])) {
 				var_dump($_POST);
-				$result = $searchModel->searchByItemName($$_POST['search']);
+				$result = $searchModel->searchByItemName($_POST['search']);
 				$itemArray = pg_fetch_all($result);
 				var_dump($itemArray);
 			}
