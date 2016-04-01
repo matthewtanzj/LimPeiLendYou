@@ -3,6 +3,7 @@ CREATE TABLE member (
 	password VARCHAR(32) NOT NULL,
 	salt CHAR(240) NOT NULL,
 	email VARCHAR(64) NOT NULL UNIQUE,
+	user_info VARCHAR(1000) NOT NULL DEFAULT 'Hi! Welcome to my profile.',
 	account_type VARCHAR(6) NOT NULL,
 	last_logged_in TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CHECK (account_type = 'admin' OR account_type = 'member')
