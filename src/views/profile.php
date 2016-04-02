@@ -272,6 +272,8 @@
                 height: 100%;
             }
             
+            #review-content {
+                align: "justify";
             }
             
             table {
