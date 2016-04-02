@@ -14,3 +14,23 @@ INSERT INTO member (username, password, salt, email, account_type, last_logged_i
 /*
  * 		
  */
+
+/*
+ * Item		
+ */
+
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Iphone 6S', 'oswell', 'Electronics', 1000, 'Very nice phone.', 'Singapore');
+
+/*
+ * 		
+ */
+
+ /*
+ * 	Loan Request (Test that message is newly added)	
+ */
+
+INSERT INTO loan_request (item_name, owner, borrower, date_start, date_end, status, price_offer) VALUES('Iphone 6S', 'oswell', 'victor', '2015-04-04', '2015-04-06', 'pending', 1000);
+
+/*
+ * 		
+ */
