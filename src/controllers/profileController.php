@@ -54,13 +54,31 @@ class profileController {
             $profileName = $data[0];
             // get all reviews of this user
             $reviewModel = new reviewModel();
-            $reviewArray = $reviewModel->getAllReviewsOf($profileName); // to be parsed into JSON in view
+            $reviewResult = $reviewModel->getAllReviewsOf($profileName); // to be parsed into JSON in view
             // load items put up by user
             $itemModel = new itemModel();
-            $itemArray = $itemModel->getAllItemsOfUser($profileName); // to be parsed into JSON in view
-            var_dump(pg_fetch_row($reviewArray));
-            var_dump(pg_fetch_row($reviewArray));
-            var_dump(pg_fetch_row($itemArray));
+            $itemResult = $itemModel->getAllItemsOfUser($profileName); // to be parsed into JSON in view
+            // parse both review and item results into 2 arrays
+            $reviewArray = array();
+            $itemArray = array();
+            $counter = 0;
+            $positiveReviews = 0;
+            $negativeReviews = 0;
+            while ($row = pg_fetch_row($reviewResult)) {
+                ($row[3] == 1) ? $positiveReviews++ : $negativeReviews++ ;
+                $review = array($row[0], $row[2], $row[3]); // row[0]: reviewer, row[2]: review content, row[3]: positive/negative
+                array_push($reviewArray, $review);
+                $counter++;
+            }
+            $totalReviews = $positiveReviews + $negativeReviews;
+            $counter = 0;
+            while ($row = pg_fetch_row($itemResult)) {
+                $item = array($row[0]);
+                array_push($itemArray, $item);
+                $counter++;
+            }
+            //var_dump($reviewArray);
+            //var_dump($itemArray);
             // lastly, run the profile view
             include('views/profile.php');
         } else {

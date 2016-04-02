@@ -102,9 +102,9 @@
             <div class="panel-body">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#description" aria-controls="home" role="tab" data-toggle="tab">All Reviews (<?php echo $commentArray == false ? 0 : sizeof($commentArray) ?>)</a></li>
-                    <li role="presentation"><a href="#positive" aria-controls="profile" role="tab" data-toggle="tab">Positive Reviews (<?php echo $commentArray == false ? 0 : sizeof($commentArray) ?>)</a></li>
-                    <li role="presentation"><a href="#negative" aria-controls="home" role="tab" data-toggle="tab">Negative Reviews (<?php echo $commentArray == false ? 0 : sizeof($commentArray) ?>)</a></li>
+                    <li role="presentation" class="active"><a href="#description" aria-controls="home" role="tab" data-toggle="tab">All Reviews (<?php echo $totalReviews ?>)</a></li>
+                    <li role="presentation"><a href="#positive" aria-controls="profile" role="tab" data-toggle="tab">Positive Reviews (<?php echo $positiveReviews ?>)</a></li>
+                    <li role="presentation"><a href="#negative" aria-controls="home" role="tab" data-toggle="tab">Negative Reviews (<?php echo $negativeReviews ?>)</a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -112,43 +112,80 @@
                     <div role="tabpanel" class="tab-pane fade in active" id="description">
                         <div class="col-lg-12">
                             <br>
-                            <!-- review panel -->
+                            <!-- review table -->
                             <div class="review-table">
                                 <table class="table table-hover">
                                     <thead>
-                                        <th class="col-md-2">Verdict</th>
                                         <th class="col-md-6">Review</th>
                                         <th class="col-md-2">Reviewer</th>
                                         <th class="col-md-2">Date</th>
                                     </thead>
-                                    <tr class="success">
-                                        <td><span class="glyphicon glyphicon-thumbs-up"></span></td>
-                                        <td><div id="review-content">Very Good. I like it.</div></td>
-                                        <td><div id="username">Matthew Tan</div></td>
-                                        <td><div id="timestamp">10 feb 2016</div></td>
-                                    </tr>
-                                    <tr class="danger">
-                                        <td><span class="glyphicon glyphicon-thumbs-down"></span></td>
-                                        <td><div id="review-content">Boo! </div></td>
-                                        <td><div id="username">Matthew Tan</div></td>
-                                        <td><div id="timestamp">8 feb 2016</div></td>
-                                    </tr>
+                                    <?php
+                                        for($i = 0; $i < sizeof($reviewArray); $i++) {
+                                            echo ($reviewArray[$i][2] == 1)  ? '<tr class="success">' : '<tr class="danger">';
+                                            echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
+                                            echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
+                                            echo '<td><div id="timestamp">10 feb 2016</div></td>';
+                                            echo '<tr>';
+                                        }
+                                    ?>
                                 </table>
                             </div> 
+                            <!-- end of review table-->
                         </div>
                     </div>
                     
                     <div role="tabpanel" class="tab-pane fade" id="positive">
                         <div class="col-lg-12">
                             <br>
-                            <p>This user has no positive reviews.</p>
+                            <!-- review table -->
+                            <div class="review-table">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <th class="col-md-6">Review</th>
+                                        <th class="col-md-2">Reviewer</th>
+                                        <th class="col-md-2">Date</th>
+                                    </thead>
+                                    <?php
+                                        for($i = 0; $i < sizeof($reviewArray); $i++) {
+                                            if ($reviewArray[$i][2] == 0) continue;
+                                            echo '<tr class="success">';
+                                            echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
+                                            echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
+                                            echo '<td><div id="timestamp">10 feb 2016</div></td>';
+                                            echo '<tr>';
+                                        }
+                                    ?>
+                                </table>
+                            </div> 
+                            <!-- end of review table-->
                         </div>
                     </div>
                     
                     <div role="tabpanel" class="tab-pane fade" id="negative">
                         <div class="col-lg-12">
                             <br>
-                            <p>This user has no negative reviews.</p>
+                            <!-- review table -->
+                            <div class="review-table">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <th class="col-md-6">Review</th>
+                                        <th class="col-md-2">Reviewer</th>
+                                        <th class="col-md-2">Date</th>
+                                    </thead>
+                                    <?php
+                                        for($i = 0; $i < sizeof($reviewArray); $i++) {
+                                            if ($reviewArray[$i][2] == 1) continue;
+                                            echo '<tr class="danger">';
+                                            echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
+                                            echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
+                                            echo '<td><div id="timestamp">10 feb 2016</div></td>';
+                                            echo '<tr>';
+                                        }
+                                    ?>
+                                </table>
+                            </div> 
+                            <!-- end of review table-->
                         </div>
                     </div>
                     
@@ -180,7 +217,7 @@
             <h2>Items for Loan</h2>
             <div class="row">
                 
-                <div class="col-sm-6 col-md-3">
+                <div class="col-xs-6 col-sm-4 col-md-3">
                     <div class="thumbnail">
                     <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
                     <div class="caption">
@@ -190,7 +227,7 @@
                     </div>
                 </div>
                 
-                <div class="col-sm-6 col-md-3">
+                <div class="col-xs-6 col-sm-4 col-md-3">
                     <div class="thumbnail">
                     <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
                     <div class="caption">
@@ -200,7 +237,7 @@
                     </div>
                 </div>
                 
-                <div class="col-sm-6 col-md-3">
+                <div class="col-xs-6 col-sm-4 col-md-3">
                     <div class="thumbnail">
                     <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
                     <div class="caption">
@@ -210,7 +247,7 @@
                     </div>
                 </div>
                 
-                <div class="col-sm-6 col-md-3">
+                <div class="col-xs-6 col-sm-4 col-md-3">
                     <div class="thumbnail">
                     <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
                     <div class="caption">
