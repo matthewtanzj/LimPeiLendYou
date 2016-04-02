@@ -55,7 +55,7 @@
                             <h3 class="panel-title" style="font-size:200%"><?php echo  $item['item_name'] ?></h3>
                         </div>
                         <div class="panel-body">
-                            <p><b>Owner:</b> <?php echo $item['owner'] ?></p>
+                            <p><b>Owner:</b> <?php echo $item['owner'] ?><button type="message" class="btn btn-default col-lg-offset-7 submit-button">Send Message</button></p>
                             <p><b>Price:</b> <?php echo $item['price'] ?></p>
                             <p><b>Location:</b> <?php echo $item['location'] ?></p>
                             <p><b>Borrow:</b></p>
