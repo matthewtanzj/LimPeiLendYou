@@ -14,7 +14,7 @@ class profileController {
         include('models/itemModel.php');
         
         // get string of user to be viewed
-        if (isset($_GET['profile'])) {
+        if (isset($_GET['profile']) && $_GET['profile'] != $_SESSION['username']) {
             $profileStringQuery = $_GET['profile'];
         } else {
             $profileStringQuery = $_SESSION['username'];
@@ -58,6 +58,7 @@ class profileController {
             // load items put up by user
             $itemModel = new itemModel();
             $itemArray = $itemModel->getAllItemsOfUser($profileName); // to be parsed into JSON in view
+            var_dump(pg_fetch_row($reviewArray));
             var_dump(pg_fetch_row($reviewArray));
             var_dump(pg_fetch_row($itemArray));
             // lastly, run the profile view

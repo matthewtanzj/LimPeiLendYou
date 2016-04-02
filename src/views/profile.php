@@ -37,7 +37,7 @@
             <div class="panel panel-info">
                 
                 <div class="panel-heading">
-                    <h3 class="panel-title">Sheena Kristin A.Eschor</h3>
+                    <h3 class="panel-title"><?php echo $profileName ?></h3>
                 </div>
                 
                 <div class="panel-body">
