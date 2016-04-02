@@ -135,41 +135,41 @@
 <div class="modal fade signupModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
-        <div class='container' id='login-box'>
+          <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign up</h4>
+            </div>
+        <div class='modal-body' id='login-box'>
             <form id='signup' action='?action=signup' method='POST' accept-charset='UTF-8'>
-                <div class='container'>
-                    <h4><b>Sign Up</b></h4>
-                </div>
 
-                <div class='container'>
-                    <label for='username' >Username*:</label><br/>
-                    <input type='text' name='username' maxlength="50"/><br/>
+                <div class='form-group'>
+                    <label class="control-label" for='username' >Username*</label><br/>
+                    <input type='text' class="form-control" name='username' maxlength="50"/>
                     <span id='login_username_errorloc' class='error'></span>
                     <?php echo $signupUsernameErrorMessage;?>
                 </div>
                 
-                <div class='container'>
-                    <label for='password' >Password*:</label><br/>
-                    <input type='password' name='password' maxlength="50" /><br/>
+                <div class='form-group'>
+                    <label class="control-label" for='password' >Password*</label><br/>
+                    <input type='password' class="form-control" name='password' maxlength="50" />
                     <span id='login_password_errorloc' class='error'></span>
                     <?php echo $signupPasswordErrorMessage;?>
                 </div>
 
-                <div class='container'>
-                    <label for='email' >Email*:</label><br/>
-                    <input type='email' name='email' maxlength="50" /><br/>
+                <div class='form-group'>
+                    <label class="control-label" for='email' >Email*</label><br/>
+                    <input type='email' class="form-control" name='email' maxlength="50" />
                     <span id='login_password_errorloc' class='error'></span>
                     <?php echo $signupEmailErrorMessage;?>
                 </div>
                 
-                <div class='container'>
-                    <br>
-                    <input type="submit" name="submit" value="Sign Up" />
-                    <?php echo $signupErrorMessage;?>
-                </div>
-
-                <div class='container'>
+                <div class='form-group'>
                   <h5>* required fields</h5>
+                </div>
+                
+                <div class='form-group'>    
+                    <input class="btn btn-primary form-control" type="submit" name="submit" value="Sign Up" />
+                    <?php echo $signupErrorMessage;?>
                 </div>
             </form>
         </div>
