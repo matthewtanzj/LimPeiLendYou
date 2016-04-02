@@ -4,6 +4,7 @@ CREATE TABLE member (
 	salt CHAR(240) NOT NULL,
 	email VARCHAR(64) NOT NULL UNIQUE,
 	user_info VARCHAR(1000) NOT NULL DEFAULT 'Hi! Welcome to my profile.',
+	display_pic VARCHAR(32) NOT NULL DEFAULT 'display_picture_default.png',
 	account_type VARCHAR(6) NOT NULL,
 	last_logged_in TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	CHECK (account_type = 'admin' OR account_type = 'member')
