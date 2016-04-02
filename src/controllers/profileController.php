@@ -34,12 +34,16 @@ class profileController {
             }
             // view will access the model directly to insert review into database
             $reviewModel = new reviewModel();
-            $reviewModel->addNewReview($reviewer, $reviewee, $content, $isPositive);
+            $result = $reviewModel->addNewReview($reviewer, $reviewee, $content, $isPositive);
             // clear variables
             unset($_POST['submit-review']);
             unset($_POST['content']);
             unset($_POST['review']);
-            $reviewSuccessMessage = '<p class="text-success">Review successfully added.</p>';
+            if ($result) {
+                $reviewSuccessMessage = '<p class="text-success">Review successfully added.</p>';
+            } else {
+                $reviewSuccessMessage = '<p class="text-danger">Review exceeded maximum character count of 255.</p>';
+            }
         }       
         
         /* this part onwards deals with the rendering of the profile page */
@@ -77,8 +81,6 @@ class profileController {
                 array_push($itemArray, $item);
                 $counter++;
             }
-            //var_dump($reviewArray);
-            //var_dump($itemArray);
             // lastly, run the profile view
             include('views/profile.php');
         } else {

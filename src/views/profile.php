@@ -272,16 +272,6 @@
                 height: 100%;
             }
             
-            .row2 {
-                padding: 3% 2%;
-            }
-            
-            .row3 {
-                display: inline;
-                margin: 0 auto;
-                float: left;
-                width: 100%;
-                padding: 3% 0;
             }
             
             table {
