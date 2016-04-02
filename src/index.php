@@ -6,6 +6,7 @@ include("controllers/searchController.php");
 include("controllers/profileController.php");
 include("controllers/settingsController.php");
 include("controllers/uploadController.php");
+include("controllers/loanController.php");
 
 if (!empty($_GET['page'])) {
 	switch ($_GET['page']) {
@@ -29,6 +30,11 @@ if (!empty($_GET['page'])) {
             $settings->view();
             break;
 		
+        case 'loan':
+            $loan = new loanController();
+            $loan->view();
+            break;
+        
 		default:
 			$home = new homeController();
 			$home->view();
