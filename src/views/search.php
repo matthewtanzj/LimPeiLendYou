@@ -37,9 +37,6 @@
             <div class="col-lg-2">
                 <?php include 'views/category.php' ?>
             </div>
-            <div class="col-lg-6">
-                <?php include 'helpers/searchbar.php' ?>
-            </div><!-- /.col-lg-6 -->
             
             <!-- Result Section -->
             <div class="result-section col-lg-10">
