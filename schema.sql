@@ -92,3 +92,20 @@ CREATE TABLE message (
 	PRIMARY KEY (item_name, item_owner, sender, receiver, created_at),
 	CHECK (sender != receiver)
 );
+
+CREATE OR REPLACE FUNCTION trg_request_msg() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    INSERT INTO
+        message(item_name,item_owner,sender,receiver,content)
+        VALUES(new.item_name,new.owner,new.borrower,new.owner,'I would like to borrow your ' || new.item_name || ' from ' || new.date_start || ' to ' || new.date_end || ' for $' || trunc(new.price_offer::numeric, 2) || '.');
+
+           RETURN new;
+END;
+$BODY$
+language plpgsql;
+
+CREATE TRIGGER request_msg_trigger
+     AFTER INSERT ON loan_request
+     FOR EACH ROW
+     EXECUTE PROCEDURE trg_request_msg();

@@ -34,29 +34,72 @@
         <div class="wrapper">
             
             <!-- user info panel -->
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="img/display_picture_default.png">
+            <div class="panel panel-info">
+                
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $profileName ?></h3>
                 </div>
-                <div class="col-md-8">
-                    <h2><?php echo $profileName; ?></h2>
-                    <p>Country</p>
-                    <p>Country</p>
-                </div>  
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-12">
-                    <p align="justify">
-                        User Information: <br>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis tellus iaculis, lobortis dui at, iaculis metus. Nunc laoreet fringilla dolor, sit amet laoreet ante semper ut. Donec condimentum elementum metus, vitae aliquam ipsum viverra in. Quisque eu malesuada augue. Morbi ultricies nibh sed est tristique venenatis. Curabitur elementum, velit ornare hendrerit convallis, lacus erat vehicula nisl, at finibus est ipsum bibendum odio. Nulla id sem metus. Nunc risus turpis, malesuada sed nibh consectetur, posuere ornare ex. Curabitur velit ligula, vestibulum sit amet molestie ut, hendrerit non ante. Vestibulum mattis sed dolor eu luctus. Aenean tincidunt lectus ac imperdiet consectetur.
-                    </p>
+                
+                <div class="panel-body">
+                    
+                    <div class="row">
+                        
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="img/display_picture_default.png" class="img-circle img-responsive"> </div>
+
+                        <div class=" col-md-9 col-lg-9 "> 
+                            <table class="table table-user-information">
+                                <tbody>
+                                    <tr>
+                                        <td>Department:</td>
+                                        <td>Programming</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hire date:</td>
+                                        <td>06/23/2013</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date of Birth</td>
+                                        <td>01/24/1988</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender</td>
+                                        <td>Male</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Home Address</td>
+                                        <td>Metro Manila,Philippines</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td><a href="mailto:info@support.com">info@support.com</a></td>
+                                    </tr>
+                                        <td>Phone Number</td>
+                                        <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
+                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p align="justify">
+                                User Information: <br>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis tellus iaculis, lobortis dui at, iaculis metus. Nunc laoreet fringilla dolor, sit amet laoreet ante semper ut. Donec condimentum elementum metus, vitae aliquam ipsum viverra in. Quisque eu malesuada augue. Morbi ultricies nibh sed est tristique venenatis. Curabitur elementum, velit ornare hendrerit convallis, lacus erat vehicula nisl, at finibus est ipsum bibendum odio. Nulla id sem metus. Nunc risus turpis, malesuada sed nibh consectetur, posuere ornare ex. Curabitur velit ligula, vestibulum sit amet molestie ut, hendrerit non ante. Vestibulum mattis sed dolor eu luctus. Aenean tincidunt lectus ac imperdiet consectetur.
+                            </p>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             <!-- end of user info panel -->
 
             <!-- start of review panel-->
-            <div class="row">
+            <div class="panel panel-info">
+            <div class="panel-body">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#description" aria-controls="home" role="tab" data-toggle="tab">All Reviews (<?php echo $commentArray == false ? 0 : sizeof($commentArray) ?>)</a></li>
@@ -78,13 +121,13 @@
                                         <th class="col-md-2">Reviewer</th>
                                         <th class="col-md-2">Date</th>
                                     </thead>
-                                    <tr>
+                                    <tr class="success">
                                         <td><span class="glyphicon glyphicon-thumbs-up"></span></td>
                                         <td><div id="review-content">Very Good. I like it.</div></td>
                                         <td><div id="username">Matthew Tan</div></td>
                                         <td><div id="timestamp">10 feb 2016</div></td>
                                     </tr>
-                                    <tr>
+                                    <tr class="danger">
                                         <td><span class="glyphicon glyphicon-thumbs-down"></span></td>
                                         <td><div id="review-content">Boo! </div></td>
                                         <td><div id="username">Matthew Tan</div></td>
@@ -110,8 +153,8 @@
                     </div>
                     
                 </div>
-                
-                <form action="?page=item&amp;owner=<?php echo $item['owner']?>&amp;item=<?php echo $item['item_name']?>" method="post">
+                <?php if (!$isViewingOwnProfile): ?>
+                <form action="#" method="post">
                     <input type="hidden" name="action" value="submitComment">
                     <input type="hidden" name="item_name" value="<?php echo $item['item_name']?>">
                     <input type="hidden" name="owner" value="<?php echo $item['owner']?>">
@@ -121,12 +164,17 @@
                         <br>
                         <textarea class="form-control" rows="5" id="review" name="content" placeholder="Write a review..."></textarea>
                         <br>
-                        <button type="submit" class="btn btn-default submit-button">Review</button>
+                            <input type="radio" name="review" value="positive"/> Positive<br>
+                            <input type="radio" name="review" value="negative"/> Negative<br><br>
+                        <button type="submit-review" name="submit-review" value="submit-review" class="btn btn-default submit-button">Review</button>
+                        <?php echo $reviewSuccessMessage; ?>
                     </div>
-                </form> 
-                
-            </div>
+                </form>
+                <?php endif ?>
+            </div>    
+            </div>    
             <!-- end of review panel-->
+            
            
             <!-- items that are available for loan -->
             <h2>Items for Loan</h2>

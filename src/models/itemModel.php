@@ -34,4 +34,13 @@ class ItemModel {
         $query = "SELECT * FROM item WHERE owner = '$owner'";
         return pg_query($query);
     }
+    
+      public function addLoan($item_name, $owner, $category, $price, $description, $location) {	
+
+		
+		$query = "INSERT INTO item (item_name, owner, category, price, description, location) 
+					VALUES('$item_name', '$owner', '$category', '$price', '$description', '$location')";
+		$result = pg_query($query);
+		return $result; // true if successfully inserted, false otherwise
+	}
 }
