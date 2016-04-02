@@ -68,9 +68,10 @@
             <?php include('helpers/searchbar.php'); ?>
         </form>
     <?php endif ?>
-
+    
       <ul class="nav navbar-nav navbar-right">
-        <?php if($_SESSION['loggedin']): ?>
+        <?php if($_SESSION['loggedin']): ?>    
+            <li><button type="button" class="btn btn-primary navbar-btn" id="loanButton" href="index.php?page=newLoan" data-toggle="modal" data-target=".loanModal">New Loan</button></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['username']; ?> <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -91,37 +92,38 @@
 <div class="modal fade loginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Login</h4>
+            </div>
       <!-- login box-->
-        <div class='container' id='login-box'>
+        <div class='modal-body' id='login-box'>
             <form id='login' action='?action=login' method='POST' accept-charset='UTF-8'>
-                <div class='container'>
-                    <h4><b>Login</b></h4>
-                </div>
 
-                <div class='container'>
-                    <label for='username' >Username*:</label><br/>
-                    <input type='text' name='username' maxlength="50"/><br/>
-                    <span id='login_username_errorloc' class='error'></span>
-                    <?php echo $usernameErrorMessage;?>
+                <div class="form-group">    
+                        <label class="control-label" for='username'>Username*</label>
+                    <div>
+                        <input type='text' class="form-control" name='username' placeholder="Username" maxlength="50"/>
+                        <span id='login_username_errorloc' class='error'></span>
+                        <?php echo $usernameErrorMessage;?>
+                    </div>
                 </div>
                 
-                <div class='container'>
-                    <label for='password' >Password*:</label><br/>
-                    <input type='password' name='password' maxlength="50" /><br/>
+                <div class='form-group'>
+                    <label class="control-label" for='password' >Password*</label>
+                    <input type='password' class="form-control" name='password' placeholder="Password" maxlength="50" />
                     <span id='login_password_errorloc' class='error'></span>
                     <?php echo $passwordErrorMessage;?>
                 </div>
-                
-                <div class='container'>
-                    <br>
-                    <input type="submit" name="submit" value="submit" />
-                    <?php echo $loginResultMessage;?>
-                </div>
-
-
-                <div class='container'>
-                  <h5>* required fields</h5>
+            
+                <div class='form-group'>
+                  <h5>* Required Fields</h5>
                   <a href='#'><h5>Forgot Password?</h5></a>
+                </div>
+                
+                  <div class='form-group'>
+                    <input class="btn btn-primary form-control" type="submit" name="submit" value="Login"/>
+                    <?php echo $loginResultMessage;?>
                 </div>
             </form>
         </div>
