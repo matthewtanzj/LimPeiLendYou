@@ -177,5 +177,5 @@
 </div>
 
 <script>
-    $('#advanceSearchModal').appendTo("body");
+    $('#advancedSearchModal').appendTo("body");
 </script>

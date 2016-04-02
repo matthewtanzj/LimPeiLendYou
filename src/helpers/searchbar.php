@@ -8,18 +8,18 @@
 		    </span>
 		</div><!-- /input-group -->
 	</div>
-	<div class="col-lg-4" style="padding-top: 6px;" data-toggle="modal" data-target="#advanceSearchModal">
-		<a id="advance-search-button">advance search</a>
+	<div class="col-lg-4" style="padding-top: 6px;" data-toggle="modal" data-target="#advancedSearchModal">
+		<a id="advanced-search-button">advanced search</a>
 	</div>
 </form>
 
 <!-- Modal -->
-<div class="modal fade" id="advanceSearchModal" tabindex="-1" role="dialog" aria-labelledby="advanceSearchModal">
+<div class="modal fade" id="advancedSearchModal" tabindex="-1" role="dialog" aria-labelledby="advancedSearchModal">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="advanceSearchModal">Advance Search</h4>
+				<h4 class="modal-title" id="advancedSearchModal">Advance Search</h4>
 			</div>
 			<div class="modal-body">
 				<div class="row">
@@ -280,7 +280,7 @@
 </div>
 
 <script>
-	$('#advance-search-button').css('cursor', 'pointer');
+	$('#advanced-search-button').css('cursor', 'pointer');
 
 	// for datepicker
 	$('.input-daterange').datepicker({
