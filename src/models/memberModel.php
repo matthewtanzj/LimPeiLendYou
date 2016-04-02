@@ -78,4 +78,21 @@ class MemberModel {
         return $result;
     }
 
+    public function updateDisplayPic($username, $displayPic) {
+        $query = "UPDATE member SET display_pic='$displayPic' WHERE username='$username';";
+        $result = pg_query($query);
+        return $result;
+    }
+
+    public function updateEmail($username, $email) {
+        $query = "UPDATE member SET email='$email' WHERE username='$username';";
+        $result = pg_query($query);
+        return $result;
+    }
+
+    public function updateUserInfo($username, $user_info) {
+        $query = "UPDATE member SET user_info='$user_info' WHERE username='$username';";
+        $result = pg_query($query);
+        return $result;
+    }
 }
