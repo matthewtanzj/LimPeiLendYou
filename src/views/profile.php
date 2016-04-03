@@ -50,20 +50,24 @@
                             <table class="table table-user-information">
                                 <tbody>
                                     <tr>
-                                        <td>Username:</td>
+                                        <td>Username</td>
                                         <td><?php echo $profileName ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Last Online:</td>
-                                        <td>06/23/2013</td>
+                                        <td>Last Online</td>
+                                        <td><?php echo $profileLastLoggedIn ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender</td>
+                                        <td>-</td>
                                     </tr>
                                     <tr>
                                         <td>Date of Birth</td>
-                                        <td>01/24/1988</td>
+                                        <td>-</td>
                                     </tr>
                                     <tr>
                                         <td>Email</td>
-                                        <td><a href="mailto:info@support.com">info@support.com</a></td>
+                                        <td><a href="mailto:info@support.com"><?php echo $profileEmail ?></a></td>
                                     </tr>
                                     <tr>
                                         <td>User Rating</td>
@@ -71,8 +75,7 @@
                                     </tr>
                                     
                                         <td>Phone Number</td>
-                                        <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
-                                    </td>
+                                        <td>-</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -84,8 +87,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <p align="justify">
-                                User Information: <br>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis tellus iaculis, lobortis dui at, iaculis metus. Nunc laoreet fringilla dolor, sit amet laoreet ante semper ut. Donec condimentum elementum metus, vitae aliquam ipsum viverra in. Quisque eu malesuada augue. Morbi ultricies nibh sed est tristique venenatis. Curabitur elementum, velit ornare hendrerit convallis, lacus erat vehicula nisl, at finibus est ipsum bibendum odio. Nulla id sem metus. Nunc risus turpis, malesuada sed nibh consectetur, posuere ornare ex. Curabitur velit ligula, vestibulum sit amet molestie ut, hendrerit non ante. Vestibulum mattis sed dolor eu luctus. Aenean tincidunt lectus ac imperdiet consectetur.
+                                <?php echo $profileDescription ?>
                             </p>
                         </div>
                     </div>
@@ -122,7 +124,7 @@
                                             echo ($reviewArray[$i][2] == 1)  ? '<tr class="success">' : '<tr class="danger">';
                                             echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
                                             echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
-                                            echo '<td><div id="timestamp">10 feb 2016</div></td>';
+                                            echo '<td><div id="timestamp">'. $reviewArray[$i][3] .'</div></td>';
                                             echo '<tr>';
                                         }
                                     ?>
@@ -149,7 +151,7 @@
                                             echo '<tr class="success">';
                                             echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
                                             echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
-                                            echo '<td><div id="timestamp">10 feb 2016</div></td>';
+                                            echo '<td><div id="timestamp">'. $reviewArray[$i][3] .'</div></td>';
                                             echo '<tr>';
                                         }
                                     ?>
@@ -176,7 +178,7 @@
                                             echo '<tr class="danger">';
                                             echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
                                             echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
-                                            echo '<td><div id="timestamp">10 feb 2016</div></td>';
+                                            echo '<td><div id="timestamp">'. $reviewArray[$i][3] .'</div></td>';
                                             echo '<tr>';
                                         }
                                     ?>

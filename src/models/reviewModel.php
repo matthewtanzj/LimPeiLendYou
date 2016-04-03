@@ -7,7 +7,7 @@ class ReviewModel {
     }
 	
 	public function getAllReviewsOf($reviewee) {
-        $query = "SELECT * FROM review WHERE reviewee = '$reviewee'";
+        $query = "SELECT * FROM review WHERE reviewee = '$reviewee' ORDER BY created_at DESC";
         $result = pg_query($query);
         return $result;
     }
