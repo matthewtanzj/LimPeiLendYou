@@ -200,7 +200,7 @@
                         <br>
                         <textarea class="form-control" rows="5" id="review" name="content" placeholder="Write a review..."></textarea>
                         <br>
-                            <input type="radio" name="review" value="positive"/> Positive<br>
+                            <input type="radio" name="review" value="positive" checked="checked"/> Positive<br>
                             <input type="radio" name="review" value="negative"/> Negative<br><br>
                         <button type="submit-review" name="submit-review" value="submit-review" class="btn btn-default submit-button">Review</button>
                         <?php echo $reviewSuccessMessage; ?>
