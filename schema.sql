@@ -27,6 +27,7 @@ CREATE TABLE item_image (
 	item_name VARCHAR(64),
 	owner VARCHAR(32),
 	image_url VARCHAR(256) NOT NULL,
+	is_cover SMALLINT DEFAULT 0,
 	FOREIGN KEY (owner, item_name) REFERENCES item(owner, item_name) ON DELETE CASCADE,
 	PRIMARY KEY (item_name, owner, image_url)
 );
@@ -109,3 +110,30 @@ CREATE TRIGGER request_msg_trigger
      AFTER INSERT ON loan_request
      FOR EACH ROW
      EXECUTE PROCEDURE trg_request_msg();
+
+ CREATE VIEW augmented_member AS
+ SELECT 'review' AS value_type, m.username, m.display_pic, 
+ COALESCE(SUM(CASE WHEN r.has_like = 1 THEN 1 END), 0) AS positive, 
+ COALESCE(SUM(CASE WHEN r.has_like = 0 THEN 1 END), 0) AS negative FROM member m, review r
+ WHERE m.username = r.reviewee
+ GROUP BY m.username
+ UNION ALL
+ SELECT 'comment' AS value_type, m.username, m.display_pic, COUNT(*), 0
+ FROM member m, comment c
+ WHERE m.username = c.commenter
+ GROUP BY m.username
+ UNION ALL
+ SELECT 'message' AS value_type, m.username, m.display_pic, COUNT(*), 0
+ FROM member m, message msg
+ WHERE m.username = msg.sender
+ GROUP BY m.username
+ UNION ALL
+ SELECT 'loan_request' AS value_type, m.username, m.display_pic, COUNT(*), 0
+ FROM member m, loan_request l
+ WHERE m.username = l.borrower
+ GROUP BY m.username
+ UNION ALL
+ SELECT 'item' AS value_type, m.username, m.display_pic, COUNT(*), 0
+ FROM member m, item i
+ WHERE m.username = i.owner
+ GROUP BY m.username;
