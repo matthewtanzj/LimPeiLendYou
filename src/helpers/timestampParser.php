@@ -7,12 +7,10 @@ class timestampParser {
 		
 	}
     
-    public function getDateFromTimestamp($timestamp) {
-        $timestampArray = explode(" ", $timestamp); // [0] contains date, [1] contains time
-        $dateArray = explode("-", $timestampArray[0]); // [0] contains year, [1] contains month, [2] contains day
-        return $dateArray[2] . "/" . $dateArray[1] . "/" . $dateArray[0]; // append into DD/MM/YYYY
+    public function getFormattedTimestampFromTimestamp($timestamp) {
+        date_default_timezone_set("Asia/Singapore");
+        $timestamp = strtotime($timestamp); // convert to unix timestamp
+        return date('d/m/Y', $timestamp) . " " . date('g:i a', $timestamp);
     }
     
 }
-
-?>

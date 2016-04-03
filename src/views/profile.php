@@ -224,9 +224,10 @@
                          echo '<div class="col-xs-6 col-sm-4 col-md-3">';
                          echo '<div class="thumbnail">';
                          echo '<img src="'. $itemArray[$i][1] .'" alt="img/tempLogo.jpg">';
+                         //echo '<img src="img/items/123456789.jpg" alt="img/tempLogo.jpg">';
                          echo '<div class="caption">';
                          echo '<h3>'. $itemArray[$i][0] .'</h3>';
-                         echo '<p><a href="#" class="btn btn-default" role="button">See More</a></p>';
+                         echo '<p><a href="index.php?page=item&owner='.$profileName.'&item='.$itemArray[$i][0].'" class="btn btn-default" role="button">See More</a></p>';
                          echo '</div></div></div>';
                      }
                 ?>
@@ -291,6 +292,7 @@
             
             .thumbnail a>img, .thumbnail>img {
                 width: 90%;
+                height: 150px;
             }
             
         </style>

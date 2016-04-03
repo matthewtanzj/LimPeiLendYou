@@ -61,7 +61,7 @@ class profileController {
             $profileEmail = $data[3];
             $profileDescription = $data[4];
             $profileDisplayPictureURL = $data[5];
-            $profileLastLoggedIn = $timestampParser->getDateFromTimestamp($data[7]);
+            $profileLastLoggedIn = $timestampParser->getFormattedTimestampFromTimestamp($data[7]);
             // parse both review and item results into 2 arrays
             $reviewArray = array();
             $itemArray = array();
@@ -74,7 +74,7 @@ class profileController {
             // create review array
             while ($row = pg_fetch_row($reviewResult)) {
                 ($row[3] == 1) ? $positiveReviews++ : $negativeReviews++ ;
-                $review = array($row[0], $row[2], $row[3], $timestampParser->getDateFromTimestamp($row[4])); // row[0]: reviewer, row[2]: review content, row[3]: positive/negative, row[4]: time of review
+                $review = array($row[0], $row[2], $row[3], $timestampParser->getFormattedTimestampFromTimestamp($row[4])); // row[0]: reviewer, row[2]: review content, row[3]: positive/negative, row[4]: time of review
                 array_push($reviewArray, $review);
                 $counter++;
             }
