@@ -12,10 +12,10 @@ class MessageController {
 		$itemOwner = '';
 		$itemBorrower = '';
 
-		if (!empty($_GET['item']) && !empty($_GET['owner']) && !empty($_GET['borrower'])) {
+		if (!empty($_GET['item']) && !empty($_GET['owner'])) {
 			$itemName = $_GET['item'];
 			$itemOwner = $_GET['owner'];
-			$itemBorrower = $_GET['borrower'];
+			$itemBorrower = $_SESSION['username'];
 
 			//get all past messages
 			include('models/messageModel.php');
