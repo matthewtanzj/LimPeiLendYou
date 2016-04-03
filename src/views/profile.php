@@ -123,7 +123,7 @@
                                         for($i = 0; $i < sizeof($reviewArray); $i++) {
                                             echo ($reviewArray[$i][2] == 1)  ? '<tr class="success">' : '<tr class="danger">';
                                             echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
-                                            echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
+                                            echo '<td><a href="index.php?page=profile&profile='. $reviewArray[$i][0] .'" ><div id="username">'. $reviewArray[$i][0] .'</div></a></td>';
                                             echo '<td><div id="timestamp">'. $reviewArray[$i][3] .'</div></td>';
                                             echo '<tr>';
                                         }
@@ -150,7 +150,7 @@
                                             if ($reviewArray[$i][2] == 0) continue;
                                             echo '<tr class="success">';
                                             echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
-                                            echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
+                                            echo '<td><a href="index.php?page=profile&profile='. $reviewArray[$i][0] .'" ><div id="username">'. $reviewArray[$i][0] .'</div></a></td>';
                                             echo '<td><div id="timestamp">'. $reviewArray[$i][3] .'</div></td>';
                                             echo '<tr>';
                                         }
@@ -177,7 +177,7 @@
                                             if ($reviewArray[$i][2] == 1) continue;
                                             echo '<tr class="danger">';
                                             echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
-                                            echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
+                                            echo '<td><a href="index.php?page=profile&profile='. $reviewArray[$i][0] .'" ><div id="username">'. $reviewArray[$i][0] .'</div></a></td>';
                                             echo '<td><div id="timestamp">'. $reviewArray[$i][3] .'</div></td>';
                                             echo '<tr>';
                                         }
@@ -213,47 +213,23 @@
            
             <!-- items that are available for loan -->
             <h2>Items for Loan</h2>
+                <?php
+                    if (sizeof($itemArray) == 0) {
+                         echo "<p>This user has no item up for loan</p>";
+                    }
+                ?>
             <div class="row">
-                
-                <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="thumbnail">
-                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
-                    <div class="caption">
-                    <h3>Hammer</h3>
-                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
-                    </div>
-                    </div>
-                </div>
-                
-                <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="thumbnail">
-                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
-                    <div class="caption">
-                    <h3>Macbook Air</h3>
-                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
-                    </div>
-                    </div>
-                </div>
-                
-                <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="thumbnail">
-                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
-                    <div class="caption">
-                    <h3>Bicycle</h3>
-                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
-                    </div>
-                    </div>
-                </div>
-                
-                <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="thumbnail">
-                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
-                    <div class="caption">
-                    <h3>Fan</h3>
-                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
-                    </div>
-                    </div>
-                </div>
+                <?php
+                     for($i = 0; $i < sizeof($itemArray); $i++) {
+                         echo '<div class="col-xs-6 col-sm-4 col-md-3">';
+                         echo '<div class="thumbnail">';
+                         echo '<img src="'. $itemArray[$i][1] .'" alt="img/tempLogo.jpg">';
+                         echo '<div class="caption">';
+                         echo '<h3>'. $itemArray[$i][0] .'</h3>';
+                         echo '<p><a href="#" class="btn btn-default" role="button">See More</a></p>';
+                         echo '</div></div></div>';
+                     }
+                ?>
             </div>
             <!-- end of items that are available for loan --> 
         </div>
@@ -311,6 +287,10 @@
 
             span.stars span {
                 background-position: 0 0;
+            }
+            
+            .thumbnail a>img, .thumbnail>img {
+                width: 90%;
             }
             
         </style>

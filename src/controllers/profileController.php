@@ -62,18 +62,16 @@ class profileController {
             $profileDescription = $data[4];
             $profileDisplayPictureURL = $data[5];
             $profileLastLoggedIn = $timestampParser->getDateFromTimestamp($data[7]);
-            // get all reviews of this user
-            $reviewModel = new reviewModel();
-            $reviewResult = $reviewModel->getAllReviewsOf($profileName); // to be parsed into JSON in view
-            // load items put up by user
-            $itemModel = new itemModel();
-            $itemResult = $itemModel->getAllItemsOfUser($profileName); // to be parsed into JSON in view
             // parse both review and item results into 2 arrays
             $reviewArray = array();
             $itemArray = array();
             $counter = 0;
             $positiveReviews = 0;
             $negativeReviews = 0;
+            // get all reviews of this user
+            $reviewModel = new reviewModel();
+            $reviewResult = $reviewModel->getAllReviewsOf($profileName);
+            // create review array
             while ($row = pg_fetch_row($reviewResult)) {
                 ($row[3] == 1) ? $positiveReviews++ : $negativeReviews++ ;
                 $review = array($row[0], $row[2], $row[3], $timestampParser->getDateFromTimestamp($row[4])); // row[0]: reviewer, row[2]: review content, row[3]: positive/negative, row[4]: time of review
@@ -82,8 +80,17 @@ class profileController {
             }
             $totalReviews = $positiveReviews + $negativeReviews;
             $counter = 0;
+            // load items put up by user
+            $itemModel = new itemModel();
+            $itemResult = $itemModel->getAllItemsOfUser($profileName);
+            // create item array
             while ($row = pg_fetch_row($itemResult)) {
-                $item = array($row[0]);
+                $itemImageResult = $itemModel->getCoverImageOfItem($row[0], $row[1]); // get cover photo for each item
+                $imageURL = pg_fetch_row($itemImageResult); // it should only have one row
+                if ($imageURL == false) {
+                    $imageURL = "img/tempLogo.jpg";
+                }
+                $item = array($row[0], $imageURL);
                 array_push($itemArray, $item);
                 $counter++;
             }
