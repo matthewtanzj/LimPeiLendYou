@@ -18,4 +18,9 @@ class ReviewModel {
         return $result;
     }
 
+    public function getTotalReviews() {
+        $query = "SELECT * FROM review";
+		$result = pg_query($query);
+		return pg_num_rows($result);
+    }
 }

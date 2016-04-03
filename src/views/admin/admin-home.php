@@ -1,11 +1,14 @@
 <?php
 	include('models/tableModel.php');
 	include('models/memberModel.php');
-    include('models/loanModel.php');
+    include('models/loanRequestModel.php');
     include('models/itemModel.php');
+    include('models/reviewModel.php');
+    $loanRequestModel = new loanRequestModel();
 	$tableModel = new tableModel();
 	$memberModel = new memberModel();
     $itemModel = new itemModel();
+    $reviewModel = new reviewModel();
 ?>
 
 <div class="wrapper">
@@ -27,20 +30,24 @@
                                 <table class="table table-user-information">
                                     <tbody>
                                         <tr>
-                                            <td>Total Registered Users</td>
+                                            <td>Registered Users</td>
                                             <td><?php echo $memberModel->getTotalUsers(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Total Users Online (Past week)</td>
+                                            <td>Users Online (Past week)</td>
                                             <td><?php echo $memberModel->getTotalUsersPastWeek(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Total Users Online (Past month)</td>
+                                            <td>Users Online (Past month)</td>
                                             <td><?php echo $memberModel->getTotalUsersPastMonth(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Total Users Online (Past Year)</td>
+                                            <td>Users Online (Past Year)</td>
                                             <td><?php echo $memberModel->getTotalUsersPastYear(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Reviews</td>
+                                            <td><?php echo $reviewModel->getTotalReviews(); ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -52,20 +59,24 @@
                                 <table class="table table-user-information">
                                     <tbody>
                                         <tr>
-                                            <td>Total Items Created</td>
+                                            <td>Items Created</td>
                                             <td><?php echo $itemModel->getTotalItems(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Total Items Created (Past Week)</td>
+                                            <td>Items Created (Past Week)</td>
                                             <td><?php echo $itemModel->getTotalItemsPastWeek(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Total Items Created (Past month)</td>
+                                            <td>Items Created (Past month)</td>
                                             <td><?php echo $itemModel->getTotalItemsPastMonth(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Total Items Created (Past Year)</td>
+                                            <td>Items Created (Past Year)</td>
                                             <td><?php echo $itemModel->getTotalItemsPastYear(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Item Images</td>
+                                            <td><?php echo $itemModel->getTotalItemImages(); ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -74,29 +85,38 @@
                         
                         <div role="tabpanel" class="tab-pane fade" id="loans">
                             <div class="col-lg-12">
-                                <br>
-                                <!-- review table -->
-                                <div class="review-table">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <th class="col-md-6">Review</th>
-                                            <th class="col-md-2">Reviewer</th>
-                                            <th class="col-md-2">Date</th>
-                                        </thead>
-                                        <?php
-                                            for($i = 0; $i < sizeof($reviewArray); $i++) {
-                                                if ($reviewArray[$i][2] == 1) continue;
-                                                echo '<tr class="danger">';
-                                                echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
-                                                echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
-                                                echo '<td><div id="timestamp">10 feb 2016</div></td>';
-                                                echo '<tr>';
-                                            }
-                                        ?>
-                                    </table>
-                                </div> 
-                                <!-- end of review table-->
-                            </div>
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <td>Loan Requests Made</td>
+                                            <td><?php echo $loanRequestModel->getTotalLoanRequests(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Loan Requests Made (Past Week)</td>
+                                            <td><?php echo $loanRequestModel->getTotalLoanRequestsPastWeek(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Loan Requests Made (Past Month)</td>
+                                            <td><?php echo $loanRequestModel->getTotalLoanRequestsPastMonth(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Loan Requests Made (Past Year)</td>
+                                            <td><?php echo $loanRequestModel->getTotalLoanRequestsPastYear(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Successful Loan Requests</td>
+                                            <td><?php echo $loanRequestModel->getTotalSuccessfulLoanRequests(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pending Loan Requests</td>
+                                            <td><?php echo $loanRequestModel->getTotalPendingLoanRequests(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Declined Loan Requests</td>
+                                            <td><?php echo $loanRequestModel->getTotalDeclinedLoanRequests(); ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                         </div>
                         
                     </div>

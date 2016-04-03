@@ -71,4 +71,10 @@ class ItemModel {
 		$result = pg_query($query);
 		return pg_num_rows($result);
     }
+    
+    public function getTotalItemImages() {
+        $query = "SELECT * FROM item_image";
+		$result = pg_query($query);
+		return pg_num_rows($result);
+    }
 }
