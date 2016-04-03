@@ -125,6 +125,10 @@
  		.message-container > div {
  			height: 100%;
  		}
+
+ 		.sender-message {
+ 			text-align: right;
+ 		}
     
     /* Let's get this party started */
     ::-webkit-scrollbar {
