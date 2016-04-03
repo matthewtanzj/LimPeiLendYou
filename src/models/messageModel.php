@@ -1,28 +1,29 @@
 <?php
-class messageModel{
+class MessageModel{
 
 		public function __construct()
 		{
 
 		}
 
-		public function getOldMessages($item_name, $item_owner, $item_borrower)
+		public function getChatHistory($itemName, $itemOwner, $itemBorrower)
 		{
 				$query = "SELECT m.sender, m.content, m.created_at 
 									FROM message m
-									WHERE m.item_name = $item_name AND
-												m.item_owner =$item_owner AND
-												(m.sender= $item_borrower OR
-												m.receiver=$item_borrower)";
+									WHERE m.item_name = $itemName AND
+												m.item_owner =$itemOwner AND
+												(m.sender= $itemBorrower OR
+												m.receiver=$itemBorrower)";
 
 				return pg_query($query);
 		}
 
-		public function addMessage($item_name, $item_owner, $sender, $receiver, $content, $created_at)
+		public function addMessage($itemName, $itemOwner, $sender, $receiver, $content, $createdAt)
 		{
 				$query ="INSERT INTO message (item_name, item_owner, sender, receiver, content, created_at)
-								VALUES('$item_name', '$item_owner', '$sender', '$receiver', '$content', '$created_at')";
+								VALUES('$itemName', '$itemOwner', '$sender', '$receiver', '$content', '$createdAt')";
 
-				return pg_query($query);
+				$result = pg_query($query);
+				return $result;	// true if successfully inserted, false otherwise
 		}
 }

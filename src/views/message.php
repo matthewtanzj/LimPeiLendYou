@@ -21,14 +21,13 @@
         <script src="js/bootstrap.min.js"></script>
         <!-- Custom styles for this template -->
         <link href="css/style.css" rel="stylesheet">
-        <!-- date picker -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.min.css" >
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.standalone.min.css" >
     </head>
     
     <body>
 
         <!-- Fixed navbar -->
-        <?php include 'navbar.php' ?>
+        <?php include 'views/navbar.php' ?>
+
+        
     </body>
 </html>
