@@ -73,6 +73,11 @@
                                         <td>Email</td>
                                         <td><a href="mailto:info@support.com">info@support.com</a></td>
                                     </tr>
+                                    <tr>
+                                        <td>User Rating</td>
+                                        <td><span class="stars"><?php echo $positiveReviews/$totalReviews*5 ?></span>(<?php echo $totalReviews?> reviews)</td>
+                                    </tr>
+                                    
                                         <td>Phone Number</td>
                                         <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
                                     </td>
@@ -211,7 +216,6 @@
             </div>    
             </div>    
             <!-- end of review panel-->
-            
            
             <!-- items that are available for loan -->
             <h2>Items for Loan</h2>
@@ -260,6 +264,26 @@
             <!-- end of items that are available for loan --> 
         </div>
         
+        <script>
+            
+            $(function() {
+                $('span.stars').stars();
+            });
+            
+            $.fn.stars = function() {
+                return $(this).each(function() {
+                    // Get the value
+                    var val = parseFloat($(this).html());
+                    // Make sure that the value is in 0 - 5 range, multiply to get width
+                    var size = Math.max(0, (Math.min(5, val))) * 16;
+                    // Create stars holder
+                    var $span = $('<span />').width(size);
+                    // Replace the numerical value with stars
+                    $(this).html($span);
+                });
+            }
+        </script>
+        
         <style>
             
             html, body {
@@ -281,9 +305,20 @@
             }
             
             tr, th, td {
-                border-bottom: 1px solid #ddd;
+                border-bottom: 1px solid #A9A9A9;
             }
-         
+            
+            span.stars, span.stars span {
+                display: block;
+                background: url("img/stars.png") 0 -16px repeat-x;
+                width: 80px;
+                height: 16px;
+            }
+
+            span.stars span {
+                background-position: 0 0;
+            }
+            
         </style>
         
     </body>
