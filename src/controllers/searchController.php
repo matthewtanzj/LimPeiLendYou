@@ -12,6 +12,7 @@ class SearchController {
 		include('models/searchModel.php');
 		$searchModel = new searchModel();
 
+		$isUserSearch = false;
 		$itemArray = false;
 		$search = '';
 		
@@ -33,6 +34,10 @@ class SearchController {
 				$searchModel->advanceSearchForItem($_POST['item'], $_POST['owner'], $_POST['category'], $_POST['price_start'], $_POST['price_end'], $_POST['location'], $_POST['date_start'], $_POST['date_end'], $unavailable_item);
 			}
 
+			if ($_POST['action'] == 'searchForUser') {
+				$isUserSearch = true;
+				$data = $searchModel->advanceSearchForUser($_POST['owner'], $_POST['item_number'], $_POST['pos_review'], $_POST['neg_review'], $_POST['ownerSort'], $_POST['activitySort']);
+			}
 		}
 
 
