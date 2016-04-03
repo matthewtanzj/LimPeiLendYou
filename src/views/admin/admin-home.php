@@ -53,19 +53,19 @@
                                     <tbody>
                                         <tr>
                                             <td>Total Items Created</td>
-                                            <td><?php echo $memberModel->getTotalUsers(); ?></td>
+                                            <td><?php echo $itemModel->getTotalItems(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Total Item Images</td>
-                                            <td><?php echo $memberModel->getTotalUsersPastWeek(); ?></td>
+                                            <td>Total Items Created (Past Week)</td>
+                                            <td><?php echo $itemModel->getTotalItemsPastWeek(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Total Users Online (Past month)</td>
-                                            <td><?php echo $memberModel->getTotalUsersPastMonth(); ?></td>
+                                            <td>Total Items Created (Past month)</td>
+                                            <td><?php echo $itemModel->getTotalItemsPastMonth(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Total Users Online (Past Year)</td>
-                                            <td><?php echo $memberModel->getTotalUsersPastYear(); ?></td>
+                                            <td>Total Items Created (Past Year)</td>
+                                            <td><?php echo $itemModel->getTotalItemsPastYear(); ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
