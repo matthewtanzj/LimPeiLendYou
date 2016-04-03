@@ -47,4 +47,28 @@ class ItemModel {
         $result = pg_query($query);
         return $result;
     }
+    
+    public function getTotalItems() {
+        $query = "SELECT * FROM item";
+		$result = pg_query($query);
+		return pg_num_rows($result);
+    }
+    
+    public function getTotalItemsPastWeek() {
+        $query = "SELECT * FROM item WHERE created_at > NOW() - INTERVAL '7 days'";
+		$result = pg_query($query);
+		return pg_num_rows($result);
+    }
+    
+    public function getTotalItemsPastMonth() {
+        $query = "SELECT * FROM item WHERE created_at > NOW() - INTERVAL '30 days'";
+		$result = pg_query($query);
+		return pg_num_rows($result);
+    }
+    
+    public function getTotalItemsPastYear() {
+        $query = "SELECT * FROM item WHERE created_at > NOW() - INTERVAL '365 days'";
+		$result = pg_query($query);
+		return pg_num_rows($result);
+    }
 }

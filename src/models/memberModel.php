@@ -54,12 +54,28 @@ class MemberModel {
     }
 	
 	public function getTotalUsers() {
-		$tableName = "member";
-		$query = "SELECT * FROM $tableName WHERE account_type != 'admin'";
+		$query = "SELECT * FROM member WHERE account_type != 'admin'";
 		$result = pg_query($query);
-		$totalUsers = pg_num_rows($result);
-		return $totalUsers;
+		return pg_num_rows($result);
 	}
+    
+    public function getTotalUsersPastWeek() {
+        $query = "SELECT * FROM member WHERE account_type != 'admin' AND last_logged_in > NOW() - INTERVAL '7 days'";
+		$result = pg_query($query);
+		return pg_num_rows($result);
+    }
+    
+    public function getTotalUsersPastMonth() {
+        $query = "SELECT * FROM member WHERE account_type != 'admin' AND last_logged_in > NOW() - INTERVAL '30 days'";
+		$result = pg_query($query);
+		return pg_num_rows($result);
+    }
+    
+    public function getTotalUsersPastYear() {
+        $query = "SELECT * FROM member WHERE account_type != 'admin' AND last_logged_in > NOW() - INTERVAL '365 days'";
+		$result = pg_query($query);
+		return pg_num_rows($result);
+    }
 	
 	public function addUser($username, $password, $email, $accountType) {	
 		// INSERT INTO member VALUES(DEFAULT, '123', '123', '123@hotmail.com', 'admin', '1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)

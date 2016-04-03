@@ -1,8 +1,11 @@
 <?php
 	include('models/tableModel.php');
 	include('models/memberModel.php');
+    include('models/loanModel.php');
+    include('models/itemModel.php');
 	$tableModel = new tableModel();
 	$memberModel = new memberModel();
+    $itemModel = new itemModel();
 ?>
 
 <div class="wrapper">
@@ -12,78 +15,64 @@
                 <div class="panel-body">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#description" aria-controls="home" role="tab" data-toggle="tab">User</a></li>
-                        <li role="presentation"><a href="#positive" aria-controls="profile" role="tab" data-toggle="tab">Loans</a></li>
-                        <li role="presentation"><a href="#negative" aria-controls="home" role="tab" data-toggle="tab">Items</a></li>
+                        <li role="presentation" class="active"><a href="#user" aria-controls="home" role="tab" data-toggle="tab">User</a></li>
+                        <li role="presentation"><a href="#items" aria-controls="profile" role="tab" data-toggle="tab">Items</a></li>
+                        <li role="presentation"><a href="#loans" aria-controls="home" role="tab" data-toggle="tab">Loans</a></li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
                         
-                        <div role="tabpanel" class="tab-pane fade in active" id="description">
+                        <div role="tabpanel" class="tab-pane fade in active" id="user">
                             <div class="col-lg-12">
                                 <table class="table table-user-information">
                                     <tbody>
                                         <tr>
-                                            <td>Total Registered Users:</td>
+                                            <td>Total Registered Users</td>
                                             <td><?php echo $memberModel->getTotalUsers(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Total Users Online (This Week):</td>
-                                            <td>06/23/2013</td>
+                                            <td>Total Users Online (Past week)</td>
+                                            <td><?php echo $memberModel->getTotalUsersPastWeek(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Total Users Online (This Month):</td>
-                                            <td>01/24/1988</td>
+                                            <td>Total Users Online (Past month)</td>
+                                            <td><?php echo $memberModel->getTotalUsersPastMonth(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>User with the most loan items:</td>
-                                            <td>Male</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Total Users with no loan items:</td>
-                                            <td>Metro Manila,Philippines</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Email</td>
-                                            <td><a href="mailto:info@support.com">info@support.com</a></td>
-                                        </tr>
-                                            <td>Phone Number</td>
-                                            <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
-                                        </td>
+                                            <td>Total Users Online (Past Year)</td>
+                                            <td><?php echo $memberModel->getTotalUsersPastYear(); ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         
-                        <div role="tabpanel" class="tab-pane fade" id="positive">
+                        <div role="tabpanel" class="tab-pane fade" id="items">
                             <div class="col-lg-12">
-                                <br>
-                                <!-- review table -->
-                                <div class="review-table">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <th class="col-md-6">Review</th>
-                                            <th class="col-md-2">Reviewer</th>
-                                            <th class="col-md-2">Date</th>
-                                        </thead>
-                                        <?php
-                                            for($i = 0; $i < sizeof($reviewArray); $i++) {
-                                                if ($reviewArray[$i][2] == 0) continue;
-                                                echo '<tr class="success">';
-                                                echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
-                                                echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
-                                                echo '<td><div id="timestamp">10 feb 2016</div></td>';
-                                                echo '<tr>';
-                                            }
-                                        ?>
-                                    </table>
-                                </div> 
-                                <!-- end of review table-->
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <td>Total Items Created</td>
+                                            <td><?php echo $itemModel->getTotalItems(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Items Created (Past Week)</td>
+                                            <td><?php echo $itemModel->getTotalItemsPastWeek(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Items Created (Past month)</td>
+                                            <td><?php echo $itemModel->getTotalItemsPastMonth(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Items Created (Past Year)</td>
+                                            <td><?php echo $itemModel->getTotalItemsPastYear(); ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         
-                        <div role="tabpanel" class="tab-pane fade" id="negative">
+                        <div role="tabpanel" class="tab-pane fade" id="loans">
                             <div class="col-lg-12">
                                 <br>
                                 <!-- review table -->
@@ -123,4 +112,8 @@
 	width: 90%;
 	padding-top: 5%;
 	}
+    
+    tr, th, td {
+        border-bottom: 1px solid #A9A9A9;
+    }
 </style>
