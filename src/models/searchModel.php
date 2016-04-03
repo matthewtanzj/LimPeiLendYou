@@ -10,7 +10,7 @@ class SearchModel {
     {
         $query = "SELECT *
                 FROM item i
-                WHERE i.item_name LIKE '%$searchText%'
+                WHERE lower(i.item_name) LIKE lower('%$searchText%')
                 ";
                 
         return pg_query($query);
@@ -23,7 +23,7 @@ class SearchModel {
         if (!empty($_POST['popSort'])) {
             $query = "SELECT i.owner, i.item_name, i.price, count(l.item_name)
                     FROM item i, loan_request l
-                    WHERE i.item_name like '%$item_name%' AND l.item_name like i.item_name". 
+                    WHERE lower(i.item_name) like lower('%$item_name%') AND lower(l.item_name) like lower(i.item_name)". 
                     " AND " . (empty($owner)? $true : "i.owner like '%$owner%'") .
                     " AND " . (empty($category)? $true : "i.category >= $category") .
                     " AND " . (empty($price_start)? $true : "i.price >= $price_start") .
@@ -33,7 +33,7 @@ class SearchModel {
         } else {
             $query = "SELECT i.owner, i.item_name, i.price
                 FROM item i
-                WHERE i.item_name like '%$item_name%'" . 
+                WHERE lower(i.item_name) like lower('%$item_name%')" . 
                 " AND " . (empty($owner)? $true : "i.owner like '%$owner%'") .
                 " AND " . (empty($category)? $true : "i.category >= $category") .
                 " AND " . (empty($price_start)? $true : "i.price >= $price_start") .
