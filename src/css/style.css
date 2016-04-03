@@ -13,6 +13,10 @@ body {
     margin-left: 10px;
 }
 
+#messageInboxIcon {
+	 padding-right: 0px;
+}
+
 /*******************************Calendar Top Navigation*********************************/
 div#calendar{
   margin:0px auto;

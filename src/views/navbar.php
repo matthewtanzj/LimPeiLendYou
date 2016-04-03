@@ -72,6 +72,11 @@
       <ul class="nav navbar-nav navbar-right">
         <?php if($_SESSION['loggedin']): ?>    
             <li><a class="btn" id="loanButton" href="index.php?page=loan">New Loan</a></li>
+            <li>
+        				<a href="#" id="messageInboxIcon">
+        					<span class="glyphicon glyphicon-inbox"></span>
+        				</a>
+        		</li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['username']; ?> <span class="caret"></span></a>
                 <ul class="dropdown-menu">
