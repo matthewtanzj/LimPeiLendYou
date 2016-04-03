@@ -55,7 +55,7 @@ class MemberModel {
 	
 	public function getTotalUsers() {
 		$tableName = "member";
-		$query = "SELECT * FROM $tableName ORDER BY id";
+		$query = "SELECT * FROM $tableName WHERE account_type != 'admin'";
 		$result = pg_query($query);
 		$totalUsers = pg_num_rows($result);
 		return $totalUsers;

@@ -171,15 +171,6 @@
 							</div>
 							<div class="row">
 								<div class="col-md-3">
-									<label>Date: </label>
-								</div>
-								<div class="col-md-6">
-									<label class="radio-inline"><input type="radio" name="dateSort" value="ASC"><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></label>
-									<label class="radio-inline"><input type="radio" name="dateSort" value="DESC"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-3">
 									<label>Item Popularity: </label>
 								</div>
 								<div class="col-md-6">

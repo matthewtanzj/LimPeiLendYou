@@ -37,7 +37,7 @@
             <div class="panel panel-info">
                 
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php echo $profileName ?></h3>
+                    <h3 class="panel-title"><?php echo $profileName ?>'s Profile</h3>
                 </div>
                 
                 <div class="panel-body">
@@ -50,28 +50,24 @@
                             <table class="table table-user-information">
                                 <tbody>
                                     <tr>
-                                        <td>Department:</td>
-                                        <td>Programming</td>
+                                        <td>Username</td>
+                                        <td><?php echo $profileName ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Hire date:</td>
-                                        <td>06/23/2013</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Date of Birth</td>
-                                        <td>01/24/1988</td>
+                                        <td>Last Online</td>
+                                        <td><?php echo $profileLastLoggedIn ?></td>
                                     </tr>
                                     <tr>
                                         <td>Gender</td>
-                                        <td>Male</td>
+                                        <td>-</td>
                                     </tr>
                                     <tr>
-                                        <td>Home Address</td>
-                                        <td>Metro Manila,Philippines</td>
+                                        <td>Date of Birth</td>
+                                        <td>-</td>
                                     </tr>
                                     <tr>
                                         <td>Email</td>
-                                        <td><a href="mailto:info@support.com">info@support.com</a></td>
+                                        <td><a href="mailto:info@support.com"><?php echo $profileEmail ?></a></td>
                                     </tr>
                                     <tr>
                                         <td>User Rating</td>
@@ -79,8 +75,7 @@
                                     </tr>
                                     
                                         <td>Phone Number</td>
-                                        <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
-                                    </td>
+                                        <td>-</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -92,8 +87,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <p align="justify">
-                                User Information: <br>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis tellus iaculis, lobortis dui at, iaculis metus. Nunc laoreet fringilla dolor, sit amet laoreet ante semper ut. Donec condimentum elementum metus, vitae aliquam ipsum viverra in. Quisque eu malesuada augue. Morbi ultricies nibh sed est tristique venenatis. Curabitur elementum, velit ornare hendrerit convallis, lacus erat vehicula nisl, at finibus est ipsum bibendum odio. Nulla id sem metus. Nunc risus turpis, malesuada sed nibh consectetur, posuere ornare ex. Curabitur velit ligula, vestibulum sit amet molestie ut, hendrerit non ante. Vestibulum mattis sed dolor eu luctus. Aenean tincidunt lectus ac imperdiet consectetur.
+                                <?php echo $profileDescription ?>
                             </p>
                         </div>
                     </div>
@@ -129,8 +123,8 @@
                                         for($i = 0; $i < sizeof($reviewArray); $i++) {
                                             echo ($reviewArray[$i][2] == 1)  ? '<tr class="success">' : '<tr class="danger">';
                                             echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
-                                            echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
-                                            echo '<td><div id="timestamp">10 feb 2016</div></td>';
+                                            echo '<td><a href="index.php?page=profile&profile='. $reviewArray[$i][0] .'" ><div id="username">'. $reviewArray[$i][0] .'</div></a></td>';
+                                            echo '<td><div id="timestamp">'. $reviewArray[$i][3] .'</div></td>';
                                             echo '<tr>';
                                         }
                                     ?>
@@ -156,8 +150,8 @@
                                             if ($reviewArray[$i][2] == 0) continue;
                                             echo '<tr class="success">';
                                             echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
-                                            echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
-                                            echo '<td><div id="timestamp">10 feb 2016</div></td>';
+                                            echo '<td><a href="index.php?page=profile&profile='. $reviewArray[$i][0] .'" ><div id="username">'. $reviewArray[$i][0] .'</div></a></td>';
+                                            echo '<td><div id="timestamp">'. $reviewArray[$i][3] .'</div></td>';
                                             echo '<tr>';
                                         }
                                     ?>
@@ -183,8 +177,8 @@
                                             if ($reviewArray[$i][2] == 1) continue;
                                             echo '<tr class="danger">';
                                             echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
-                                            echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
-                                            echo '<td><div id="timestamp">10 feb 2016</div></td>';
+                                            echo '<td><a href="index.php?page=profile&profile='. $reviewArray[$i][0] .'" ><div id="username">'. $reviewArray[$i][0] .'</div></a></td>';
+                                            echo '<td><div id="timestamp">'. $reviewArray[$i][3] .'</div></td>';
                                             echo '<tr>';
                                         }
                                     ?>
@@ -206,7 +200,7 @@
                         <br>
                         <textarea class="form-control" rows="5" id="review" name="content" placeholder="Write a review..."></textarea>
                         <br>
-                            <input type="radio" name="review" value="positive"/> Positive<br>
+                            <input type="radio" name="review" value="positive" checked="checked"/> Positive<br>
                             <input type="radio" name="review" value="negative"/> Negative<br><br>
                         <button type="submit-review" name="submit-review" value="submit-review" class="btn btn-default submit-button">Review</button>
                         <?php echo $reviewSuccessMessage; ?>
@@ -219,47 +213,24 @@
            
             <!-- items that are available for loan -->
             <h2>Items for Loan</h2>
+                <?php
+                    if (sizeof($itemArray) == 0) {
+                         echo "<p>This user has no item up for loan</p>";
+                    }
+                ?>
             <div class="row">
-                
-                <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="thumbnail">
-                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
-                    <div class="caption">
-                    <h3>Hammer</h3>
-                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
-                    </div>
-                    </div>
-                </div>
-                
-                <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="thumbnail">
-                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
-                    <div class="caption">
-                    <h3>Macbook Air</h3>
-                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
-                    </div>
-                    </div>
-                </div>
-                
-                <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="thumbnail">
-                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
-                    <div class="caption">
-                    <h3>Bicycle</h3>
-                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
-                    </div>
-                    </div>
-                </div>
-                
-                <div class="col-xs-6 col-sm-4 col-md-3">
-                    <div class="thumbnail">
-                    <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
-                    <div class="caption">
-                    <h3>Fan</h3>
-                    <p><a href="#" class="btn btn-default" role="button">See More</a></p>
-                    </div>
-                    </div>
-                </div>
+                <?php
+                     for($i = 0; $i < sizeof($itemArray); $i++) {
+                         echo '<div class="col-xs-6 col-sm-4 col-md-3">';
+                         echo '<div class="thumbnail">';
+                         echo '<img src="'. $itemArray[$i][1] .'" alt="img/tempLogo.jpg">';
+                         //echo '<img src="img/items/123456789.jpg" alt="img/tempLogo.jpg">';
+                         echo '<div class="caption">';
+                         echo '<h3>'. $itemArray[$i][0] .'</h3>';
+                         echo '<p><a href="index.php?page=item&owner='.$profileName.'&item='.$itemArray[$i][0].'" class="btn btn-default" role="button">See More</a></p>';
+                         echo '</div></div></div>';
+                     }
+                ?>
             </div>
             <!-- end of items that are available for loan --> 
         </div>
@@ -317,6 +288,11 @@
 
             span.stars span {
                 background-position: 0 0;
+            }
+            
+            .thumbnail a>img, .thumbnail>img {
+                width: 90%;
+                height: 150px;
             }
             
         </style>
