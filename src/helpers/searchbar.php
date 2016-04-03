@@ -171,15 +171,6 @@
 							</div>
 							<div class="row">
 								<div class="col-md-3">
-									<label>Date: </label>
-								</div>
-								<div class="col-md-6">
-									<label class="radio-inline"><input type="radio" name="dateSort" value="ASC"><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></label>
-									<label class="radio-inline"><input type="radio" name="dateSort" value="DESC"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-3">
 									<label>Item Popularity: </label>
 								</div>
 								<div class="col-md-6">
@@ -195,82 +186,71 @@
 					</div>
 					<!-- user tab -->
 					<div role="tabpanel" class="tab-pane" id="user">
-						<br>
-						<div class="row">
-							<div class="col-md-3">
-								<label>Owner: </label>
-							</div>
-							<div class="col-md-4">
-								<input type="text" class="form-control input-sm" name="owner" placeholder="all owners">
-							</div>
-						</div>
-						<br>
-						<div class="row">
-							<div class="col-md-offset-3 col-md-1">
-								with
-							</div>
-							<div class="col-md-2">
-								<input type="text" class="form-control input-sm" name="item_number" value="0">
-							</div>
-							<div class="col-md-3">
-								or more items
-							</div>
-						</div>
-						<br>
-						<div class="row">
-							<div class="col-md-3">
-								<label>Email: </label>
-							</div>
-							<div class="col-md-4">
-								<input type="text" class="form-control input-sm" name="email" placeholder="all locations">
-							</div>
-						</div>
-						<br>
-						<div class="row">
-							<div class="col-md-3">
-								<label>Availability: </label>
-							</div>
-							<div class="col-md-6">
-								<div class="input-daterange input-group" id="datepicker">
-			                        <input type="text" class="input-sm form-control" name="date_start" />
-			                        <span class="input-group-addon">to</span>
-			                        <input type="text" class="input-sm form-control" name="date_end" />
-			                    </div>
-			                </div>
-						</div>
-						<div class="row">
-							<div class="col-md-offset-3">
-				                <div class="checkbox">
-									<label><input type="checkbox" value="1" name="unavailable_item">include unavailable items</label>
+						<form action="?page=search" method="post">
+							<input type="hidden" name="action" value="searchForUser">
+							<br>
+							<div class="row">
+								<div class="col-md-3">
+									<label>Owner: </label>
 								</div>
-				            </div>
-			            </div>
-						<br>
-						<div class="row">
-							<div class="col-md-4"><h3><b>Order by</b></h3></div>
-						</div>
-						<div class="row">
-							<div class="col-md-3">
-								<label>Owner: </label>
+								<div class="col-md-4">
+									<input type="text" class="form-control input-sm" name="owner" placeholder="all owners">
+								</div>
 							</div>
-							<div class="col-md-6">
-								<label class="radio-inline"><input type="radio" name="ownerSort" value="ASC"><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></label>
-								<label class="radio-inline"><input type="radio" name="ownerSort" value="DESC"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></label>
+							<br>
+							<div class="row">
+								<div class="col-md-offset-3 col-md-1">
+									with
+								</div>
+								<div class="col-md-2">
+									<input type="text" class="form-control input-sm" name="item_number" value="0">
+								</div>
+								<div class="col-md-3">
+									or more items
+								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-3">
-								<label>Item Popularity: </label>
+							<br>
+							<div class="row">
+								<div class="col-md-3">
+									<label>Reviews: </label>
+								</div>
+								<div class="col-md-9">
+									with at least <input type="text" class="form-control input-sm" name="pos_review" value="0" style="width: 20%; display: inline;"> postive reviews
+								</div>
 							</div>
-							<div class="col-md-6">
-								<label class="radio-inline"><input type="radio" name="popSort" value="ASC"><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></label>
-								<label class="radio-inline"><input type="radio" name="popSort" value="DESC"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></label>
+							<br>
+							<div class="row">
+								<div class="col-md-offset-3 col-md-9">
+									with at most <input type="text" class="form-control input-sm" name="neg_review" value="unlimited" style="width: 20%; display: inline;"> negative reviews
+								</div>
 							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Search</button>
-						</div>
+							<br>
+							<div class="row">
+								<div class="col-md-4"><h3><b>Order by</b></h3></div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">
+									<label>Owner: </label>
+								</div>
+								<div class="col-md-6">
+									<label class="radio-inline"><input type="radio" name="ownerSort" value="ASC"><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></label>
+									<label class="radio-inline"><input type="radio" name="ownerSort" value="DESC"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">
+									<label>Activity: </label>
+								</div>
+								<div class="col-md-6">
+									<label class="radio-inline"><input type="radio" name="activitySort" value="ASC"><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></label>
+									<label class="radio-inline"><input type="radio" name="activitySort" value="DESC"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></label>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary">Search</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

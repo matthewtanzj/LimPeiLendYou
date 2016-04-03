@@ -188,9 +188,9 @@
     <?php endif; ?>
 
     // show comments
-    <?php foreach ($commentArray as $comment) { ?>
+    <?php if(!empty($commentArray)) {foreach ($commentArray as $comment) { ?>
         $('#show-comments-section').append("<ul><b><?php echo $comment['commenter'] ?></b><span style='color:grey; font-size:12px; padding-left:30px;'><?php echo date('d/m/Y', $comment['timestamp']) ?><span style='color:grey; font-size:12px; padding-left:5px;'><?php echo date('g:i a', $comment['timestamp']) ?></span><p><?php echo $comment['content'] ?></p></ul>");
-    <?php } ?>
+    <?php }} ?>
     
 
 

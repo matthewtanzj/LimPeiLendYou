@@ -35,12 +35,16 @@ class ItemModel {
         return pg_query($query);
     }
     
-      public function addLoan($item_name, $owner, $category, $price, $description, $location) {	
-
-		
+    public function addLoan($item_name, $owner, $category, $price, $description, $location) {			
 		$query = "INSERT INTO item (item_name, owner, category, price, description, location) 
 					VALUES('$item_name', '$owner', '$category', '$price', '$description', '$location')";
 		$result = pg_query($query);
 		return $result; // true if successfully inserted, false otherwise
 	}
+    
+    public function getCoverImageOfItem($item, $owner) {
+        $query = "SELECT * FROM item_image WHERE item_name = '$item' AND owner = '$owner' AND is_cover = 1";
+        $result = pg_query($query);
+        return $result;
+    }
 }
