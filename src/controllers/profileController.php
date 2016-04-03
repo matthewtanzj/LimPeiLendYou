@@ -28,7 +28,7 @@ class profileController {
             // parse POST data
             $reviewer = $_SESSION['username'];
             $reviewee = $_GET['profile'];
-            $content = $_POST['content'];
+            $content = str_replace("'", "''", $_POST['content']);
             if ($_POST['review'] == "positive") {
                 $isPositive = 1;
             } else {
