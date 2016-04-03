@@ -34,34 +34,82 @@
         <div class="wrapper">
             
             <!-- user info panel -->
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="img/display_picture_default.png">
+            <div class="panel panel-info">
+                
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $profileName ?></h3>
                 </div>
-                <div class="col-md-8">
-                    <h2><?php echo $profileName; ?></h2>
-                    <p>Country</p>
-                    <p>Country</p>
-                </div>  
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-12">
-                    <p align="justify">
-                        User Information: <br>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis tellus iaculis, lobortis dui at, iaculis metus. Nunc laoreet fringilla dolor, sit amet laoreet ante semper ut. Donec condimentum elementum metus, vitae aliquam ipsum viverra in. Quisque eu malesuada augue. Morbi ultricies nibh sed est tristique venenatis. Curabitur elementum, velit ornare hendrerit convallis, lacus erat vehicula nisl, at finibus est ipsum bibendum odio. Nulla id sem metus. Nunc risus turpis, malesuada sed nibh consectetur, posuere ornare ex. Curabitur velit ligula, vestibulum sit amet molestie ut, hendrerit non ante. Vestibulum mattis sed dolor eu luctus. Aenean tincidunt lectus ac imperdiet consectetur.
-                    </p>
+                
+                <div class="panel-body">
+                    
+                    <div class="row">
+                        
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="img/display_picture_default.png" class="img-circle img-responsive"> </div>
+
+                        <div class=" col-md-9 col-lg-9 "> 
+                            <table class="table table-user-information">
+                                <tbody>
+                                    <tr>
+                                        <td>Department:</td>
+                                        <td>Programming</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hire date:</td>
+                                        <td>06/23/2013</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date of Birth</td>
+                                        <td>01/24/1988</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender</td>
+                                        <td>Male</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Home Address</td>
+                                        <td>Metro Manila,Philippines</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td><a href="mailto:info@support.com">info@support.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>User Rating</td>
+                                        <td><span class="stars"><?php echo $positiveReviews/$totalReviews*5 ?></span>(<?php echo $totalReviews?> reviews)</td>
+                                    </tr>
+                                    
+                                        <td>Phone Number</td>
+                                        <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
+                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p align="justify">
+                                User Information: <br>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque iaculis tellus iaculis, lobortis dui at, iaculis metus. Nunc laoreet fringilla dolor, sit amet laoreet ante semper ut. Donec condimentum elementum metus, vitae aliquam ipsum viverra in. Quisque eu malesuada augue. Morbi ultricies nibh sed est tristique venenatis. Curabitur elementum, velit ornare hendrerit convallis, lacus erat vehicula nisl, at finibus est ipsum bibendum odio. Nulla id sem metus. Nunc risus turpis, malesuada sed nibh consectetur, posuere ornare ex. Curabitur velit ligula, vestibulum sit amet molestie ut, hendrerit non ante. Vestibulum mattis sed dolor eu luctus. Aenean tincidunt lectus ac imperdiet consectetur.
+                            </p>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             <!-- end of user info panel -->
 
             <!-- start of review panel-->
-            <div class="row">
+            <div class="panel panel-info">
+            <div class="panel-body">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#description" aria-controls="home" role="tab" data-toggle="tab">All Reviews (<?php echo $commentArray == false ? 0 : sizeof($commentArray) ?>)</a></li>
-                    <li role="presentation"><a href="#positive" aria-controls="profile" role="tab" data-toggle="tab">Positive Reviews (<?php echo $commentArray == false ? 0 : sizeof($commentArray) ?>)</a></li>
-                    <li role="presentation"><a href="#negative" aria-controls="home" role="tab" data-toggle="tab">Negative Reviews (<?php echo $commentArray == false ? 0 : sizeof($commentArray) ?>)</a></li>
+                    <li role="presentation" class="active"><a href="#description" aria-controls="home" role="tab" data-toggle="tab">All Reviews (<?php echo $totalReviews ?>)</a></li>
+                    <li role="presentation"><a href="#positive" aria-controls="profile" role="tab" data-toggle="tab">Positive Reviews (<?php echo $positiveReviews ?>)</a></li>
+                    <li role="presentation"><a href="#negative" aria-controls="home" role="tab" data-toggle="tab">Negative Reviews (<?php echo $negativeReviews ?>)</a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -69,49 +117,86 @@
                     <div role="tabpanel" class="tab-pane fade in active" id="description">
                         <div class="col-lg-12">
                             <br>
-                            <!-- review panel -->
+                            <!-- review table -->
                             <div class="review-table">
                                 <table class="table table-hover">
                                     <thead>
-                                        <th class="col-md-2">Verdict</th>
                                         <th class="col-md-6">Review</th>
                                         <th class="col-md-2">Reviewer</th>
                                         <th class="col-md-2">Date</th>
                                     </thead>
-                                    <tr>
-                                        <td><span class="glyphicon glyphicon-thumbs-up"></span></td>
-                                        <td><div id="review-content">Very Good. I like it.</div></td>
-                                        <td><div id="username">Matthew Tan</div></td>
-                                        <td><div id="timestamp">10 feb 2016</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="glyphicon glyphicon-thumbs-down"></span></td>
-                                        <td><div id="review-content">Boo! </div></td>
-                                        <td><div id="username">Matthew Tan</div></td>
-                                        <td><div id="timestamp">8 feb 2016</div></td>
-                                    </tr>
+                                    <?php
+                                        for($i = 0; $i < sizeof($reviewArray); $i++) {
+                                            echo ($reviewArray[$i][2] == 1)  ? '<tr class="success">' : '<tr class="danger">';
+                                            echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
+                                            echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
+                                            echo '<td><div id="timestamp">10 feb 2016</div></td>';
+                                            echo '<tr>';
+                                        }
+                                    ?>
                                 </table>
                             </div> 
+                            <!-- end of review table-->
                         </div>
                     </div>
                     
                     <div role="tabpanel" class="tab-pane fade" id="positive">
                         <div class="col-lg-12">
                             <br>
-                            <p>This user has no positive reviews.</p>
+                            <!-- review table -->
+                            <div class="review-table">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <th class="col-md-6">Review</th>
+                                        <th class="col-md-2">Reviewer</th>
+                                        <th class="col-md-2">Date</th>
+                                    </thead>
+                                    <?php
+                                        for($i = 0; $i < sizeof($reviewArray); $i++) {
+                                            if ($reviewArray[$i][2] == 0) continue;
+                                            echo '<tr class="success">';
+                                            echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
+                                            echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
+                                            echo '<td><div id="timestamp">10 feb 2016</div></td>';
+                                            echo '<tr>';
+                                        }
+                                    ?>
+                                </table>
+                            </div> 
+                            <!-- end of review table-->
                         </div>
                     </div>
                     
                     <div role="tabpanel" class="tab-pane fade" id="negative">
                         <div class="col-lg-12">
                             <br>
-                            <p>This user has no negative reviews.</p>
+                            <!-- review table -->
+                            <div class="review-table">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <th class="col-md-6">Review</th>
+                                        <th class="col-md-2">Reviewer</th>
+                                        <th class="col-md-2">Date</th>
+                                    </thead>
+                                    <?php
+                                        for($i = 0; $i < sizeof($reviewArray); $i++) {
+                                            if ($reviewArray[$i][2] == 1) continue;
+                                            echo '<tr class="danger">';
+                                            echo '<td><div id="review-content">'. $reviewArray[$i][1] .'</div></td>';
+                                            echo '<td><div id="username">'. $reviewArray[$i][0] .'</div></td>';
+                                            echo '<td><div id="timestamp">10 feb 2016</div></td>';
+                                            echo '<tr>';
+                                        }
+                                    ?>
+                                </table>
+                            </div> 
+                            <!-- end of review table-->
                         </div>
                     </div>
                     
                 </div>
-                
-                <form action="?page=item&amp;owner=<?php echo $item['owner']?>&amp;item=<?php echo $item['item_name']?>" method="post">
+                <?php if (!$isViewingOwnProfile): ?>
+                <form action="#" method="post">
                     <input type="hidden" name="action" value="submitComment">
                     <input type="hidden" name="item_name" value="<?php echo $item['item_name']?>">
                     <input type="hidden" name="owner" value="<?php echo $item['owner']?>">
@@ -121,18 +206,22 @@
                         <br>
                         <textarea class="form-control" rows="5" id="review" name="content" placeholder="Write a review..."></textarea>
                         <br>
-                        <button type="submit" class="btn btn-default submit-button">Review</button>
+                            <input type="radio" name="review" value="positive"/> Positive<br>
+                            <input type="radio" name="review" value="negative"/> Negative<br><br>
+                        <button type="submit-review" name="submit-review" value="submit-review" class="btn btn-default submit-button">Review</button>
+                        <?php echo $reviewSuccessMessage; ?>
                     </div>
-                </form> 
-                
-            </div>
+                </form>
+                <?php endif ?>
+            </div>    
+            </div>    
             <!-- end of review panel-->
            
             <!-- items that are available for loan -->
             <h2>Items for Loan</h2>
             <div class="row">
                 
-                <div class="col-sm-6 col-md-3">
+                <div class="col-xs-6 col-sm-4 col-md-3">
                     <div class="thumbnail">
                     <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
                     <div class="caption">
@@ -142,7 +231,7 @@
                     </div>
                 </div>
                 
-                <div class="col-sm-6 col-md-3">
+                <div class="col-xs-6 col-sm-4 col-md-3">
                     <div class="thumbnail">
                     <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
                     <div class="caption">
@@ -152,7 +241,7 @@
                     </div>
                 </div>
                 
-                <div class="col-sm-6 col-md-3">
+                <div class="col-xs-6 col-sm-4 col-md-3">
                     <div class="thumbnail">
                     <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
                     <div class="caption">
@@ -162,7 +251,7 @@
                     </div>
                 </div>
                 
-                <div class="col-sm-6 col-md-3">
+                <div class="col-xs-6 col-sm-4 col-md-3">
                     <div class="thumbnail">
                     <img src="img/tempLogo2.png" alt="img/tempLogo.jpg">
                     <div class="caption">
@@ -174,6 +263,26 @@
             </div>
             <!-- end of items that are available for loan --> 
         </div>
+        
+        <script>
+            
+            $(function() {
+                $('span.stars').stars();
+            });
+            
+            $.fn.stars = function() {
+                return $(this).each(function() {
+                    // Get the value
+                    var val = parseFloat($(this).html());
+                    // Make sure that the value is in 0 - 5 range, multiply to get width
+                    var size = Math.max(0, (Math.min(5, val))) * 16;
+                    // Create stars holder
+                    var $span = $('<span />').width(size);
+                    // Replace the numerical value with stars
+                    $(this).html($span);
+                });
+            }
+        </script>
         
         <style>
             
@@ -187,16 +296,8 @@
                 height: 100%;
             }
             
-            .row2 {
-                padding: 3% 2%;
-            }
-            
-            .row3 {
-                display: inline;
-                margin: 0 auto;
-                float: left;
-                width: 100%;
-                padding: 3% 0;
+            #review-content {
+                align: "justify";
             }
             
             table {
@@ -204,9 +305,20 @@
             }
             
             tr, th, td {
-                border-bottom: 1px solid #ddd;
+                border-bottom: 1px solid #A9A9A9;
             }
-         
+            
+            span.stars, span.stars span {
+                display: block;
+                background: url("img/stars.png") 0 -16px repeat-x;
+                width: 80px;
+                height: 16px;
+            }
+
+            span.stars span {
+                background-position: 0 0;
+            }
+            
         </style>
         
     </body>

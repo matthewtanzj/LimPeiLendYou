@@ -33,11 +33,11 @@
 
     <div class="container">
      
-        <form class="col-md-6 col-md-offset-3">
+        <form class="col-md-6 col-md-offset-3" action='?page=loan' method='POST' >
           <div class="form-group">
             <label for="categorySelection">Category</label>
-              <select class="form-control">
-                  <option value="tools">Choose one</option>
+              <select class="form-control" name="category">
+                  <option value="Null">Choose one</option>
                   <option value="tools">Tools &amp; Gardening</option>
                   <option value="sports">Sports &amp; Outdoor</option>
                   <option value="parties">Parties &amp; Events</option>
@@ -54,20 +54,25 @@
             
           <div class="form-group">
             <label for="itemName">Item Name</label>
-            <input type="text" class="form-control" id="itemName" placeholder="What are you lending out?">
+            <input type="text" class="form-control" name="itemName" placeholder="What are you lending out?">
           </div>
         
          <div class="form-group">    
             <label for="price">Price</label>
           <div class="input-group">
             <span class="input-group-addon">$</span>  
-            <input type="text" class="form-control" id="price">
+            <input type="text" class="form-control" name="price">
           </div>   
         </div>
             
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" rows="5" id="user_info" name="user_info" placeholder="Tell us more about your item! E.g size, condition, colour etc..."><?php echo $data['description_info']; ?></textarea>
+            <textarea class="form-control" rows="5" id="item_info" name="item_info" placeholder="Tell us more about your item! E.g size, condition, colour etc..."><?php echo $data['description_info']; ?></textarea>
+          </div>
+            
+              <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" name="location" placeholder="Preferred location for meet up">
           </div>
             
           <div class="form-group">
@@ -77,7 +82,7 @@
             
              <div class='form-group'>
                     <input class="btn btn-primary" type="submit" name="submit" value="List my item"/>
-                    <?php echo $loanEntryCreationMessage;?>
+                    <?php echo $loanCreationErrorMessage;?>
                 </div>
         </form>
 
