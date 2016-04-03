@@ -12,6 +12,7 @@ class SearchController {
 		include('models/searchModel.php');
 		$searchModel = new searchModel();
 
+		$isUserSearch = false;
 		$itemArray = false;
 		$search = '';
 		
@@ -31,6 +32,10 @@ class SearchController {
 				$itemArray = pg_fetch_all($result);
 			}
 
+			if ($_POST['action'] == 'searchForUser') {
+				$isUserSearch = true;
+				$data = $searchModel->advanceSearchForUser($_POST['owner'], $_POST['item_number'], $_POST['pos_review'], $_POST['neg_review'], $_POST['ownerSort'], $_POST['activitySort']);
+			}
 		}
 
 

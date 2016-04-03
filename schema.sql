@@ -118,22 +118,37 @@ CREATE TRIGGER request_msg_trigger
  WHERE m.username = r.reviewee
  GROUP BY m.username
  UNION ALL
+ SELECT 'review' AS value_type, m.username, m.display_pic, 0, 0 FROM member m
+ WHERE m.username NOT IN (SELECT r.reviewee FROM review r)
+ UNION ALL
  SELECT 'comment' AS value_type, m.username, m.display_pic, COUNT(*), 0
  FROM member m, comment c
  WHERE m.username = c.commenter
  GROUP BY m.username
+ UNION ALL
+ SELECT 'comment' AS value_type, m.username, m.display_pic, 0, 0 FROM member m
+ WHERE m.username NOT IN (SELECT c.commenter FROM comment c)
  UNION ALL
  SELECT 'message' AS value_type, m.username, m.display_pic, COUNT(*), 0
  FROM member m, message msg
  WHERE m.username = msg.sender
  GROUP BY m.username
  UNION ALL
+ SELECT 'message' AS value_type, m.username, m.display_pic, 0, 0 FROM member m
+ WHERE m.username NOT IN (SELECT msg.sender FROM message msg)
+ UNION ALL
  SELECT 'loan_request' AS value_type, m.username, m.display_pic, COUNT(*), 0
  FROM member m, loan_request l
  WHERE m.username = l.borrower
  GROUP BY m.username
  UNION ALL
+ SELECT 'loan_request' AS value_type, m.username, m.display_pic, 0, 0 FROM member m
+ WHERE m.username NOT IN (SELECT l.borrower FROM loan_request l)
+ UNION ALL
  SELECT 'item' AS value_type, m.username, m.display_pic, COUNT(*), 0
  FROM member m, item i
  WHERE m.username = i.owner
- GROUP BY m.username;
+ GROUP BY m.username
+ UNION ALL
+ SELECT 'item' AS value_type, m.username, m.display_pic, 0, 0 FROM member m
+ WHERE m.username NOT IN (SELECT i.owner FROM item i);
