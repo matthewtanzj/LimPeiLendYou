@@ -24,23 +24,23 @@
                                 <table class="table table-user-information">
                                     <tbody>
                                         <tr>
-                                            <td>Total Users:</td>
-                                            <td>Programming</td>
+                                            <td>Total Registered Users:</td>
+                                            <td><?php echo $memberModel->getTotalUsers(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Hire date:</td>
+                                            <td>Total Users Online (This Week):</td>
                                             <td>06/23/2013</td>
                                         </tr>
                                         <tr>
-                                            <td>Date of Birth</td>
+                                            <td>Total Users Online (This Month):</td>
                                             <td>01/24/1988</td>
                                         </tr>
                                         <tr>
-                                            <td>Gender</td>
+                                            <td>User with the most loan items:</td>
                                             <td>Male</td>
                                         </tr>
                                         <tr>
-                                            <td>Home Address</td>
+                                            <td>Total Users with no loan items:</td>
                                             <td>Metro Manila,Philippines</td>
                                         </tr>
                                         <tr>

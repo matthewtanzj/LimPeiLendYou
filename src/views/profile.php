@@ -37,7 +37,7 @@
             <div class="panel panel-info">
                 
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?php echo $profileName ?></h3>
+                    <h3 class="panel-title"><?php echo $profileName ?>'s Profile</h3>
                 </div>
                 
                 <div class="panel-body">
@@ -50,24 +50,16 @@
                             <table class="table table-user-information">
                                 <tbody>
                                     <tr>
-                                        <td>Department:</td>
-                                        <td>Programming</td>
+                                        <td>Username:</td>
+                                        <td><?php echo $profileName ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Hire date:</td>
+                                        <td>Last Online:</td>
                                         <td>06/23/2013</td>
                                     </tr>
                                     <tr>
                                         <td>Date of Birth</td>
                                         <td>01/24/1988</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Gender</td>
-                                        <td>Male</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Home Address</td>
-                                        <td>Metro Manila,Philippines</td>
                                     </tr>
                                     <tr>
                                         <td>Email</td>

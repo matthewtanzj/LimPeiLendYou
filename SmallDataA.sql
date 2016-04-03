@@ -40,14 +40,14 @@ INSERT INTO loan_request (item_name, owner, borrower, date_start, date_end, stat
  * 		
  */
 
-  /*
+/*
  * 	Review
  */
 
-INSERT INTO review (reviewer, reviewee, content, has_like) VALUES('oswell', 'victor', 'Good lender. Will deal again.', 1);
-INSERT INTO review (reviewer, reviewee, content, has_like) VALUES('matthew', 'victor', 'Item in poor conditon.', 0);
-INSERT INTO review (reviewer, reviewee, content, has_like) VALUES('jiajie', 'victor', 'Lender was prompt and punctual.', 1);
-INSERT INTO review (reviewer, reviewee, content, has_like) VALUES('jacky', 'oswell', 'Item is in good condition.', 1);
+INSERT INTO review (reviewer, reviewee, content, has_like, created_at) VALUES('oswell', 'victor', 'Good lender. Will deal again.', 1, '2016-03-30 14:37:28.565');
+INSERT INTO review (reviewer, reviewee, content, has_like, created_at) VALUES('matthew', 'victor', 'Item in poor conditon.', 0, '2016-04-02 12:37:28.565');
+INSERT INTO review (reviewer, reviewee, content, has_like, created_at) VALUES('jiajie', 'victor', 'Lender was prompt and punctual.', 1, '2016-03-30 18:37:28.565');
+INSERT INTO review (reviewer, reviewee, content, has_like, created_at) VALUES('jacky', 'oswell', 'Item is in good condition.', 1, '2016-03-25 08:37:28.565');
 
 /*
  * 		
