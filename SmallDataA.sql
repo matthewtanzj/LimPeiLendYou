@@ -20,6 +20,11 @@ INSERT INTO member (username, password, salt, email, account_type, last_logged_i
  */
 
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Iphone 6S', 'oswell', 'Electronics', 1000, 'Very nice phone.', 'Singapore');
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Kindle 7', 'victor', 'Electronics', 75, 'Read your books on the go.', 'Singapore');
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Zergling Plush', 'jiajie', 'Entertainment', 30, 'Cuddly and nice to hug.', 'Singapore');
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Zara Dress Shirt', 'victor', 'Apparel & Accessories', 80, 'Size M. Wash before returning.', 'Singapore');
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Metal Black Wok', 'oswell', 'Home & Appliances', 25, 'Good heat retension.', 'Singapore');
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Unused baby shoes', 'oswell', 'Kids & Babies', 15, 'Never worn. Good for training kids.', 'Singapore');
 
 /*
  * 		
@@ -30,6 +35,19 @@ INSERT INTO item (item_name, owner, category, price, description, location) VALU
  */
 
 INSERT INTO loan_request (item_name, owner, borrower, date_start, date_end, status, price_offer) VALUES('Iphone 6S', 'oswell', 'victor', '2015-04-04', '2015-04-06', 'pending', 1000);
+
+/*
+ * 		
+ */
+
+/*
+ * 	Review
+ */
+
+INSERT INTO review (reviewer, reviewee, content, has_like, created_at) VALUES('oswell', 'victor', 'Good lender. Will deal again.', 1, '2016-03-30 14:37:28.565');
+INSERT INTO review (reviewer, reviewee, content, has_like, created_at) VALUES('matthew', 'victor', 'Item in poor conditon.', 0, '2016-04-02 12:37:28.565');
+INSERT INTO review (reviewer, reviewee, content, has_like, created_at) VALUES('jiajie', 'victor', 'Lender was prompt and punctual.', 1, '2016-03-30 18:37:28.565');
+INSERT INTO review (reviewer, reviewee, content, has_like, created_at) VALUES('jacky', 'oswell', 'Item is in good condition.', 1, '2016-03-25 08:37:28.565');
 
 /*
  * 		

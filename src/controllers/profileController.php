@@ -12,6 +12,8 @@ class profileController {
         include('models/memberModel.php');
         include('models/reviewModel.php');
         include('models/itemModel.php');
+        include('helpers/timestampParser.php');
+        $timestampParser = new timestampParser();
         
         // get string of user to be viewed
         if (isset($_GET['profile']) && $_GET['profile'] != $_SESSION['username']) {
@@ -56,6 +58,10 @@ class profileController {
             // initialize data for profile page
             $data = pg_fetch_row($queryResult);
             $profileName = $data[0];
+            $profileEmail = $data[3];
+            $profileDescription = $data[4];
+            $profileDisplayPictureURL = $data[5];
+            $profileLastLoggedIn = $timestampParser->getDateFromTimestamp($data[7]);
             // get all reviews of this user
             $reviewModel = new reviewModel();
             $reviewResult = $reviewModel->getAllReviewsOf($profileName); // to be parsed into JSON in view
@@ -70,7 +76,7 @@ class profileController {
             $negativeReviews = 0;
             while ($row = pg_fetch_row($reviewResult)) {
                 ($row[3] == 1) ? $positiveReviews++ : $negativeReviews++ ;
-                $review = array($row[0], $row[2], $row[3]); // row[0]: reviewer, row[2]: review content, row[3]: positive/negative
+                $review = array($row[0], $row[2], $row[3], $timestampParser->getDateFromTimestamp($row[4])); // row[0]: reviewer, row[2]: review content, row[3]: positive/negative, row[4]: time of review
                 array_push($reviewArray, $review);
                 $counter++;
             }
