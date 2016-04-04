@@ -25,10 +25,18 @@ INSERT INTO item (item_name, owner, category, price, description, location) VALU
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Zara Dress Shirt', 'victor', 'Apparel & Accessories', 80, 'Size M. Wash before returning.', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Metal Black Wok', 'oswell', 'Home & Appliances', 25, 'Good heat retension.', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Unused baby shoes', 'oswell', 'Kids & Babies', 15, 'Never worn. Good for training kids.', 'Singapore');
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Pram', 'matthew', 'Kids & Babies', 0, 'Good for travelling around with babies', 'Singapore');
 
 /*
- * 		
+ * Item Image
  */
+INSERT INTO item_image VALUES('Iphone 6S', 'oswell', '123456788.jpg', 1);
+INSERT INTO item_image VALUES('Kindle 7', 'victor', '123456787.jpg', 1);
+INSERT INTO item_image VALUES('Zergling Plush', 'jiajie', '123456786.jpg', 1);
+INSERT INTO item_image VALUES('Zara Dress Shirt', 'victor', '123456785.jpg', 1);
+INSERT INTO item_image VALUES('Metal Black Wok', 'oswell', '123456784.jpg', 1);
+INSERT INTO item_image VALUES('Unused baby shoes', 'oswell', '123456783.jpg', 1);
+INSERT INTO item_image VALUES('Pram', 'matthew', '123456789.jpg', 1);
 
  /*
  * 	Loan Request (Test that message is newly added)	

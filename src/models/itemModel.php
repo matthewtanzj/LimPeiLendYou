@@ -43,7 +43,7 @@ class ItemModel {
 	}
     
     public function getCoverImageOfItem($item, $owner) {
-        $query = "SELECT * FROM item_image WHERE item_name = '$item' AND owner = '$owner' AND is_cover = 1";
+        $query = "SELECT image_url FROM item_image WHERE item_name = '$item' AND owner = '$owner' AND is_cover = 1";
         $result = pg_query($query);
         return $result;
     }

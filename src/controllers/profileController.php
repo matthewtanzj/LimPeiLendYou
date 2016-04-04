@@ -86,10 +86,13 @@ class profileController {
             // create item array
             while ($row = pg_fetch_row($itemResult)) {
                 $itemImageResult = $itemModel->getCoverImageOfItem($row[0], $row[1]); // get cover photo for each item
-                $imageURL = pg_fetch_row($itemImageResult); // it should only have one row
-                if ($imageURL == false) {
+                $imageURL = pg_fetch_row($itemImageResult)[0]; // it should only have one row
+                if ($imageURL == NULL) {
                     $imageURL = "img/tempLogo.jpg";
+                } else {      
+                    $imageURL = "img/items/" . $imageURL;
                 }
+                var_dump($imageURL);
                 $item = array($row[0], $imageURL);
                 array_push($itemArray, $item);
                 $counter++;
