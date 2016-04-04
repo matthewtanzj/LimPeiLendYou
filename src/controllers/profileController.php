@@ -92,7 +92,6 @@ class profileController {
                 } else {      
                     $imageURL = "img/items/" . $imageURL;
                 }
-                var_dump($imageURL);
                 $item = array($row[0], $imageURL);
                 array_push($itemArray, $item);
                 $counter++;
