@@ -21,6 +21,8 @@
                         <li role="presentation" class="active"><a href="#user" aria-controls="home" role="tab" data-toggle="tab">User</a></li>
                         <li role="presentation"><a href="#items" aria-controls="profile" role="tab" data-toggle="tab">Items</a></li>
                         <li role="presentation"><a href="#loans" aria-controls="home" role="tab" data-toggle="tab">Loans</a></li>
+                        <li role="presentation"><a href="#loans" aria-controls="home" role="tab" data-toggle="tab">Messages</a></li>
+                        <li role="presentation"><a href="#loans" aria-controls="home" role="tab" data-toggle="tab">Others</a></li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -48,6 +50,10 @@
                                         <tr>
                                             <td>Reviews</td>
                                             <td><?php echo $reviewModel->getTotalReviews(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Users with no items put up</td>
+                                            <td>3</td>
                                         </tr>
                                     </tbody>
                                 </table>

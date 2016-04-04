@@ -44,7 +44,7 @@ class profileController {
             if ($result) {
                 $reviewSuccessMessage = '<p class="text-success">Review successfully added.</p>';
             } else {
-                $reviewSuccessMessage = '<p class="text-danger">Review exceeded maximum character count of 255.</p>';
+                $reviewSuccessMessage = '<p class="text-danger">An error occured. Review not added.</p>';
             }
         }       
         

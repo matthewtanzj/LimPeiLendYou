@@ -3,22 +3,28 @@
 		<thead>
 			<?php if($_GET['action'] == 'member'): ?>
 				<tr>
-					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						username
 					</th>
-					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						password
 					</th>
 					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
 						salt
 					</th>
-					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						email
+					</th>
+                    <th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						user_info
+					</th>
+                    <th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						display_pic
 					</th>
 					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						account_type
 					</th>
-					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						last_logged_in
 					</th>
 					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
