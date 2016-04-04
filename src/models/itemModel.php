@@ -22,10 +22,12 @@ class ItemModel {
 
     public function getByKey($owner, $itemName)
     {
-        $query = "SELECT * FROM item i 
-                WHERE i.owner = '". $owner ."' 
-                AND i.item_name = '". $itemName ."' 
-                AND i.is_valid = 1";
+        $query = "SELECT * FROM item i, item_image ii
+                WHERE i.owner = '$owner' 
+                AND i.item_name = '$itemName' 
+                AND i.is_valid = 1
+                AND ii.owner = i.owner
+                AND ii.item_name = i.item_name";
 
         return pg_query($query);
     }
