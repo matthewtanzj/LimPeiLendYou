@@ -77,4 +77,43 @@ class ItemModel {
 		$result = pg_query($query);
 		return pg_num_rows($result);
     }
+    
+    public function getTrendingItemList() {
+        $query = "SELECT t.item_name, t.owner, t.price, ii.image_url, SUM(t.activity) 
+                FROM (
+                    (SELECT i.item_name, i.owner, i.price, COUNT(*) as activity
+                    FROM item i, comment c
+                    WHERE c.item_name = i.item_name AND c.owner = i.owner
+                    AND c.created_at > NOW() - INTERVAL '7 days'
+                    GROUP BY i.item_name, i.owner)
+                    UNION ALL
+                    (SELECT i.item_name, i.owner, i.price, 0
+                    FROM item i
+                    WHERE NOT EXISTS (
+                        SELECT c.owner FROM comment c 
+                        WHERE c.item_name = i.item_name 
+                        AND c.owner = i.owner)
+                    GROUP BY i.item_name, i.owner)
+                    UNION ALL
+                    (SELECT i.item_name, i.owner, i.price, COUNT(*) as activity
+                    FROM item i, loan_request l
+                    WHERE l.item_name = i.item_name AND l.owner = i.owner
+                    AND l.created_at > NOW() - INTERVAL '7 days'
+                    GROUP BY i.item_name, i.owner)
+                    UNION ALL
+                    (SELECT i.item_name, i.owner, i.price, 0 
+                    FROM item i
+                    WHERE NOT EXISTS (
+                        SELECT l.owner FROM loan_request l 
+                        WHERE l.item_name = i.item_name 
+                        AND l.owner = i.owner)
+                    GROUP BY i.item_name, i.owner)
+                    ) t, item_image ii
+                WHERE ii.item_name = t.item_name
+                AND ii.owner = t.owner
+                GROUP BY t.item_name, t.owner, t.price, ii.image_url
+                ORDER BY sum DESC";
+        $result = pg_query($query);
+        return $result;
+    }
 }

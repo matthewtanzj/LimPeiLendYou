@@ -71,11 +71,14 @@
     <?php foreach($trendingItemArray as $item) { ?>
         if (count < 5) {
              count++;
-            $(".trending-section").append("<div class='thumbnail col-lg-2'><a href='?page=item&owner=<?php echo $item['owner'] ?>&item=<?php echo $item['item_name'] ?>'><img src='...' alt=''></a><div class='caption'><span style='font-size:16px;''><?php echo $item['item_name'] ?></span><br><span style='color:grey;'><?php echo $item['price'] ?></span></div></div>");
+            $(".trending-section").append("<div class='thumbnail col-lg-2'><a href='?page=item&owner=<?php echo $item[1] ?>&item=<?php echo $item[0] ?>'><img src='<?php echo "img/items/" . $item[3]?>' alt=''></a><div class='caption'><span style='font-size:16px;''><?php echo $item[0] ?></span><br><span style='color:grey;'><?php echo "$" . $item[2] ?></span></div></div>");
         }
     <?php } ?>
     
 </script>
 
-
-
+<style>
+    .thumbnail a>img, .thumbnail>img {
+        height: 125px;
+    }
+</style>
