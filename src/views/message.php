@@ -83,6 +83,8 @@
 
                         <textarea id="message-content" class="form-control send-message" rows="3" placeholder="Write a reply..."></textarea>
 
+                        <!-- Focus on text area -->
+                        <script>$('#message-content').focus();</script>
                     </div>
 
                     <!-- Additional buttons to include attachments -->
