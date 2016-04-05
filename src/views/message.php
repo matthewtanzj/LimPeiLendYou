@@ -53,10 +53,13 @@
 
                         <!-- Insert chat history -->
                         <?php
-                        	for ($i = 0; $i < sizeof($messageArray); $i++) {
-                        		echo '<div class="media msg "><a class="pull-left" href="#"><img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="img/display_pic/'.$messageArray[$i][1].'"></a><div class="media-body"><small class="pull-right time"><i class="fa fa-clock-o"></i>'.$messageArray[$i][3].'</small><h5 class="media-heading">'. $messageArray[$i][0].'</h5><small class="col-lg-10">'.$messageArray[$i][2].'</small></div></div>';
-                        	}
+                          for ($i = 0; $i < sizeof($messageArray); $i++) {
+                            echo '<div class="media msg "><a class="pull-left" href="#"><img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="img/display_pic/'.$messageArray[$i][1].'"></a><div class="media-body"><small class="pull-right time"><i class="fa fa-clock-o"></i>'.$messageArray[$i][3].'</small><h5 class="media-heading">'. $messageArray[$i][0].'</h5><small class="col-lg-10">'.$messageArray[$i][2].'</small></div></div>';
+                          }
                         ?>
+
+                        <!-- Scroll to latest message -->
+                        <script>updateScroll();</script>
 
                         <!-- date separator -->
                         <!-- <div class="alert alert-info msg-date">
