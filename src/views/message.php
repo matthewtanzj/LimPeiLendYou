@@ -53,8 +53,19 @@
 
                         <!-- Insert chat history -->
                         <?php
+
+                          include('helpers/timestampParser.php');
+                          $timestampParser = new timestampParser();
+
                           for ($i = 0; $i < sizeof($messageArray); $i++) {
-                            echo '<div class="media msg "><a class="pull-left" href="#"><img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="img/display_pic/'.$messageArray[$i][1].'"></a><div class="media-body"><small class="pull-right time"><i class="fa fa-clock-o"></i>'.$messageArray[$i][3].'</small><h5 class="media-heading">'. $messageArray[$i][0].'</h5><small class="col-lg-10">'.$messageArray[$i][2].'</small></div></div>';
+
+                            $msgSender = $messageArray[$i][0];
+                            $msgSenderIcon = $messageArray[$i][1];
+                            $msgContent = $messageArray[$i][2];
+                            $msgTimestamp = $messageArray[$i][3];
+                            $formattedTimestamp = $timestampParser->getFormattedTimestampForMessage($msgTimestamp);
+
+                            echo '<div class="media msg "><a class="pull-left" href="#"><img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="img/display_pic/'.$msgSenderIcon.'"></a><div class="media-body"><small class="pull-right time"><i class="fa fa-clock-o"></i>'.$formattedTimestamp.'</small><h5 class="media-heading">'. $msgSender.'</h5><small class="col-lg-10">'.$msgContent.'</small></div></div>';
                           }
                         ?>
 
