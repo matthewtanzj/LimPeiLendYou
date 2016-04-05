@@ -62,3 +62,14 @@ INSERT INTO review (reviewer, reviewee, content, has_like, created_at) VALUES('j
  */
 
  
+ /*
+ * 	Messages
+ */
+
+INSERT INTO message (item_name, item_owner, sender, receiver, content, created_at) VALUES('Iphone 6S', 'oswell', 'victor', 'oswell', 'hello there', '2015-04-06 11:45:12');
+INSERT INTO message (item_name, item_owner, sender, receiver, content, created_at) VALUES('Iphone 6S', 'oswell', 'victor', 'oswell', 'how are you', '2015-04-06 11:46:00');
+INSERT INTO message (item_name, item_owner, sender, receiver, content, created_at) VALUES('Iphone 6S', 'oswell', 'oswell', 'victor', 'what u want', '2015-04-06 13:00:00');
+
+/*
+ * 		
+ */
