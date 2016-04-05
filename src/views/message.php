@@ -51,32 +51,12 @@
                     <!-- Sent and received messages box -->
                     <div id="msg-box" class="msg-wrap">
 
-                        <!-- Message from receiver -->
-                        <div class="media msg ">
-                            <!-- Receiver Profile Icon -->
-                            <a class="pull-left" href="#">
-                                <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="">
-                            </a>
-                            <!-- Message Contents -->
-                            <div class="media-body">
-                                <small class="pull-right time"><i class="fa fa-clock-o"></i>timestamp</small>
-                                <h5 class="media-heading"><?php echo $_GET['owner']?></h5>
-                                <small class="col-lg-10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consequat tempor ex, quis pulvinar ante consectetur in. Sed efficitur, eros id mollis posuere, nibh magna maximus tellus, sit amet dapibus enim est quis tellus. Curabitur ut leo ultrices, egestas eros id, mattis mauris. Vivamus viverra ut erat ut porta. Nulla vitae pellentesque odio, id feugiat odio. Proin molestie aliquet ex nec maximus. In ornare tristique sem malesuada auctor. Nullam porttitor, tortor vel dignissim finibus, felis elit finibus purus, semper tincidunt diam nibh id lacus.</small>
-                            </div>
-                        </div>
-
-                        <!-- Message from sender -->
-                        <div class="media msg ">
-                            <a class="pull-right" href="#">
-                                <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="">
-                            </a>
-                            <div class="media-body">
-                                <small class="pull-left time"><i class="fa fa-clock-o"></i>timestamp</small>
-                                <h5 class="media-heading pull-right"><?php echo $_SESSION['username']?></h5>
-                                <br>
-                                <small class="col-lg-10 pull-right sender-message">Maecenas sed laoreet augue. Sed mattis elementum dui, quis consectetur ipsum. Aenean quis augue nec turpis rutrum lobortis quis vitae ante. Quisque at interdum nulla, hendrerit finibus purus. Quisque sit amet scelerisque sapien, nec placerat quam. Aenean mollis ante quis lectus auctor molestie. Aenean vitae dui a massa ullamcorper condimentum a et nisi. Nam ante elit, consequat ut felis ac, congue aliquet nisi.</small>
-                            </div>
-                        </div>
+                        <!-- Insert chat history -->
+                        <?php
+                        	for ($i = 0; $i < sizeof($messageArray); $i++) {
+                        		echo '<div class="media msg "><a class="pull-left" href="#"><img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="img/display_pic/'.$messageArray[$i][1].'"></a><div class="media-body"><small class="pull-right time"><i class="fa fa-clock-o"></i>'.$messageArray[$i][3].'</small><h5 class="media-heading">'. $messageArray[$i][0].'</h5><small class="col-lg-10">'.$messageArray[$i][2].'</small></div></div>';
+                        	}
+                        ?>
 
                         <!-- date separator -->
                         <!-- <div class="alert alert-info msg-date">
