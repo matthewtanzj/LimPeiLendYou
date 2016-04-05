@@ -6,16 +6,17 @@ class MessageModel{
 
 		}
 
-		public function getChatHistory($itemName, $itemOwner, $itemBorrower)
+		public function getChatHistoryInOrder($itemName, $itemOwner, $itemBorrower)
 		{
-				$query = "SELECT m.sender, m.content, m.created_at 
+				$query = "SELECT *
 									FROM message m
-									WHERE m.item_name = $itemName AND
-												m.item_owner =$itemOwner AND
-												(m.sender= $itemBorrower OR
-												m.receiver=$itemBorrower)";
-
-				return pg_query($query);
+									WHERE item_name = '".$itemName."' AND
+												item_owner = '".$itemOwner."' AND
+												(sender = '".$itemBorrower."' OR
+												receiver = '".$itemBorrower."')
+									ORDER BY created_at";
+				$result = pg_query($query);
+				return $result;
 		}
 
 		public function addMessage($itemName, $itemOwner, $sender, $receiver, $content, $createdAt)

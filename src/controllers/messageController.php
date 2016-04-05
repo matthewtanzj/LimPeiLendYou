@@ -22,6 +22,7 @@ class MessageController {
 			$messageModel = new messageModel();
 			$chatHistory = $messageModel->getChatHistory($itemName, $itemOwner, $itemBorrower);
 		}
+			$chatHistory = $messageModel->getChatHistoryInOrder($itemName, $itemOwner, $itemBorrower);
 
 		include('views/message.php');
 	}
