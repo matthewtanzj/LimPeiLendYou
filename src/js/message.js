@@ -1,7 +1,7 @@
 function sendMessage(user) {
-  var msgBox = document.getElementById("message-content");
-  var content = msgBox.value;
-  msgBox.value='';
+  var msgContent = document.getElementById("message-content");
+  var content = msgContent.value;
+  msgContent.value='';
 
   if (content == '') {
     return;
@@ -14,7 +14,7 @@ function sendMessage(user) {
 
 
   updateScroll();
-  msgBox.focus();
+  msgContent.focus();
 }
 
 
