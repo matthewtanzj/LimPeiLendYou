@@ -64,11 +64,7 @@ class tableController {
 			}
 
 			for ($i = 0; $i < sizeof($row); $i++) {
-				if ($i == 0 || $i == sizeof($row)-1 || $i == sizeof($row)-2) {
-					$content = $content . "<td><span>" . $row[$i] . "</span></td>";
-				} else {
-					$content = $content . "<td><span class='xedit' id=" . $counter . "_" .$i . ">" . $row[$i] . "</span></td>";
-				}
+                $content = $content . "<td><span class='xedit' id=" . $counter . "_" .$i . ">" . $row[$i] . "</span></td>";
 			}
 			$content = $content . "<td><button type=\"button\" class=\"btn btn-danger\" onclick=\"deleteRow(this)\">Delete</button></td></tr>";
 			$counter++;

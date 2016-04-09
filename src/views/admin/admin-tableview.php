@@ -34,41 +34,176 @@
 			<?php endif; ?>
 			<?php if($_GET['action'] == 'item'): ?>
 				<tr>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						id
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						item_name
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						name
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						owner
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						category
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						price
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						description
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						location
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						owner_id
-					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						is_valid
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						created_at
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						updated_at
-					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						action
 					</th>
 				</tr>
-            <?php endif; ?>		
+            <?php endif; ?>
+            <?php if($_GET['action'] == 'item_image'): ?>
+				<tr>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						item_name
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						owner
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						image_url
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						is_cover
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						action
+					</th>
+				</tr>
+            <?php endif; ?>
+            <?php if($_GET['action'] == 'item_availability'): ?>
+				<tr>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						item_name
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						owner
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						date_start
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						date_end
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						action
+					</th>
+				</tr>
+            <?php endif; ?>
+            <?php if($_GET['action'] == 'loan_request'): ?>
+				<tr>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						item_name
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						owner
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						borrower
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						date_start
+					</th>
+                    <th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						date_end
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						status
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						price_offer
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						is_valid
+					</th>
+                    <th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						created_at
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						action
+					</th>
+				</tr>
+            <?php endif; ?>
+            <?php if($_GET['action'] == 'comment'): ?>
+				<tr>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						item_name
+					</th>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						owner
+					</th>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						commenter
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						content
+					</th>
+                    <th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						created_at
+					</th>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						action
+					</th>
+				</tr>
+            <?php endif; ?>
+            <?php if($_GET['action'] == 'review'): ?>
+				<tr>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						reviewer
+					</th>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						reviewee
+					</th>
+					<th colspan="1" rowspan="1" style="width: 30%;" tabindex="0">
+						content
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						has_like
+					</th>
+                    <th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						created_at
+					</th>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						action
+					</th>
+				</tr>
+            <?php endif; ?>
+            <?php if($_GET['action'] == 'message'): ?>
+				<tr>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						item_name
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						item_owner
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						sender
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						receiver
+					</th>
+                    <th colspan="1" rowspan="1" style="width: 25%;" tabindex="0">
+						content
+					</th>
+                    <th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						created_at
+					</th>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						action
+					</th>
+				</tr>
+            <?php endif; ?>
 		</thead>
 		<tbody>
 			<!-- Following PHP Code will go here -->
