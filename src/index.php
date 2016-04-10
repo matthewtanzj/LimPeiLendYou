@@ -8,6 +8,7 @@ include("controllers/settingsController.php");
 include("controllers/uploadController.php");
 include("controllers/loanController.php");
 include("controllers/messageController.php");
+include("controllers/imageController.php");
 
 if (!empty($_GET['page'])) {
 	switch ($_GET['page']) {

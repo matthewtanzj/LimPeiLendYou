@@ -33,7 +33,7 @@
 
     <div class="container">
      
-        <form class="col-md-6 col-md-offset-3" action='?page=loan' method='POST' >
+        <form class="col-md-6 col-md-offset-3" action='?page=loan' method='POST' enctype="multipart/form-data">
           <div class="form-group">
             <label for="categorySelection">Category</label>
               <select class="form-control" name="category">
@@ -77,7 +77,8 @@
             
           <div class="form-group">
             <label for="exampleInputFile">Cover photo</label>
-            <input type="file" id="photo">
+            <input type="file" class="form-control" id="photo" name="photo">
+              <?php echo $photoUploadErrorMessage;?>
           </div>
             
              <div class='form-group'>
