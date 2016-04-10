@@ -4,11 +4,13 @@
     include('models/loanRequestModel.php');
     include('models/itemModel.php');
     include('models/reviewModel.php');
+    include('models/messageModel.php');
     $loanRequestModel = new loanRequestModel();
 	$tableModel = new tableModel();
 	$memberModel = new memberModel();
     $itemModel = new itemModel();
     $reviewModel = new reviewModel();
+    $messageModel = new messageModel();
 ?>
 
 <div class="wrapper">
@@ -131,24 +133,20 @@
                                 <table class="table table-user-information">
                                     <tbody>
                                         <tr>
-                                            <td>Items Created</td>
-                                            <td><?php echo $itemModel->getTotalItems(); ?></td>
+                                            <td>Messages Sent</td>
+                                            <td><?php echo $messageModel->getTotalMessage(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Items Created (Past Week)</td>
-                                            <td><?php echo $itemModel->getTotalItemsPastWeek(); ?></td>
+                                            <td>Messages Sent (Past Week)</td>
+                                            <td><?php echo $messageModel->getTotalMessagePastWeek(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Items Created (Past month)</td>
-                                            <td><?php echo $itemModel->getTotalItemsPastMonth(); ?></td>
+                                            <td>Messages Sent (Past month)</td>
+                                            <td><?php echo $messageModel->getTotalMessagePastMonth(); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Items Created (Past Year)</td>
-                                            <td><?php echo $itemModel->getTotalItemsPastYear(); ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Item Images</td>
-                                            <td><?php echo $itemModel->getTotalItemImages(); ?></td>
+                                            <td>Messages Sent (Past Year)</td>
+                                            <td><?php echo $messageModel->getTotalMessagePastYear(); ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -160,24 +158,8 @@
                                 <table class="table table-user-information">
                                     <tbody>
                                         <tr>
-                                            <td>Items Created</td>
-                                            <td><?php echo $itemModel->getTotalItems(); ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Items Created (Past Week)</td>
-                                            <td><?php echo $itemModel->getTotalItemsPastWeek(); ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Items Created (Past month)</td>
-                                            <td>999<?php echo $itemModel->getTotalItemsPastMonth(); ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Items Created (Past Year)</td>
-                                            <td><?php echo $itemModel->getTotalItemsPastYear(); ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Item Images</td>
-                                            <td><?php echo $itemModel->getTotalItemImages(); ?></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                     </tbody>
                                 </table>
