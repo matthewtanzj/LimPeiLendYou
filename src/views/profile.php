@@ -43,8 +43,7 @@
                 <div class="panel-body">
                     
                     <div class="row">
-                        
-                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="img/display_picture_default.png" class="img-circle img-responsive"> </div>
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="<?php echo $profileDisplayPictureURL ?>" class="img-circle img-responsive"> </div>
 
                         <div class=" col-md-9 col-lg-9 "> 
                             <table class="table table-user-information">

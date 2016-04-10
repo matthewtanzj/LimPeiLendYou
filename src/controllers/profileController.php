@@ -60,7 +60,7 @@ class profileController {
             $profileName = $data[0];
             $profileEmail = $data[3];
             $profileDescription = $data[4];
-            $profileDisplayPictureURL = $data[5];
+            $profileDisplayPictureURL = "img/display_pic/" . $data[5];
             $profileLastLoggedIn = $timestampParser->getFormattedTimestampFromTimestamp($data[7]);
             // parse both review and item results into 2 arrays
             $reviewArray = array();
