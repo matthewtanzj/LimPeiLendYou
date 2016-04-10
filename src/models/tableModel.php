@@ -7,7 +7,7 @@ class tableModel {
 	
 	public function retrieveEntireTable($tableName) 
 	{
-		$query = "SELECT * FROM $tableName ORDER BY username";
+		$query = "SELECT * FROM $tableName ORDER BY 1";
 		$result = pg_query($query);
 		return $result;
 	}

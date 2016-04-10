@@ -257,8 +257,22 @@
 			console.log("primary key: " + primaryKey);
 			console.log("column name: " + colName);
 			console.log("cell content: " + gridContent);
-			
+			var stubArray = [];
+            stubArray.push(1);
+            stubArray.push(2);
 			// 5. perform ajax call to update database
+            $.ajax({
+                url: "controllers/tableController.php",
+                type: "POST",
+                data: {table: tableName, column: stubArray},
+                success: function(s) {
+                    console.log(s);
+                },
+                error: function(e) {
+                    //console.log(e);
+                }
+            });
+            /*
 			$.ajax({
 				url: "controllers/tableController.php?editTable=" + tableName + "&table=" + tableName + "&primaryKey=" + primaryKey + 
 						"&colName=" + colName + "&value=" + gridContent,
@@ -273,6 +287,7 @@
 					//location.reload();
 				}
 			});
+            */
 		});
 	});
 	

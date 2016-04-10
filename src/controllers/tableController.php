@@ -93,3 +93,7 @@ if (isset($_GET['editTable']) && isset($_GET['table']) &&
 	$tableController->editFromDatabase($tableName, $primaryKey, $columnName, $newValue);
 }
 
+if (isset($_POST)) {
+    $string = $_POST['table'] . " " . $_POST['column'][0];
+    echo $string;
+}

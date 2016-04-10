@@ -21,8 +21,8 @@
                         <li role="presentation" class="active"><a href="#user" aria-controls="home" role="tab" data-toggle="tab">User</a></li>
                         <li role="presentation"><a href="#items" aria-controls="profile" role="tab" data-toggle="tab">Items</a></li>
                         <li role="presentation"><a href="#loans" aria-controls="home" role="tab" data-toggle="tab">Loans</a></li>
-                        <li role="presentation"><a href="#loans" aria-controls="home" role="tab" data-toggle="tab">Messages</a></li>
-                        <li role="presentation"><a href="#loans" aria-controls="home" role="tab" data-toggle="tab">Others</a></li>
+                        <li role="presentation"><a href="#messages" aria-controls="home" role="tab" data-toggle="tab">Messages</a></li>
+                        <li role="presentation"><a href="#others" aria-controls="home" role="tab" data-toggle="tab">Others</a></li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -53,7 +53,7 @@
                                         </tr>
                                         <tr>
                                             <td>Users with no items put up</td>
-                                            <td>3</td>
+                                            <td><?php echo $memberModel->getNumUserWithNoItem(); ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -123,9 +123,67 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
                         </div>
                         
-                    </div>
+                        <div role="tabpanel" class="tab-pane fade" id="messages">
+                            <div class="col-lg-12">
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <td>Items Created</td>
+                                            <td><?php echo $itemModel->getTotalItems(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Items Created (Past Week)</td>
+                                            <td><?php echo $itemModel->getTotalItemsPastWeek(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Items Created (Past month)</td>
+                                            <td><?php echo $itemModel->getTotalItemsPastMonth(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Items Created (Past Year)</td>
+                                            <td><?php echo $itemModel->getTotalItemsPastYear(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Item Images</td>
+                                            <td><?php echo $itemModel->getTotalItemImages(); ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div role="tabpanel" class="tab-pane fade" id="others">
+                            <div class="col-lg-12">
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <td>Items Created</td>
+                                            <td><?php echo $itemModel->getTotalItems(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Items Created (Past Week)</td>
+                                            <td><?php echo $itemModel->getTotalItemsPastWeek(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Items Created (Past month)</td>
+                                            <td>999<?php echo $itemModel->getTotalItemsPastMonth(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Items Created (Past Year)</td>
+                                            <td><?php echo $itemModel->getTotalItemsPastYear(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Item Images</td>
+                                            <td><?php echo $itemModel->getTotalItemImages(); ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>                      
+                        
                 </div>    
             </div>         
 
