@@ -45,7 +45,7 @@
                 <!-- pictures area -->
                 <div class="col-lg-7">
                         <a href="#" class="thumbnail">
-                            <img src="<?php echo "/img/items/".$item['image_url'] ?>" alt="...">
+                            <img src="<?php echo "img/items/".$item['image_url'] ?>" alt="...">
                         </a>
                 </div>
                 <!-- info area -->

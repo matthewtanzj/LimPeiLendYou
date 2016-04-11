@@ -8,7 +8,7 @@ if (isset($_POST)) {
     $tableModel = new tableModel();
 
     if ($_POST['action'] == "edit") {
-        //$tableModel->editFromDatabase($tableName, $primaryKey);
+        $tableModel->editRowFromTable($_POST['table'], $_POST['primaryKey'], $_POST['primaryKeyValue'], $_POST['column'], $_POST['newValue']);
     } else if ($_POST['action'] == "delete") {
         $tableModel->deleteRowFromTable($_POST['table'], $_POST['primaryKey'], $_POST['primaryKeyValue']);
     }
