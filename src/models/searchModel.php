@@ -145,7 +145,7 @@ class SearchModel {
                                             AND a3.username = a.username) "; 
         }
 
-        $query = $query . $ownerCondition . " AND " . $itemNumCondition . " AND " . $posNumCondition . " AND " . $negNumCondition . " GROUP BY a.username, a.display_pic ";
+        $query = $query . $ownerCondition . " AND " . $itemNumCondition . " AND " . $posNumCondition . " AND " . $negNumCondition . " AND a.account_type = 'member' GROUP BY a.username, a.display_pic ";
 
         if (isset($ownerSort) && !empty($ownerSort) && isset($activitySort) && !empty($activitySort)) {
             $query = $query . " ORDER BY a.username " . $ownerSort . ", " . "SUM(*) as activity " . $activitySort . ";";

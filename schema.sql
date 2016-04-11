@@ -112,43 +112,43 @@ CREATE TRIGGER request_msg_trigger
      EXECUTE PROCEDURE trg_request_msg();
 
  CREATE VIEW augmented_member AS
- SELECT 'review' AS value_type, m.username, m.display_pic, 
+ SELECT 'review' AS value_type, m.username, m.account_type, m.display_pic, 
  COALESCE(SUM(CASE WHEN r.has_like = 1 THEN 1 END), 0) AS positive, 
  COALESCE(SUM(CASE WHEN r.has_like = 0 THEN 1 END), 0) AS negative FROM member m, review r
  WHERE m.username = r.reviewee
  GROUP BY m.username
  UNION ALL
- SELECT 'review' AS value_type, m.username, m.display_pic, 0, 0 FROM member m
+ SELECT 'review' AS value_type, m.username, m.account_type, m.display_pic, 0, 0 FROM member m
  WHERE m.username NOT IN (SELECT r.reviewee FROM review r)
  UNION ALL
- SELECT 'comment' AS value_type, m.username, m.display_pic, COUNT(*), 0
+ SELECT 'comment' AS value_type, m.username, m.account_type, m.display_pic, COUNT(*), 0
  FROM member m, comment c
  WHERE m.username = c.commenter
  GROUP BY m.username
  UNION ALL
- SELECT 'comment' AS value_type, m.username, m.display_pic, 0, 0 FROM member m
+ SELECT 'comment' AS value_type, m.username, m.account_type, m.display_pic, 0, 0 FROM member m
  WHERE m.username NOT IN (SELECT c.commenter FROM comment c)
  UNION ALL
- SELECT 'message' AS value_type, m.username, m.display_pic, COUNT(*), 0
+ SELECT 'message' AS value_type, m.username, m.account_type, m.display_pic, COUNT(*), 0
  FROM member m, message msg
  WHERE m.username = msg.sender
  GROUP BY m.username
  UNION ALL
- SELECT 'message' AS value_type, m.username, m.display_pic, 0, 0 FROM member m
+ SELECT 'message' AS value_type, m.username, m.account_type, m.display_pic, 0, 0 FROM member m
  WHERE m.username NOT IN (SELECT msg.sender FROM message msg)
  UNION ALL
- SELECT 'loan_request' AS value_type, m.username, m.display_pic, COUNT(*), 0
+ SELECT 'loan_request' AS value_type, m.username, m.account_type, m.display_pic, COUNT(*), 0
  FROM member m, loan_request l
  WHERE m.username = l.borrower
  GROUP BY m.username
  UNION ALL
- SELECT 'loan_request' AS value_type, m.username, m.display_pic, 0, 0 FROM member m
+ SELECT 'loan_request' AS value_type, m.username, m.account_type, m.display_pic, 0, 0 FROM member m
  WHERE m.username NOT IN (SELECT l.borrower FROM loan_request l)
  UNION ALL
- SELECT 'item' AS value_type, m.username, m.display_pic, COUNT(*), 0
+ SELECT 'item' AS value_type, m.username, m.account_type, m.display_pic, COUNT(*), 0
  FROM member m, item i
  WHERE m.username = i.owner
  GROUP BY m.username
  UNION ALL
- SELECT 'item' AS value_type, m.username, m.display_pic, 0, 0 FROM member m
+ SELECT 'item' AS value_type, m.username, m.account_type, m.display_pic, 0, 0 FROM member m
  WHERE m.username NOT IN (SELECT i.owner FROM item i);

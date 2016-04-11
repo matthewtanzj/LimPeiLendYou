@@ -27,7 +27,7 @@ class tableModel {
         var_dump($result);
 	}
 	
-	public function editRowFromTable($tableName, $primaryKey, $columnName, $value)
+	public function editRowFromTable($tableName, $primaryKeyArray, $primaryKeyValueArray, $column, $value)
 	{
 		// value edited is a password -> generate new salt and encrypt it
 		if($tableName == "member" && $columnName == "password") {
