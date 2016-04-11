@@ -57,7 +57,7 @@
     <?php } 
     }else {
         foreach($itemArray as $item) { ?>
-            $(".result-section").append("<div class='thumbnail col-lg-2'><a href='?page=item&owner=<?php echo $item['owner'] ?>&item=<?php echo $item['item_name'] ?>'><img src='img/items/<?php echo $item['image_url'] ?>' alt=''></a><div class='caption'><span style='font-size:16px;''><?php echo $item['item_name'] ?></span><br><span style='color:grey;'><?php echo $item['price'] ?></span></div></div>");
+            $(".result-section").append("<div class='thumbnail col-lg-2'><a href='?page=item&owner=<?php echo $item['owner'] ?>&item=<?php echo $item['item_name'] ?>'><img src='img/items/<?php echo $item['image_url'] ?>' alt=''></a><div class='caption'><span style='font-size:16px;''><?php echo $item['item_name'] ?></span><br><span style='color:grey;'>$<?php echo number_format($item['price'],2) ?></span></div></div>");
     <?php }
     } ?>
     
@@ -67,6 +67,10 @@
     .thumbnail a>img, .thumbnail>img {
         width: 100%;
         height: 150px;
+    }
+    
+    .thumbnail .caption {
+        height: 130px;
     }
 </style>
 
