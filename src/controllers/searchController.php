@@ -25,7 +25,7 @@ class SearchController {
 				$itemArray = pg_fetch_all($result);
 			}
 
-			if ($_POST['action'] == 'searchForItem' && !empty($_POST['item'])) {
+			if ($_POST['action'] == 'searchForItem') {
 				$unavailable_item = empty($_POST['unavailable_item'])? '' : $_POST['unavailable_item'];
 
 				$result = $searchModel->advanceSearchForItem($_POST['item'], $_POST['owner'], $_POST['category'], $_POST['price_start'], $_POST['price_end'], $_POST['location'], $_POST['date_start'], $_POST['date_end'], $unavailable_item);

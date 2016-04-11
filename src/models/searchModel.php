@@ -23,9 +23,9 @@ class SearchModel {
         if (!empty($_POST['popSort'])) {
             $query = "SELECT i.owner, i.item_name, i.price, count(l.item_name)
                     FROM item i, loan_request l
-                    WHERE lower(i.item_name) like lower('%$item_name%') AND lower(l.item_name) like lower(i.item_name)". 
+                    WHERE " . (empty($item)? $true : "lower(i.item_name) like lower('%$item_name%') AND lower(l.item_name) like lower(i.item_name)") .
                     " AND " . (empty($owner)? $true : "i.owner like '%$owner%'") .
-                    " AND " . (empty($category)? $true : "i.category >= $category") .
+                    " AND " . (empty($category)? $true : "i.category like $category") .
                     " AND " . (empty($price_start)? $true : "i.price >= $price_start") .
                     " AND " . (empty($price_end)? $true : "i.price <= $price_end") .
                     " AND " . (empty($location)? $true : "i.location like '%$location%'       
@@ -33,9 +33,9 @@ class SearchModel {
         } else {
             $query = "SELECT i.owner, i.item_name, i.price
                 FROM item i
-                WHERE lower(i.item_name) like lower('%$item_name%')" . 
+                WHERE " . (empty($item)? $true : "lower(i.item_name) like lower('%$item_name%') AND lower(l.item_name) like lower(i.item_name)") .
                 " AND " . (empty($owner)? $true : "i.owner like '%$owner%'") .
-                " AND " . (empty($category)? $true : "i.category >= '$category'") .
+                " AND " . (empty($category)? $true : "i.category like '$category'") .
                 " AND " . (empty($price_start)? $true : "i.price >= $price_start") .
                 " AND " . (empty($price_end)? $true : "i.price <= $price_end") .
                 " AND " . (empty($location)? $true : "i.location like '%$location%'       
@@ -108,7 +108,7 @@ class SearchModel {
                 . (empty($categorySort)? $true . "," : "i.category $categorySort,")
                 . (empty($priceSort)? $true . "," : "i.price $priceSort,")
                 . (empty($locationSort)? $true : "i.location $locationSort");
- 
+
         return pg_query($query);
     }
 
