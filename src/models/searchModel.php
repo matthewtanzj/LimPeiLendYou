@@ -35,7 +35,7 @@ class SearchModel {
                 FROM item i
                 WHERE lower(i.item_name) like lower('%$item_name%')" . 
                 " AND " . (empty($owner)? $true : "i.owner like '%$owner%'") .
-                " AND " . (empty($category)? $true : "i.category >= $category") .
+                " AND " . (empty($category)? $true : "i.category >= '$category'") .
                 " AND " . (empty($price_start)? $true : "i.price >= $price_start") .
                 " AND " . (empty($price_end)? $true : "i.price <= $price_end") .
                 " AND " . (empty($location)? $true : "i.location like '%$location%'       
@@ -108,7 +108,7 @@ class SearchModel {
                 . (empty($categorySort)? $true . "," : "i.category $categorySort,")
                 . (empty($priceSort)? $true . "," : "i.price $priceSort,")
                 . (empty($locationSort)? $true : "i.location $locationSort");
-
+ 
         return pg_query($query);
     }
 
