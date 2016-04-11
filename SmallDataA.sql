@@ -72,12 +72,18 @@ INSERT INTO item (item_name, owner, category, price, description, location) VALU
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Authentic Sigelei 150W Watt', 'appervi', 'Electronics', 22, 'Lightweight: 200g', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Naxa 13.3inch Widescreen Hd Led Tv NTD-1354', 'ftagelo', 'Electronics', 0, 'Lightweight: 2000g', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Majestic Swing Arm 3 Peice Multi Peice Joint', 'ftagelo', 'Electronics', 0, 'Lightweight: 2000g', 'Singapore');
-
-
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('LG LED Smart TV 42LV5500', 'ftagelo', 'Electronics', 100, 'Lightweight: 2000g', 'Singapore');
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Sony 20 LCD TV', 'ftagelo', 'Electronics', 100, 'Lightweight: 2000g', 'Singapore');
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Samsung 32inch SMART TV UA32J4303', 'ftagelo', 'Electronics', 100, 'Lightweight: 2000g', 'Singapore');
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Sharp Aquos 32inch LCD TV', 'eeelsto', 'Electronics', 100, 'Lightweight: 2000g', 'Singapore');
 
 /*
  * Item Image
  */
+INSERT INTO item_image VALUES('Sharp Aquos 32inch LCD TV', 'eeelsto', '08.jpg', 1);
+INSERT INTO item_image VALUES('Samsung 32inch SMART TV UA32J4303', 'ftagelo', '07.jpg', 1);
+INSERT INTO item_image VALUES('Sony 20 LCD TV', 'ftagelo', '06.jpg', 1);
+INSERT INTO item_image VALUES('LG LED Smart TV 42LV5500', 'ftagelo', '05.jpg', 1);
 INSERT INTO item_image VALUES('Majestic Swing Arm 3 Peice Multi Peice Joint', 'ftagelo', '04.jpg', 1);
 INSERT INTO item_image VALUES('Naxa 13.3inch Widescreen Hd Led Tv NTD-1354', 'ftagelo', '03.jpg', 1);
 INSERT INTO item_image VALUES('Authentic Sigelei 150W Watt', 'appervi', '02.jpg', 1);
