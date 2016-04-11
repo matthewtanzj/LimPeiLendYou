@@ -225,7 +225,7 @@
                          echo '<img src="'. $itemArray[$i][1] .'" alt="img/tempLogo.jpg">';
                          //echo '<img src="img/items/123456789.jpg" alt="img/tempLogo.jpg">';
                          echo '<div class="caption">';
-                         echo '<h3>'. $itemArray[$i][0] .'</h3>';
+                         echo '<h3 style="height:130px">'. $itemArray[$i][0] .'</h3>';
                          echo '<p><a href="index.php?page=item&owner='.$profileName.'&item='.$itemArray[$i][0].'" class="btn btn-default" role="button">See More</a></p>';
                          echo '</div></div></div>';
                      }
