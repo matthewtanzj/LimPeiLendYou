@@ -24,25 +24,29 @@ class SearchModel {
         $true = 'TRUE';
 
         if (!empty($_POST['popSort'])) {
-            $query = "SELECT i.owner, i.item_name, i.price, count(l.item_name)
-                    FROM item i, loan_request l
-                    WHERE " . (empty($item)? $true : "lower(i.item_name) like lower('%$item_name%') AND lower(l.item_name) like lower(i.item_name)") .
+            $query = "SELECT i.owner, i.item_name, i.price, count(l.item_name), ii.image_url
+                    FROM item i, loan_request l, item_image ii
+                    WHERE " . (empty($item_name)? $true : "lower(i.item_name) like lower('%$item_name%') AND lower(l.item_name) like lower(i.item_name)") .
                     " AND " . (empty($owner)? $true : "i.owner like '%$owner%'") .
                     " AND " . (empty($category)? $true : "i.category like $category") .
                     " AND " . (empty($price_start)? $true : "i.price >= $price_start") .
                     " AND " . (empty($price_end)? $true : "i.price <= $price_end") .
-                    " AND " . (empty($location)? $true : "i.location like '%$location%'       
-            ");
+                    " AND " . (empty($location)? $true : "i.location like '%$location%'") .
+                    " AND i.item_name = ii.item_name
+                      AND i.owner = ii.owner
+                      AND ii.is_cover = 1";
         } else {
-            $query = "SELECT i.owner, i.item_name, i.price
-                FROM item i
-                WHERE " . (empty($item)? $true : "lower(i.item_name) like lower('%$item_name%') AND lower(l.item_name) like lower(i.item_name)") .
+            $query = "SELECT i.owner, i.item_name, i.price, ii.image_url
+                FROM item i, item_image ii
+                WHERE " . (empty($item_name)? $true : "lower(i.item_name) like lower('%$item_name%')") .
                 " AND " . (empty($owner)? $true : "i.owner like '%$owner%'") .
                 " AND " . (empty($category)? $true : "i.category like '$category'") .
                 " AND " . (empty($price_start)? $true : "i.price >= $price_start") .
                 " AND " . (empty($price_end)? $true : "i.price <= $price_end") .
-                " AND " . (empty($location)? $true : "i.location like '%$location%'       
-            ");
+                " AND " . (empty($location)? $true : "i.location like '%$location%'") . 
+                " AND i.item_name = ii.item_name
+                  AND i.owner = ii.owner
+                  AND ii.is_cover = 1";
         }
         
 

@@ -126,7 +126,7 @@
 
 <script>
     // set available dates in datepicker
-    var availableDates = [<?php foreach ($freeDates as $freeDate) { ?>"<?php echo $freeDate ?>",<?php } ?>];
+    var availableDates = [<?php foreach ($freeDates as $freeDate) { ?>"<?php if($freeDate != -1){echo $freeDate;} ?>",<?php } ?>];
 
     function available(date) {
         dmy = date.getDate() + "-" + (date.getMonth()+1) + "-" + date.getFullYear();

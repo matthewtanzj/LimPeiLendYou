@@ -265,11 +265,13 @@
                 type: "POST",
                 data: {action: "edit", table: tableName, newValue: gridContent, column: colName, primaryKey: primaryKeyArray, primaryKeyValue: primaryKeyValueArray},
                 success: function(s) {
-                    console.log(s);
+                    //console.log(s);
+                    //location.reload();
                 },
                 error: function(e) {
                     //console.log(e);
                     alert("Database constraint violated. No changes have been made.");
+                    location.reload();
                 }
             });
 		});
@@ -306,11 +308,12 @@
                 type: "POST",
                 data: {action: "delete", table: tableName, primaryKey: primaryKeyArray, primaryKeyValue: primaryKeyValueArray},
                 success: function(s) {
-                    console.log(s);
+                    //console.log(s);
+                    //location.reload();
                 },
                 error: function(e) {
-                    //console.log(e);
                     alert("Database constraint violated. No changes have been made.");
+                    location.reload();
                 }
             });
 		}

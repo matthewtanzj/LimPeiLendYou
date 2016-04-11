@@ -44,9 +44,17 @@ class ItemModel {
 		return $result; // true if successfully inserted, false otherwise
 	}
     
+    public function addAvailableDates($item_name, $owner, $date_start, $date_end) {
+		$query = "INSERT INTO item_availability (item_name, owner, date_start, date_end) 
+					VALUES('$item_name', '$owner', '$date_start', '$date_end')";
+        //var_dump($query);
+		$result = pg_query($query);
+		return $result; // true if successfully inserted, false otherwise
+	}
+    
     public function addCoverImage($item_name, $owner, $image_url) {
-        $query = "INSERT INTO item_image (item_name, owner, image_url, 1)
-                    VALUES('$item_name', '$owner', '$image_url', '$is_cover')";
+        $query = "INSERT INTO item_image (item_name, owner, image_url, is_cover)
+                    VALUES('$item_name', '$owner', '$image_url', 1)";
         $result = pg_query($query);
         return $result;
     }

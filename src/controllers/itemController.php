@@ -25,6 +25,8 @@ class ItemController {
 		include('models/memberModel.php');
 		include('models/itemAvailabilityModel.php');
 		include('models/commentModel.php');
+		include('models/loanRequestModel.php');
+		$loanRequestModel = new loanRequestModel();
 		$itemModel = new itemModel();
 		$memberModel = new memberModel();
 		$itemAvailabilityModel = new itemAvailabilityModel();
@@ -45,8 +47,6 @@ class ItemController {
 					$end = $_POST['end'];
 					$bidPrice = $_POST['bidPrice'];
 
-					include('models/loanRequestModel.php');
-					$loanRequestModel = new loanRequestModel();
 					$request = $loanRequestModel->addLoanRequest($item['item_name'], $item['owner'], $_SESSION['username'], $start, $end, $bidPrice);
 
 					if ($request) {
@@ -66,6 +66,32 @@ class ItemController {
 		// get all available dates
 		$result = $itemAvailabilityModel->getAllByItemKey($owner, $itemName);
 		$availabilityArray = pg_fetch_all($result);
+
+		// get all accepted pending
+		$result = $loanRequestModel->getAllAcceptedByItem($itemName, $owner);
+		$acceptedArray = pg_fetch_all($result);
+
+		$acceptedDates = [];
+		foreach($acceptedArray as $accepted) { 
+    		$startDate=strtotime($accepted['date_start']);
+    		$endDate=strtotime($accepted['date_end']);
+
+    		$yearStart = intval(date("Y",$startDate));
+    		$monthStart = intval(date("m",$startDate));
+    		$dateStart = intval(date("d",$startDate));
+    		$yearEnd = intval(date("Y",$endDate));
+    		$monthEnd = intval(date("m",$endDate));
+    		$dateEnd = intval(date("d",$endDate));
+
+    		for ($y = $yearStart; $y <= $yearEnd; $y++) {
+    			for ($m = $monthStart; $m <= $monthEnd; $m++) {
+    				for ($d = $dateStart; $d <= $dateEnd; $d++) {
+    					$acceptedDates[] = $d . '-' . $m . '-' . $y;	    		
+			    	}
+    			}
+    		}
+    	}
+
 
 		$freeDates = [];
 		if ($availabilityArray) {
@@ -90,6 +116,15 @@ class ItemController {
 	    		}
 	    	}
 		}
+
+		for ($i = 0; $i < count($freeDates); $i++) {
+			for ($j = 0; $j < count($acceptedDates); $j++) {
+				if (strcmp($freeDates[$i], $acceptedDates[$j]) == 0) {
+					$freeDates[$i] = -1;
+				}
+			}
+		}
+				
 
 		// get all comments
 		date_default_timezone_set("Asia/Singapore");

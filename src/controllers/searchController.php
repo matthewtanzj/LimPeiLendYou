@@ -14,16 +14,18 @@ class SearchController {
 
 		$isUserSearch = false;
 		$itemArray = false;
-		$search = $_POST['search'];
+		$search = '';
 
 		if (!empty($_REQUEST)) {
 			
 			if ($_POST['action'] == 'search' && !empty($_POST['search'])) {
+				$search = $_POST['search'];
 				$result = $searchModel->searchByItemName($_POST['search']);
 				$itemArray = pg_fetch_all($result);
 			}
 
 			if ($_REQUEST['action'] == 'searchForItem') {
+				$search = $_REQUEST['item'];
 				$unavailable_item = empty($_REQUEST['unavailable_item'])? '' : $_REQUEST['unavailable_item'];
 
 				$result = $searchModel->advanceSearchForItem($_REQUEST['item'], $_REQUEST['owner'], $_REQUEST['category'], $_REQUEST['price_start'], $_REQUEST['price_end'], $_REQUEST['location'], $_REQUEST['date_start'], $_REQUEST['date_end'], $unavailable_item);

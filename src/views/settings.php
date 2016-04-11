@@ -86,6 +86,10 @@
             tr, th, td {
                 border-bottom: 1px solid #ddd;
             }
+            
+            img {
+                width: 100%;
+            }
          
         </style>
         
