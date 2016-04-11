@@ -31,7 +31,7 @@ class loanController {
             $date_end_string = $date_end[1] . "/" . $date_end[0] . "/" . $date_end[2];
             
             $result = $itemModel->addLoan($item_name, $owner, $category, $price, $description, $location);
-            $dateResult = $itemModel->addAvailableDates($item_name, $owner, $dmy_start, $dmy_end);
+            $dateResult = $itemModel->addAvailableDates($item_name, $owner, $date_start_string, $date_end_string);
             $uploadImage = new imageController();
             $uploadImage-> uploadCoverPhoto($item_name, $owner);
                 
