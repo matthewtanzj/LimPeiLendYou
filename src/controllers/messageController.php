@@ -54,8 +54,8 @@ class MessageController {
     $messageArray = array();
     while ($row = pg_fetch_row($chatHistory)) {
       $msgSender = $row[2];
-      if ($msgSender == $itemOWner) {
-        $msgSenderIcon =$ownerIcon;
+      if ($msgSender == $itemOwner) {
+        $msgSenderIcon = $ownerIcon;
       } else {
         $msgSenderIcon = $borrowerIcon;
       }
