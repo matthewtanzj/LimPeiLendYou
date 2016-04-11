@@ -132,16 +132,45 @@
 
     .item-toolbar {
       position: fixed;
-      width: 35%;
+      width: 79%;
       top: 50px;
       left: 5%;
       background-color: #f8f8f8;
     }
 
     .item-toolbar-price {
-      padding-top:15px;
+      padding-top: 15px;
+    }
+
+    .item-toolbar-button {
+      padding-top: 20px;
+      border: none;
+      background-color: transparent;
+    }
+
+    .item-toolbar-button:hover {
+    border: none;
+    outline: none;
+    }
+
+    .item-toolbar-button:active {
+    border: none;
+    outline: none;
+    }
+
+    .item-toolbar-button:focus {
+    border: none;
+    outline: none;
+    }
+
+    #accept-button:hover {
+      color: #57F357;
     }
     
+    #reject-button:hover {
+      color: red;
+    }
+
     /* Let's get this party started */
     ::-webkit-scrollbar {
         width: 6px;

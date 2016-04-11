@@ -42,8 +42,28 @@
         <?php include 'views/navbar.php' ?>
         
         <!-- Item toolbar -->
-        <?php
-        	echo '<div class="row"><div class="item-toolbar"><a class="media col-lg-3" href="#"><img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width:64px; height:64px;" src="img/items/'.$itemImage.'"></a> <span class="col-lg-3 item-toolbar-price">Loan Price: $'.$itemPrice.'</span><span class="col-lg-3 item-toolbar-price">Bid Price: $'.$itemPrice.'</span></div></div>';
+        <?php echo '
+        	<div class="row">
+        		<div class="item-toolbar">
+        			<a class="media col-lg-1" href="#">
+        				<img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width:64px; height:64px;" src="img/items/'.$itemImage.'">
+        			</a>
+        			<span class="col-lg-2 item-toolbar-price">Listed Price:<br> $'.$itemPrice.'
+        			</span>
+        			<span class="col-lg-1 item-toolbar-price">Bid Price: $'.$itemPrice.'
+        			</span>
+        			<form method="post" action="">
+	        			<button id="accept-button" class="item-toolbar-button col-lg-2 col-lg-offset-5">
+	        				Accept
+	        				<span class="glyphicon glyphicon-ok"></span>
+	        			</button>
+	        			<button id="reject-button" class="item-toolbar-button col-lg-1">
+	        				Reject
+	        				<span class="glyphicon glyphicon-remove"></span>
+	        			</button>
+        			</form>
+      			</div>
+    			</div>';
         ?>
 
         <!-- Message container -->
