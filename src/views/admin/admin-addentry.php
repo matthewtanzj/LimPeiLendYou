@@ -1,6 +1,6 @@
 <?php 
     var_dump($_POST);
-	if ( isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']) ) {
+	if ( isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']) ) { // adding user entry
 		include('models/memberModel.php');
 		$memberModel = new memberModel();
 		$result = $memberModel->addUser($_POST['username'], $_POST['password'], $_POST['email'], "member");
@@ -9,7 +9,7 @@
 		} else {
 			$result = "<p class='text-danger'>Error Occured! Try checking your database constraint.</p>";
 		}
-	} else if ( isset($_POST['item_name']) && isset($_POST['owner']) && isset($_POST['category']) && isset($_POST['price']) && isset($_POST['location']) && isset($_POST['description']) ) {
+	} else if ( isset($_POST['item_name']) && isset($_POST['owner']) && isset($_POST['category']) && isset($_POST['price']) && isset($_POST['location']) && isset($_POST['description']) ) { // adding item entry
         include('models/itemModel.php');
 		$itemModel = new itemModel();
         $result = $itemModel->addLoan($_POST['item_name'], $_POST['owner'], $_POST['category'], $_POST['price'], $_POST['description'], $_POST['location']);
@@ -18,7 +18,7 @@
         } else {
             $result = "<p class='text-danger'>Error Occured! Try checking your database constraint.</p>";
         }
-    } else if ( isset($_POST['item_name']) && isset($_POST['owner']) && isset($_POST['image_url']) ) {
+    } else if ( isset($_POST['item_name']) && isset($_POST['owner']) && isset($_POST['image_url']) ) { // adding image url entry
         include('models/itemModel.php');
 		$itemModel = new itemModel();
         if (isset($_POST['is_cover'])) {
@@ -28,6 +28,28 @@
         }
         if ($result == true) {
             $result = "<p class='text-success'>Item Image Successfully Created!</p>";
+        } else {
+            $result = "<p class='text-danger'>Error Occured! Try checking your database constraint.</p>";
+        }
+    } else if ( isset($_POST['item_name']) && isset($_POST['owner']) && isset($_POST['commentor']) && isset($_POST['content']) ) { // adding comment entry
+        include('models/commentModel.php');
+		$commentModel = new commentModel();
+        $result = $commentModel->addComment($_POST['item_name'], $_POST['owner'], $_POST['commentor'], $_POST['content']);
+        if ($result == true) {
+            $result = "<p class='text-success'>Review Successfully Created!</p>";
+        } else {
+            $result = "<p class='text-danger'>Error Occured! Try checking your database constraint.</p>";
+        }
+    } else if ( isset($_POST['reviewer']) && isset($_POST['reviewee']) && isset($_POST['content']) ) { // adding review entry
+        include('models/reviewModel.php');
+		$reviewModel = new reviewModel();
+        if (isset($_POST['has_like'])) {
+            $result = $reviewModel->addNewReview($_POST['reviewer'], $_POST['reviewee'], $_POST['content'], 1);
+        } else {
+            $result = $reviewModel->addNewReview($_POST['reviewer'], $_POST['reviewee'], $_POST['content'], 0);
+        }
+        if ($result == true) {
+            $result = "<p class='text-success'>Review Successfully Created!</p>";
         } else {
             $result = "<p class='text-danger'>Error Occured! Try checking your database constraint.</p>";
         }
