@@ -29,13 +29,19 @@ class MessageController {
 
     // Checks that message session is for members that exist
     if (!$memberModel->memberExist($itemOwner) || !$memberModel->memberExist($itemBorrower)) {
-      header("Location: index.php");
+      $this->goToPreviousPage();
       return;
     }
 
     // Ensures that current logged in user belongs to message session
     if ($currentUser != $itemOwner && $currentUser != $itemBorrower) {
-      header("Location: index.php");
+      $this->goToPreviousPage();
+      return;
+    }
+
+    // Ensures that user is not sending message to self
+    if ($itemOwner == $itemBorrower) {
+      $this->goToPreviousPage();
       return;
     }
 
@@ -68,5 +74,13 @@ class MessageController {
     }
 
     include('views/message.php');
+  }
+
+  private function goToPreviousPage(){
+      $previous = "javascript:history.go(-1)";
+      if(isset($_SERVER['HTTP_REFERER'])) {
+          $previous = $_SERVER['HTTP_REFERER'];
+      }
+      header("Location: " . $previous);
   }
 }
