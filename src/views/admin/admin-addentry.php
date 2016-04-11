@@ -7,7 +7,7 @@
 		if($result == true) {
 			$result = "<p class='text-success'>Member Account Successfully Created!</p>";
 		} else {
-			$result = "<p class='text-danger'>Error occured during account creation!</p>";
+			$result = "<p class='text-danger'>Error Occured! Try checking your database constraint.</p>";
 		}
 	} else if ( isset($_POST['item_name']) && isset($_POST['owner']) && isset($_POST['category']) && isset($_POST['price']) && isset($_POST['location']) && isset($_POST['description']) ) {
         include('models/itemModel.php');
@@ -16,7 +16,7 @@
         if ($result == true) {
             $result = "<p class='text-success'>Item Successfully Created!</p>";
         } else {
-            $result = "<p class='text-danger'>Error occured during item creation!</p>";
+            $result = "<p class='text-danger'>Error Occured! Try checking your database constraint.</p>";
         }
     } else if ( isset($_POST['item_name']) && isset($_POST['owner']) && isset($_POST['image_url']) ) {
         include('models/itemModel.php');
@@ -29,7 +29,7 @@
         if ($result == true) {
             $result = "<p class='text-success'>Item Image Successfully Created!</p>";
         } else {
-            $result = "<p class='text-danger'>Error occured during item image creation!</p>";
+            $result = "<p class='text-danger'>Error Occured! Try checking your database constraint.</p>";
         }
     }
 ?>
@@ -134,6 +134,138 @@
                         <div class="control-group">
                             <label for="is_cover">Image is main:</label><br>
                             <input type="checkbox" name='is_cover'>
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div role="tabpanel" class="tab-pane fade" id="item_availability">
+                <div class="col-lg-12">
+                    <form role="form" class="form-horizontal span8" action='admin-index.php?action=add-entry' method='POST'>
+                        <div class="control-group">
+                            <label for="item_name">Item Name:</label>
+                            <input type="text" name='item_name' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="item_owner">Item Owner:</label>
+                            <input type="text" name='owner' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="date_start">Date Start:</label>
+                            <input type="text" name='date_start' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="date_end">Date End:</label><br>
+                            <input type="text" name='date_end' class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div role="tabpanel" class="tab-pane fade" id="loan_request">
+                <div class="col-lg-12">
+                    <form role="form" class="form-horizontal span8" action='admin-index.php?action=add-entry' method='POST'>
+                        <div class="control-group">
+                            <label for="item_name">Item Name:</label>
+                            <input type="text" name='item_name' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="item_owner">Item Owner:</label>
+                            <input type="text" name='owner' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="borrower">Borrower:</label>
+                            <input type="text" name='borrower' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="date_start">Date Start:</label>
+                            <input type="text" name='date_start' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="date_end">Date End:</label><br>
+                            <input type="text" name='date_end' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="price_offer">Price Offer:</label><br>
+                            <input type="text" name='price_offer' class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div role="tabpanel" class="tab-pane fade" id="comment">
+                <div class="col-lg-12">
+                    <form role="form" class="form-horizontal span8" action='admin-index.php?action=add-entry' method='POST'>
+                        <div class="control-group">
+                            <label for="item_name">Item Name:</label>
+                            <input type="text" name='item_name' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="item_owner">Item Owner:</label>
+                            <input type="text" name='owner' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="commentor">Commentor:</label>
+                            <input type="text" name='commentor' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="content">Content:</label><br>
+                            <input type="text" name='content' class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div role="tabpanel" class="tab-pane fade" id="review">
+                <div class="col-lg-12">
+                    <form role="form" class="form-horizontal span8" action='admin-index.php?action=add-entry' method='POST'>
+                        <div class="control-group">
+                            <label for="reviewer">Reviewer:</label>
+                            <input type="text" name='reviewer' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="reviewee">Reviewee:</label>
+                            <input type="text" name='reviewee' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="content">Content:</label>
+                            <input type="text" name='content' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="has_like">Has Like:</label><br>
+                            <input type="checkbox" name='has_like'>
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div role="tabpanel" class="tab-pane fade" id="message">
+                <div class="col-lg-12">
+                    <form role="form" class="form-horizontal span8" action='admin-index.php?action=add-entry' method='POST'>
+                        <div class="control-group">
+                            <label for="item_name">Item Name:</label>
+                            <input type="text" name='item_name' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="item_owner">Item Owner:</label>
+                            <input type="text" name='item_owner' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="sender">Sender:</label>
+                            <input type="text" name='sender' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="receiver">Receiver:</label><br>
+                            <input type="text" name='receiver' class="form-control">
+                        </div>
+                        <div class="control-group">
+                            <label for="content">Content:</label><br>
+                            <input type="text" name='content' class="form-control">
                         </div>
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
