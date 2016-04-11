@@ -59,6 +59,13 @@ class ItemModel {
         return $result;
     }
     
+    public function addNonCoverImage($item_name, $owner, $image_url) {
+        $query = "INSERT INTO item_image (item_name, owner, image_url, is_cover)
+                    VALUES('$item_name', '$owner', '$image_url', 0)";
+        $result = pg_query($query);
+        return $result;
+    }
+    
     public function getCoverImageOfItem($item, $owner) {
         $query = "SELECT image_url FROM item_image WHERE item_name = '$item' AND owner = '$owner' AND is_cover = 1";
         $result = pg_query($query);
