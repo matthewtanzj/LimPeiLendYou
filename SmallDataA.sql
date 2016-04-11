@@ -56,26 +56,28 @@ INSERT INTO item (item_name, owner, category, price, description, location) VALU
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Unused baby shoes', 'oswell', 'Kids & Babies', 15, 'Never worn. Good for training kids.', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Pram', 'matthew', 'Kids & Babies', 0, 'Good for travelling around with babies', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Iphone 6S Apple', 'rebbbbxx', 'Electronics', 250, 'Very nice phone.', 'Singapore');
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Majestic Swing Arm 3 Peice Multi Peice Joint', 'ftagelo', 'Electronics', 0, 'Lightweight: 2000g', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Iphone 6S Apple - Old', 'jacky', 'Electronics', 447, 'Very nice phone.', 'Singapore');
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Authentic Sigelei 150W Watt', 'appervi', 'Electronics', 22, 'Lightweight: 200g', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Iphone 6S 16GB', 'user101', 'Electronics', 568, 'Very nice phone.', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('White iPhone 5S 16GB Factory TMobile Straight Talk Tracfone', 'oswell', 'Electronics', 123, 'Very nice phone.', 'Singapore');
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Samsung 32inch SMART TV UA32J4303', 'ftagelo', 'Electronics', 100, 'Lightweight: 2000g', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Apple iPhone 5 16GB White', 'gviewor', 'Electronics', 80, 'Very nice phone.', 'Singapore');
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('LG LED Smart TV 42LV5500', 'ftagelo', 'Electronics', 100, 'Lightweight: 2000g', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Apple Iphone 5 - 16GB - Black', 'fairyprincess', 'Electronics', 444, 'Very nice phone.', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Apple iPhone 5 Grey - Bad', 'tisance', 'Electronics', 562.30, 'Very nice phone.', 'Singapore');
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Naxa 13.3inch Widescreen Hd Led Tv NTD-1354', 'ftagelo', 'Electronics', 0, 'Lightweight: 2000g', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Apple iPhone 6 Plus 64GB iCl0UD LOCK', 'ttttiisot', 'Electronics', 764, 'Very nice phone.', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Apple iPhone 5- 16GB - White (Telus) Smartphone', 'tbuzzwa', 'Electronics', 688, 'Very nice phone.', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('iphone 5s Gold', 'eeelsto', 'Electronics', 1000, 'Very nice phone.', 'Singapore');
+INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Sharp Aquos 32inch LCD TV', 'eeelsto', 'Electronics', 100, 'Lightweight: 2000g', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Iphone 6S 32GB', 'sebastian', 'Electronics', 1200, 'Very nice phone.', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Iphone 6S 64GB - Gold', 'ftagelo', 'Electronics', 5000, 'Very nice phone.', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Iphone 6S Limited Silver Edition', 'appervi', 'Electronics', 999, 'Very nice phone.', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Eleaf iStick TC100W', 'appervi', 'Electronics', 12, 'Lightweight: 100g', 'Singapore');
-INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Authentic Sigelei 150W Watt', 'appervi', 'Electronics', 22, 'Lightweight: 200g', 'Singapore');
-INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Naxa 13.3inch Widescreen Hd Led Tv NTD-1354', 'ftagelo', 'Electronics', 0, 'Lightweight: 2000g', 'Singapore');
-INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Majestic Swing Arm 3 Peice Multi Peice Joint', 'ftagelo', 'Electronics', 0, 'Lightweight: 2000g', 'Singapore');
-INSERT INTO item (item_name, owner, category, price, description, location) VALUES('LG LED Smart TV 42LV5500', 'ftagelo', 'Electronics', 100, 'Lightweight: 2000g', 'Singapore');
 INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Sony 20 LCD TV', 'ftagelo', 'Electronics', 100, 'Lightweight: 2000g', 'Singapore');
-INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Samsung 32inch SMART TV UA32J4303', 'ftagelo', 'Electronics', 100, 'Lightweight: 2000g', 'Singapore');
-INSERT INTO item (item_name, owner, category, price, description, location) VALUES('Sharp Aquos 32inch LCD TV', 'eeelsto', 'Electronics', 100, 'Lightweight: 2000g', 'Singapore');
+
+
 
 /*
  * Item Image
