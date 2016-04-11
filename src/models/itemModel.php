@@ -45,8 +45,8 @@ class ItemModel {
 	}
     
     public function addCoverImage($item_name, $owner, $image_url) {
-        $query = "INSERT INTO item_image (item_name, owner, image_url)
-                    VALUES('$item_name', '$owner', '$image_url')";
+        $query = "INSERT INTO item_image (item_name, owner, image_url, 1)
+                    VALUES('$item_name', '$owner', '$image_url', '$is_cover')";
         $result = pg_query($query);
         return $result;
     }

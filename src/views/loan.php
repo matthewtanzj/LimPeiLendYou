@@ -37,18 +37,18 @@
           <div class="form-group">
             <label for="categorySelection">Category</label>
               <select class="form-control" name="category">
-                  <option value="Null">Choose one</option>
-                  <option value="tools">Tools &amp; Gardening</option>
-                  <option value="sports">Sports &amp; Outdoor</option>
-                  <option value="parties">Parties &amp; Events</option>
-                  <option value="apparel">Apparel &amp; Accessories</option>
-                  <option value="kids">Kids &amp; Babies</option>
-                  <option value="electronics">Electronics</option>
-                  <option value="entertainment">Entertainment</option>
-                  <option value="home">Home &amp; Appliances</option>
-                  <option value="arts">Arts &amp; Crafts</option>
-                  <option value="office">Office &amp; Education</option>
-                  <option value="others">Others</option>
+                  <option value="null">Choose one</option>
+                  <option value="Tools & Gardening">Tools &amp; Gardening</option>
+                  <option value="Sports & Outdoor">Sports &amp; Outdoor</option>
+                  <option value="Parties & Events">Parties &amp; Events</option>
+                  <option value="Apparel & Accessories">Apparel &amp; Accessories</option>
+                  <option value="Kids & Babies">Kids &amp; Babies</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Home & Appliances">Home &amp; Appliances</option>
+                  <option value="Arts & Crafts">Arts &amp; Crafts</option>
+                  <option value="Office & Education">Office &amp; Education</option>
+                  <option value="Others">Others</option>
             </select>
           </div>
             
