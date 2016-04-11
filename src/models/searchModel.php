@@ -26,7 +26,7 @@ class SearchModel {
         if (!empty($_POST['popSort'])) {
             $query = "SELECT i.owner, i.item_name, i.price, count(l.item_name), ii.image_url
                     FROM item i, loan_request l, item_image ii
-                    WHERE " . (empty($item)? $true : "lower(i.item_name) like lower('%$item_name%') AND lower(l.item_name) like lower(i.item_name)") .
+                    WHERE " . (empty($item_name)? $true : "lower(i.item_name) like lower('%$item_name%') AND lower(l.item_name) like lower(i.item_name)") .
                     " AND " . (empty($owner)? $true : "i.owner like '%$owner%'") .
                     " AND " . (empty($category)? $true : "i.category like $category") .
                     " AND " . (empty($price_start)? $true : "i.price >= $price_start") .
@@ -38,7 +38,7 @@ class SearchModel {
         } else {
             $query = "SELECT i.owner, i.item_name, i.price, ii.image_url
                 FROM item i, item_image ii
-                WHERE " . (empty($item)? $true : "lower(i.item_name) like lower('%$item_name%') AND lower(l.item_name) like lower(i.item_name)") .
+                WHERE " . (empty($item_name)? $true : "lower(i.item_name) like lower('%$item_name%')") .
                 " AND " . (empty($owner)? $true : "i.owner like '%$owner%'") .
                 " AND " . (empty($category)? $true : "i.category like '$category'") .
                 " AND " . (empty($price_start)? $true : "i.price >= $price_start") .
