@@ -9,8 +9,11 @@ class SearchModel {
     public function searchByItemName($searchText)
     {
         $query = "SELECT *
-                FROM item i
+                FROM item i, item_image ii
                 WHERE lower(i.item_name) LIKE lower('%$searchText%')
+                AND i.owner = ii.owner
+                AND i.item_name = ii.item_name
+                AND ii.is_cover = 1
                 ";
                 
         return pg_query($query);
@@ -23,9 +26,9 @@ class SearchModel {
         if (!empty($_POST['popSort'])) {
             $query = "SELECT i.owner, i.item_name, i.price, count(l.item_name)
                     FROM item i, loan_request l
-                    WHERE lower(i.item_name) like lower('%$item_name%') AND lower(l.item_name) like lower(i.item_name)". 
+                    WHERE " . (empty($item)? $true : "lower(i.item_name) like lower('%$item_name%') AND lower(l.item_name) like lower(i.item_name)") .
                     " AND " . (empty($owner)? $true : "i.owner like '%$owner%'") .
-                    " AND " . (empty($category)? $true : "i.category >= $category") .
+                    " AND " . (empty($category)? $true : "i.category like $category") .
                     " AND " . (empty($price_start)? $true : "i.price >= $price_start") .
                     " AND " . (empty($price_end)? $true : "i.price <= $price_end") .
                     " AND " . (empty($location)? $true : "i.location like '%$location%'       
@@ -33,9 +36,9 @@ class SearchModel {
         } else {
             $query = "SELECT i.owner, i.item_name, i.price
                 FROM item i
-                WHERE lower(i.item_name) like lower('%$item_name%')" . 
+                WHERE " . (empty($item)? $true : "lower(i.item_name) like lower('%$item_name%') AND lower(l.item_name) like lower(i.item_name)") .
                 " AND " . (empty($owner)? $true : "i.owner like '%$owner%'") .
-                " AND " . (empty($category)? $true : "i.category >= $category") .
+                " AND " . (empty($category)? $true : "i.category like '$category'") .
                 " AND " . (empty($price_start)? $true : "i.price >= $price_start") .
                 " AND " . (empty($price_end)? $true : "i.price <= $price_end") .
                 " AND " . (empty($location)? $true : "i.location like '%$location%'       
@@ -145,7 +148,7 @@ class SearchModel {
                                             AND a3.username = a.username) "; 
         }
 
-        $query = $query . $ownerCondition . " AND " . $itemNumCondition . " AND " . $posNumCondition . " AND " . $negNumCondition . " GROUP BY a.username, a.display_pic ";
+        $query = $query . $ownerCondition . " AND " . $itemNumCondition . " AND " . $posNumCondition . " AND " . $negNumCondition . " AND a.account_type = 'member' GROUP BY a.username, a.display_pic ";
 
         if (isset($ownerSort) && !empty($ownerSort) && isset($activitySort) && !empty($activitySort)) {
             $query = $query . " ORDER BY a.username " . $ownerSort . ", " . "SUM(*) as activity " . $activitySort . ";";

@@ -81,4 +81,8 @@
     .thumbnail a>img, .thumbnail>img {
         height: 125px;
     }
+    
+    .thumbnail .caption {
+        height: 130px;
+    }
 </style>

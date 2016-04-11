@@ -7,18 +7,27 @@ class tableModel {
 	
 	public function retrieveEntireTable($tableName) 
 	{
-		$query = "SELECT * FROM $tableName ORDER BY username";
+		$query = "SELECT * FROM $tableName ORDER BY 1";
 		$result = pg_query($query);
 		return $result;
 	}
 	
-	public function deleteRowFromTable($tableName, $primaryKey)
+	public function deleteRowFromTable($tableName, $primaryKeyArray, $primaryKeyValueArray)
 	{
-		$query = "DELETE FROM $tableName WHERE $primaryKey = id";
+        $query = "DELETE FROM $tableName WHERE ";
+        $primaryKeySize = sizeof($primaryKeyArray);
+        for($i=0; $i<$primaryKeySize; $i++) {
+            if ($i == $primaryKeySize-1)
+                $query = $query . "$primaryKeyArray[$i] = '$primaryKeyValueArray[$i]'";
+            else
+                $query = $query . "$primaryKeyArray[$i] = '$primaryKeyValueArray[$i]' AND ";
+        }
+        var_dump($query);
 		$result = pg_query($query);
+        var_dump($result);
 	}
 	
-	public function editRowFromTable($tableName, $primaryKey, $columnName, $value)
+	public function editRowFromTable($tableName, $primaryKeyArray, $primaryKeyValueArray, $column, $value)
 	{
 		// value edited is a password -> generate new salt and encrypt it
 		if($tableName == "member" && $columnName == "password") {

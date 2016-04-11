@@ -34,41 +34,176 @@
 			<?php endif; ?>
 			<?php if($_GET['action'] == 'item'): ?>
 				<tr>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						id
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						item_name
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						name
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						owner
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						category
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						price
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						description
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						location
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						owner_id
-					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						is_valid
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						created_at
 					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
-						updated_at
-					</th>
-					<th colspan="1" rowspan="1" style="width: 288px;" tabindex="0">
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
 						action
 					</th>
 				</tr>
-            <?php endif; ?>		
+            <?php endif; ?>
+            <?php if($_GET['action'] == 'item_image'): ?>
+				<tr>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						item_name
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						owner
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						image_url
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						is_cover
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						action
+					</th>
+				</tr>
+            <?php endif; ?>
+            <?php if($_GET['action'] == 'item_availability'): ?>
+				<tr>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						item_name
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						owner
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						date_start
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						date_end
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						action
+					</th>
+				</tr>
+            <?php endif; ?>
+            <?php if($_GET['action'] == 'loan_request'): ?>
+				<tr>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						item_name
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						owner
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						borrower
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						date_start
+					</th>
+                    <th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						date_end
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						status
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						price_offer
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						is_valid
+					</th>
+                    <th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						created_at
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						action
+					</th>
+				</tr>
+            <?php endif; ?>
+            <?php if($_GET['action'] == 'comment'): ?>
+				<tr>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						item_name
+					</th>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						owner
+					</th>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						commenter
+					</th>
+					<th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						content
+					</th>
+                    <th colspan="1" rowspan="1" style="width: 20%;" tabindex="0">
+						created_at
+					</th>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						action
+					</th>
+				</tr>
+            <?php endif; ?>
+            <?php if($_GET['action'] == 'review'): ?>
+				<tr>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						reviewer
+					</th>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						reviewee
+					</th>
+					<th colspan="1" rowspan="1" style="width: 30%;" tabindex="0">
+						content
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						has_like
+					</th>
+                    <th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						created_at
+					</th>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						action
+					</th>
+				</tr>
+            <?php endif; ?>
+            <?php if($_GET['action'] == 'message'): ?>
+				<tr>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						item_name
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						item_owner
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						sender
+					</th>
+					<th colspan="1" rowspan="1" style="width: 10%;" tabindex="0">
+						receiver
+					</th>
+                    <th colspan="1" rowspan="1" style="width: 25%;" tabindex="0">
+						content
+					</th>
+                    <th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						created_at
+					</th>
+					<th colspan="1" rowspan="1" style="width: 15%;" tabindex="0">
+						action
+					</th>
+				</tr>
+            <?php endif; ?>
 		</thead>
 		<tbody>
 			<!-- Following PHP Code will go here -->
@@ -110,34 +245,33 @@
 			var tableName = getTableName();
 			
 			// 2. get primary key of the edited row
-			var primaryKey = getContentOfGrid(row, 0);
-			
+			var primaryKeyArray = getPrimaryKey(tableName, row)[0];
+			var primaryKeyValueArray = getPrimaryKey(tableName, row)[1];
 			// 3. get column name of edited grid
 			var colName = getContentOfGrid(0, col);
 			
 			// 4. get content of the edited grid
 			var gridContent = $('.input-sm').val();
 			
-			console.log("table name: " + tableName);
-			console.log("primary key: " + primaryKey);
-			console.log("column name: " + colName);
-			console.log("cell content: " + gridContent);
-			
+			//console.log("table name: " + tableName);
+			//console.log("primary key: " + primaryKeyArray);
+            //console.log("primary key value: " + primaryKeyValueArray);
+			//console.log("column name: " + colName);
+			//console.log("cell content: " + gridContent);
+			var stubArray = [1,2];
 			// 5. perform ajax call to update database
-			$.ajax({
-				url: "controllers/tableController.php?editTable=" + tableName + "&table=" + tableName + "&primaryKey=" + primaryKey + 
-						"&colName=" + colName + "&value=" + gridContent,
-				type: 'GET',
-				success: function(s){
-					console.log(s);
-					//location.reload();
-				},
-				error: function(e){
-					console.log(e);
-					alert('Error: Invalid datatype!');
-					//location.reload();
-				}
-			});
+            $.ajax({
+                url: "scripts/adminUpdateDeleteTable.php",
+                type: "POST",
+                data: {action: "edit", table: tableName, newValue: gridContent, column: colName, primaryKey: primaryKeyArray, primaryKeyValue: primaryKeyValueArray},
+                success: function(s) {
+                    console.log(s);
+                },
+                error: function(e) {
+                    //console.log(e);
+                    alert("Database constraint violated. No changes have been made.");
+                }
+            });
 		});
 	});
 	
@@ -159,30 +293,64 @@
 			
 			// 2. get primary key of the row to be deleted		
 			var index = row.parentNode.parentNode.rowIndex; // getting row index of <tr>
-			var primaryKey = getContentOfGrid(index, 0); // get the primary key of the row to be deleted
+			
+			var primaryKeyArray = getPrimaryKey(tableName, index)[0];
+			var primaryKeyValueArray = getPrimaryKey(tableName, index)[1];
 	
 			// 3. delete row in frontend
 			document.getElementById("datatable").deleteRow(index);
 
 			// 4. perform ajax call to update database
 			$.ajax({
-				url: "controllers/tableController.php?deleteKey=" + primaryKey + "&table=" + tableName,
-				type: 'GET',
-				success: function(s) {
-					console.log(s);
-					location.reload();
-				},
-				error: function(e) {
-					console.log(e);
-					location.reload();
-				}
-			});
+                url: "scripts/adminUpdateDeleteTable.php",
+                type: "POST",
+                data: {action: "delete", table: tableName, primaryKey: primaryKeyArray, primaryKeyValue: primaryKeyValueArray},
+                success: function(s) {
+                    console.log(s);
+                },
+                error: function(e) {
+                    //console.log(e);
+                    alert("Database constraint violated. No changes have been made.");
+                }
+            });
 		}
 	}
 	
 	function getTableName() {
 		return decodeURIComponent(window.location.search.match(/(\?|&)action\=([^&]*)/)[2]);
 	}
+    
+    function getPrimaryKey (tableName, row) {
+        var primaryKeyArray, primaryKeyValueArray;
+        
+        if (tableName === 'member') {
+            primaryKeyArray = ["username"];
+            primaryKeyValueArray = [getContentOfGrid(row,0)];
+        } else if (tableName === 'item') {
+            primaryKeyArray = ["item_name", "owner"];
+            primaryKeyValueArray = [getContentOfGrid(row,0), getContentOfGrid(row,1)];
+        } else if (tableName === 'item_image') {
+            primaryKeyArray = ["item_name", "owner", "image_url"];
+            primaryKeyValueArray = [getContentOfGrid(row,0), getContentOfGrid(row,1), getContentOfGrid(row,2)];
+        } else if (tableName === 'item_availability') {
+            primaryKeyArray = ["item_name", "owner", "date_start", "date_end"];
+            primaryKeyValueArray = [getContentOfGrid(row,0), getContentOfGrid(row,1), getContentOfGrid(row,2), getContentOfGrid(row,3)];
+        } else if (tableName === 'loan_request') {
+            primaryKeyArray = ["item_name", "owner", "borrower", "date_start"];
+            primaryKeyValueArray = [getContentOfGrid(row,0), getContentOfGrid(row,1), getContentOfGrid(row,2),getContentOfGrid(row,3)];
+        } else if (tableName === 'comment') {
+            primaryKeyArray = ["item_name", "owner", "commenter", "created_at"];
+            primaryKeyValueArray = [getContentOfGrid(row,0), getContentOfGrid(row,1), getContentOfGrid(row,2), getContentOfGrid(row,4)];
+        } else if (tableName === 'review') {
+            primaryKeyArray = ["reviewer", "reviewee", "created_at"];
+            primaryKeyValueArray = [getContentOfGrid(row,0), getContentOfGrid(row,1), getContentOfGrid(row,4)];
+        } else if (tableName === 'message') {
+            primaryKeyArray = ["item_name", "item_owner", "sender", "receiver", "created_at"];
+            primaryKeyValueArray = [getContentOfGrid(row,0), getContentOfGrid(row,1), getContentOfGrid(row,2), getContentOfGrid(row,3), getContentOfGrid(row,5)];
+        }   
+        
+        return [primaryKeyArray, primaryKeyValueArray];
+    }
 	
 	function getContentOfGrid (row, col) {
 		// if getting content of table header (weird interaction as compared to table rows)

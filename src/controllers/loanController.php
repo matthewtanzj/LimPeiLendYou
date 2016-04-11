@@ -23,7 +23,9 @@ class loanController {
             $location = $_POST['location'];
                 
             $result = $itemModel->addLoan($item_name, $owner, $category, $price, $description, $location);
-
+            $uploadImage = new imageController();
+            $uploadImage-> uploadCoverPhoto($item_name, $owner);
+                
                 if (!$result) {
                     $loanCreationError = true;
                     $loanCreationErrorMessage = "<p class=\"text-danger\">Loan Creation Failed! Please contact admin.</p>";

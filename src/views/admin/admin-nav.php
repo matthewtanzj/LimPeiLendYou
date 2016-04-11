@@ -16,8 +16,10 @@
 						<li><a href="admin-index.php?action=item">Items</a></li>
 						<li><a href="admin-index.php?action=item_image">Item Images</a></li>
 						<li><a href="admin-index.php?action=item_availability">Item Availability</a></li>
-						<li><a href="admin-index.php?action=reviews">Reviews</a></li>
-						<li><a href="admin-index.php?action=messages">Messages</a></li>
+                        <li><a href="admin-index.php?action=loan_request">Loan Requests</a></li>
+                        <li><a href="admin-index.php?action=comment">Item Comments</a></li>
+						<li><a href="admin-index.php?action=review">Reviews</a></li>
+						<li><a href="admin-index.php?action=message">Messages</a></li>
 						<li class="divider"></li>
 						<li class="dropdown-header">Others</li>
 						<li><a href="admin-index.php?action=add-admin">Add Administrator</a></li>

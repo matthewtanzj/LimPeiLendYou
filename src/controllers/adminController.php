@@ -34,7 +34,9 @@ class adminController {
 							$_GET['action'] == 'item_image' || 
 							$_GET['action'] == 'item_availability' ||
 							$_GET['action'] == 'message' || 
-							$_GET['action'] == 'review') // admin views content of a table
+							$_GET['action'] == 'review' ||
+                            $_GET['action'] == 'loan_request' ||
+                            $_GET['action'] == 'comment') // admin views content of a table
 				{
 					include('views/admin/admin-tableview.php'); // shows the view which will echo the table content and includes logic for table manipulation
 				}

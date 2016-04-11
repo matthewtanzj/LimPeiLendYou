@@ -62,17 +62,17 @@
 									<div class="form-group">
 										<select class="form-control" name="category">
 											<option value="">--Select Category--</option>
-											<option value="tools">Tools &amp; Gardening</option>
-											<option value="sports">Sports &amp; Outdoor</option>
-											<option value="events">Parties &amp; Events</option>
-											<option value="apparel">Apparel &amp; Accessories</option>
-											<option value="kids">Kids &amp; Babies</option>
-											<option value="electronics">Electronics</option>
-											<option value="entertainment">Entertainment</option>
-											<option value="home">Home &amp; Appliances</option>
-											<option value="arts">Arts &amp; Crafts</option>
-											<option value="education">Office &amp; Education</option>
-											<option value="others">Others</option>
+											<option value="Tools &amp; Gardening">Tools &amp; Gardening</option>
+											<option value="Sports &amp; Outdoor">Sports &amp; Outdoor</option>
+											<option value="Parties &amp; Events">Parties &amp; Events</option>
+											<option value="Apparel &amp; Accessories">Apparel &amp; Accessories</option>
+											<option value="Kids &amp; Babies">Kids &amp; Babies</option>
+											<option value="Electronics">Electronics</option>
+											<option value="Entertainment">Entertainment</option>
+											<option value="Home &amp; Appliances">Home &amp; Appliances</option>
+											<option value="Arts &amp; Crafts">Arts &amp; Crafts</option>
+											<option value="Office &amp; Education">Office &amp; Education</option>
+											<option value="Others">Others</option>
 										</select>
 									</div>
 								</div>

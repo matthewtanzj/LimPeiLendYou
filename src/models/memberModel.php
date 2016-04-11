@@ -111,4 +111,16 @@ class MemberModel {
         $result = pg_query($query);
         return $result;
     }
+    
+    public function getNumUserWithNoItem() {
+        $query = "SELECT username FROM member WHERE account_type <> 'admin' AND NOT EXISTS (SELECT owner FROM item WHERE owner = username GROUP BY owner)";
+        $result = pg_query($query);
+        return pg_num_rows($result);
+    }
+    
+    public function getNumUserWithNoLoanRequest() {
+        $query = "SELECT username FROM member WHERE account_type <> 'admin' AND NOT EXISTS (SELECT borrower FROM loan_request WHERE borrower = username GROUP BY borrower)";
+        $result = pg_query($query);
+        return pg_num_rows($result);
+    }
 }
