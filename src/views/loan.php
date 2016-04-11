@@ -70,6 +70,15 @@
             <textarea class="form-control" rows="5" id="item_info" name="item_info" placeholder="Tell us more about your item! E.g size, condition, colour etc..."><?php echo $data['description_info']; ?></textarea>
           </div>
             
+            <div class="form-group">
+                <label for="availableDates">Available loan dates</label>  
+                <div class="input-daterange input-group" id="datepicker">
+                    <input type="text" class="input-sm form-control" id="start" name="start" />
+                        <span class="input-group-addon">to</span>
+                    <input type="text" class="input-sm form-control" id="end" name="end" />
+                  </div>
+            </div>
+            
               <div class="form-group">
             <label for="location">Location</label>
             <input type="text" class="form-control" name="location" placeholder="Preferred location for meet up">
@@ -86,11 +95,68 @@
                     <?php echo $loanCreationErrorMessage;?>
                 </div>
         </form>
-
+             <a name="calendarTab" ></a>
     </div> <!-- /container -->
-
+        
   </body>
 </html>
+
+<script>
+    // set available dates in datepicker
+     $('.input-daterange').datepicker();
+
+    // show login modal if has login error
+    if (<?php echo isset($loginError) ? "true" : "false"; ?>) {
+        console.log('here');
+        $("#loginButton").click();
+    }
+
+    // show signup modal if has signup error
+    if (<?php echo isset($signupError) ? "true" : "false"; ?>) {
+        console.log('here');
+        $("#signupButton").click();
+    }
+
+    $('#myTabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    });
+    
+    // change green for available dates
+    $('li.clickable').each(function() {
+        <?php foreach ($freeDates as $date) {?>
+            if (<?php echo $date ?> == this.value) {
+                this.style.backgroundColor = "rgb(202, 255, 216)";
+            }
+        <?php } ?>
+    });
+
+    // allow submit to work if logged in
+    <?php if($_SESSION['loggedin']): ?>
+        $('.submit-button').prop('disabled', false);
+    <?php else: ?>
+        $('.submit-button').prop('disabled', true);
+    <?php endif; ?> 
+
+    // show alert if submit successfully
+    <?php if ($submitSuccess): ?>
+        $('.alert-success').show();
+    <?php endif; ?>
+    
+    <?php if ($submitError): ?>
+        $('.alert-danger').show();
+    <?php endif; ?>
+
+    // show comments
+    <?php if(!empty($commentArray)) {foreach ($commentArray as $comment) { ?>
+        $('#show-comments-section').append("<ul><b><?php echo $comment['commenter'] ?></b><span style='color:grey; font-size:12px; padding-left:30px;'><?php echo date('d/m/Y', $comment['timestamp']) ?><span style='color:grey; font-size:12px; padding-left:5px;'><?php echo date('g:i a', $comment['timestamp']) ?></span><p><?php echo $comment['content'] ?></p></ul>");
+    <?php }} ?>
+    
+
+
+  
+</script>
+
 
 
 
