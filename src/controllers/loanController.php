@@ -24,12 +24,14 @@ class loanController {
             $price = $_POST['price'];
             $description = $_POST['item_info'];
             $location = $_POST['location'];
-            $date_start = $_POST['start'];
-            $date_end = $_POST['end'];
+            $date_start = explode("/" , $_POST['start']);
+            $date_end = explode("/", $_POST['end']);
                 
+            $date_start_string = $date_start[1] . "/" . $date_start[0] . "/" . $date_start[2];
+            $date_end_string = $date_end[1] . "/" . $date_end[0] . "/" . $date_end[2];
             
             $result = $itemModel->addLoan($item_name, $owner, $category, $price, $description, $location);
-            $dateResult = $itemModel->addAvailableDates($item_name, $owner, $date_start, $date_end);
+            $dateResult = $itemModel->addAvailableDates($item_name, $owner, $dmy_start, $dmy_end);
             $uploadImage = new imageController();
             $uploadImage-> uploadCoverPhoto($item_name, $owner);
                 
@@ -39,7 +41,6 @@ class loanController {
                 }
             
                 if (!$dateResult) {
-                   // echo " date failed";
                     $dateError = true;
                     $dateErrorMessage = "<p class=\"text-danger\">date Failed! Please contact admin.</p>";
                 }
