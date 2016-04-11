@@ -23,6 +23,21 @@ class MessageController {
     $itemBorrower = $_GET['borrower'];
     $currentUser = $_SESSION['username'];
 
+    // Getting the item
+    include ('models/itemModel.php');
+    $itemModel = new itemModel();
+    $queryResult = $itemModel->getByKey($itemOwner, $itemName);
+
+    // Checks that message session is for item that exist
+    if ($queryResult == false) {
+      $this->goToPreviousPage();
+      return;
+    }
+
+    $item = pg_fetch_array($queryResult);
+    $itemImage = $item['image_url'];
+    $itemPrice = $item['price'];
+
     // Getting the members
     include('models/memberModel.php');
     $memberModel = new memberModel();

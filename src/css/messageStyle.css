@@ -106,29 +106,41 @@
         box-shadow: none;
         border-bottom: 1px solid #ddd;
     }
-		body {
-		  padding-top: 70px;
-		}
+    body {
+      padding-top: 70px;
+    }
 
     body::-webkit-scrollbar {
         width: 12px;
     }
  
- 		.message-container{
- 			position: fixed;
- 			width: 95%;
- 			bottom: 10px;
- 			top: 76px;
- 			left: 5%;
- 		}
+    .message-container{
+      position: fixed;
+      width: 95%;
+      bottom: 10px;
+      top: 114px;
+      left: 5%;
+    }
 
- 		.message-container > div {
- 			height: 100%;
- 		}
+    .message-container > div {
+      height: 100%;
+    }
 
- 		.sender-message {
- 			text-align: right;
- 		}
+    .sender-message {
+      text-align: right;
+    }
+
+    .item-toolbar {
+      position: fixed;
+      width: 35%;
+      top: 50px;
+      left: 5%;
+      background-color: #f8f8f8;
+    }
+
+    .item-toolbar-price {
+      padding-top:15px;
+    }
     
     /* Let's get this party started */
     ::-webkit-scrollbar {

@@ -42,7 +42,11 @@
         <?php include 'views/navbar.php' ?>
         
         <!-- Item toolbar -->
+        <?php
+        	echo '<div class="row"><div class="item-toolbar"><a class="media col-lg-3" href="#"><img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width:64px; height:64px;" src="img/items/'.$itemImage.'"></a> <span class="col-lg-3 item-toolbar-price">Loan Price: $'.$itemPrice.'</span><span class="col-lg-3 item-toolbar-price">Bid Price: $'.$itemPrice.'</span></div></div>';
+        ?>
 
+        <!-- Message container -->
         <div class="container message-container">
             <div class="row">
                 <!-- Entire Chat box -->
