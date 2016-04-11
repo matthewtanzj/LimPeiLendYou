@@ -45,7 +45,7 @@
         <?php echo '
         	<div class="row">
         		<div class="item-toolbar">
-        			<a class="media col-lg-1" href="#">
+        			<a class="media col-lg-1" href="index.php?page=item&owner='.$itemOwner.'&item='.$itemName.'">
         				<img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width:64px; height:64px;" src="img/items/'.$itemImage.'">
         			</a>
         			<span class="col-lg-2 item-toolbar-price">Listed Price:<br> $'.$itemPrice.'
