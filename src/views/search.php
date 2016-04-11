@@ -40,7 +40,7 @@
             
             <!-- Result Section -->
             <div class="result-section col-lg-10">
-                <h3>Showing results for '<?php echo $search ?>'</h3>
+                <h3>Showing results</h3>
             </div>
         </div>
 
