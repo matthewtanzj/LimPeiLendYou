@@ -9,8 +9,11 @@ class SearchModel {
     public function searchByItemName($searchText)
     {
         $query = "SELECT *
-                FROM item i
+                FROM item i, item_image ii
                 WHERE lower(i.item_name) LIKE lower('%$searchText%')
+                AND i.owner = ii.owner
+                AND i.item_name = ii.item_name
+                AND ii.is_cover = 1
                 ";
                 
         return pg_query($query);

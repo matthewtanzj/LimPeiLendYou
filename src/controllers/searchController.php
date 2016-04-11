@@ -14,9 +14,7 @@ class SearchController {
 
 		$isUserSearch = false;
 		$itemArray = false;
-		$search = '';
-		
-
+		$search = $_POST['search'];
 
 		if (!empty($_REQUEST)) {
 			
