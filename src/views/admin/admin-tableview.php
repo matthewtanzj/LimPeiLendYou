@@ -245,49 +245,33 @@
 			var tableName = getTableName();
 			
 			// 2. get primary key of the edited row
-			var primaryKey = getContentOfGrid(row, 0);
-			
+			var primaryKeyArray = getPrimaryKey(tableName, row)[0];
+			var primaryKeyValueArray = getPrimaryKey(tableName, row)[1];
 			// 3. get column name of edited grid
 			var colName = getContentOfGrid(0, col);
 			
 			// 4. get content of the edited grid
 			var gridContent = $('.input-sm').val();
 			
-			console.log("table name: " + tableName);
-			console.log("primary key: " + primaryKey);
-			console.log("column name: " + colName);
-			console.log("cell content: " + gridContent);
-			var stubArray = [];
-            stubArray.push(1);
-            stubArray.push(2);
+			//console.log("table name: " + tableName);
+			//console.log("primary key: " + primaryKeyArray);
+            //console.log("primary key value: " + primaryKeyValueArray);
+			//console.log("column name: " + colName);
+			//console.log("cell content: " + gridContent);
+			var stubArray = [1,2];
 			// 5. perform ajax call to update database
             $.ajax({
-                url: "controllers/tableController.php",
+                url: "scripts/adminUpdateDeleteTable.php",
                 type: "POST",
-                data: {table: tableName, column: stubArray},
+                data: {action: "edit", table: tableName, newValue: gridContent, column: colName, primaryKey: primaryKeyArray, primaryKeyValue: primaryKeyValueArray},
                 success: function(s) {
                     console.log(s);
                 },
                 error: function(e) {
                     //console.log(e);
+                    alert("Database constraint violated. No changes have been made.");
                 }
             });
-            /*
-			$.ajax({
-				url: "controllers/tableController.php?editTable=" + tableName + "&table=" + tableName + "&primaryKey=" + primaryKey + 
-						"&colName=" + colName + "&value=" + gridContent,
-				type: 'GET',
-				success: function(s){
-					console.log(s);
-					//location.reload();
-				},
-				error: function(e){
-					console.log(e);
-					alert('Error: Invalid datatype!');
-					//location.reload();
-				}
-			});
-            */
 		});
 	});
 	
@@ -309,30 +293,64 @@
 			
 			// 2. get primary key of the row to be deleted		
 			var index = row.parentNode.parentNode.rowIndex; // getting row index of <tr>
-			var primaryKey = getContentOfGrid(index, 0); // get the primary key of the row to be deleted
+			
+			var primaryKeyArray = getPrimaryKey(tableName, index)[0];
+			var primaryKeyValueArray = getPrimaryKey(tableName, index)[1];
 	
 			// 3. delete row in frontend
 			document.getElementById("datatable").deleteRow(index);
 
 			// 4. perform ajax call to update database
 			$.ajax({
-				url: "controllers/tableController.php?deleteKey=" + primaryKey + "&table=" + tableName,
-				type: 'GET',
-				success: function(s) {
-					console.log(s);
-					location.reload();
-				},
-				error: function(e) {
-					console.log(e);
-					location.reload();
-				}
-			});
+                url: "scripts/adminUpdateDeleteTable.php",
+                type: "POST",
+                data: {action: "delete", table: tableName, primaryKey: primaryKeyArray, primaryKeyValue: primaryKeyValueArray},
+                success: function(s) {
+                    console.log(s);
+                },
+                error: function(e) {
+                    //console.log(e);
+                    alert("Database constraint violated. No changes have been made.");
+                }
+            });
 		}
 	}
 	
 	function getTableName() {
 		return decodeURIComponent(window.location.search.match(/(\?|&)action\=([^&]*)/)[2]);
 	}
+    
+    function getPrimaryKey (tableName, row) {
+        var primaryKeyArray, primaryKeyValueArray;
+        
+        if (tableName === 'member') {
+            primaryKeyArray = ["username"];
+            primaryKeyValueArray = [getContentOfGrid(row,0)];
+        } else if (tableName === 'item') {
+            primaryKeyArray = ["item_name", "owner"];
+            primaryKeyValueArray = [getContentOfGrid(row,0), getContentOfGrid(row,1)];
+        } else if (tableName === 'item_image') {
+            primaryKeyArray = ["item_name", "owner", "image_url"];
+            primaryKeyValueArray = [getContentOfGrid(row,0), getContentOfGrid(row,1), getContentOfGrid(row,2)];
+        } else if (tableName === 'item_availability') {
+            primaryKeyArray = ["item_name", "owner", "date_start", "date_end"];
+            primaryKeyValueArray = [getContentOfGrid(row,0), getContentOfGrid(row,1), getContentOfGrid(row,2), getContentOfGrid(row,3)];
+        } else if (tableName === 'loan_request') {
+            primaryKeyArray = ["item_name", "owner", "borrower", "date_start"];
+            primaryKeyValueArray = [getContentOfGrid(row,0), getContentOfGrid(row,1), getContentOfGrid(row,2),getContentOfGrid(row,3)];
+        } else if (tableName === 'comment') {
+            primaryKeyArray = ["item_name", "owner", "commenter", "created_at"];
+            primaryKeyValueArray = [getContentOfGrid(row,0), getContentOfGrid(row,1), getContentOfGrid(row,2), getContentOfGrid(row,4)];
+        } else if (tableName === 'review') {
+            primaryKeyArray = ["reviewer", "reviewee", "created_at"];
+            primaryKeyValueArray = [getContentOfGrid(row,0), getContentOfGrid(row,1), getContentOfGrid(row,4)];
+        } else if (tableName === 'message') {
+            primaryKeyArray = ["item_name", "item_owner", "sender", "receiver", "created_at"];
+            primaryKeyValueArray = [getContentOfGrid(row,0), getContentOfGrid(row,1), getContentOfGrid(row,2), getContentOfGrid(row,3), getContentOfGrid(row,5)];
+        }   
+        
+        return [primaryKeyArray, primaryKeyValueArray];
+    }
 	
 	function getContentOfGrid (row, col) {
 		// if getting content of table header (weird interaction as compared to table rows)

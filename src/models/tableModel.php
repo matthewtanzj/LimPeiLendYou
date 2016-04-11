@@ -12,10 +12,19 @@ class tableModel {
 		return $result;
 	}
 	
-	public function deleteRowFromTable($tableName, $primaryKey)
+	public function deleteRowFromTable($tableName, $primaryKeyArray, $primaryKeyValueArray)
 	{
-		$query = "DELETE FROM $tableName WHERE $primaryKey = id";
+        $query = "DELETE FROM $tableName WHERE ";
+        $primaryKeySize = sizeof($primaryKeyArray);
+        for($i=0; $i<$primaryKeySize; $i++) {
+            if ($i == $primaryKeySize-1)
+                $query = $query . "$primaryKeyArray[$i] = '$primaryKeyValueArray[$i]'";
+            else
+                $query = $query . "$primaryKeyArray[$i] = '$primaryKeyValueArray[$i]' AND ";
+        }
+        var_dump($query);
 		$result = pg_query($query);
+        var_dump($result);
 	}
 	
 	public function editRowFromTable($tableName, $primaryKey, $columnName, $value)
