@@ -51,7 +51,6 @@
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         border-bottom-left-radius: 0;
-
         border-bottom-right-radius: 0;
     }
     .btn-panel
@@ -64,7 +63,6 @@
 
     .btn-panel .btn
     {
-        color:#b8b8b8;
 
         transition: 0.2s all ease-in-out;
     }
