@@ -8,12 +8,12 @@ class MessageModel{
     public function getChatHistoryInOrder($itemName, $itemOwner, $itemBorrower)
     {
             $query = "SELECT *
-                                FROM message m
-                                WHERE item_name = '".$itemName."' AND
-                                            item_owner = '".$itemOwner."' AND
-                                            (sender = '".$itemBorrower."' OR
-                                            receiver = '".$itemBorrower."')
-                                ORDER BY created_at";
+                      FROM message m
+                      WHERE item_name = '".$itemName."' 
+                      AND item_owner = '".$itemOwner."'
+                      AND (sender = '".$itemBorrower."'
+                      OR receiver = '".$itemBorrower."')
+                      ORDER BY created_at";
             $result = pg_query($query);
             return $result;
     }

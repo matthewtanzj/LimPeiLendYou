@@ -11,6 +11,7 @@ class MessageController {
     $itemName = '';
     $itemOwner = '';
     $itemBorrower = '';
+    $isValidBid = false;
 
     // Check that URL has required fields
     if (empty($_GET['item']) || empty($_GET['owner']) || empty($_GET['borrower'])) {
@@ -28,7 +29,7 @@ class MessageController {
     $itemModel = new itemModel();
     $queryResult = $itemModel->getByKey($itemOwner, $itemName);
 
-    // Checks that message session is for item that exist
+    // Ensures that message session is for item that exist
     if ($queryResult == false) {
       $this->goToPreviousPage();
       return;
@@ -42,7 +43,7 @@ class MessageController {
     include('models/memberModel.php');
     $memberModel = new memberModel();
 
-    // Checks that message session is for members that exist
+    // Ensures that message session is for members that exist
     if (!$memberModel->memberExist($itemOwner) || !$memberModel->memberExist($itemBorrower)) {
       $this->goToPreviousPage();
       return;
@@ -58,6 +59,20 @@ class MessageController {
     if ($itemOwner == $itemBorrower) {
       $this->goToPreviousPage();
       return;
+    }
+
+    // Getting the loan request
+    include ('models/loanRequestModel.php');
+    $loanRequestModel = new loanRequestModel();
+    $bidMade = $loanRequestModel->getLoanRequestByOwnerItemBorrower($itemOwner, $itemName, $itemBorrower);
+
+    if ($bidMade != false) {
+
+      $bid = pg_fetch_array($bidMade);
+      $date_start = $bid['date_start'];
+      $bidStatus = $bid['status'];
+      $bidPrice = $bid['price_offer'];
+      $isValidBid = $bid['is_valid'];
     }
 
     // get all past messages
