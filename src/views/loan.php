@@ -32,6 +32,14 @@
     <?php include 'views/navbar.php' ?>
 
     <div class="container">
+                <div class="alert alert-success alert-dismissible" role="alert" style="display: none;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Woohoo!</strong> Item Listed :D
+                </div>
+                <div class="alert alert-danger alert-dismissible" role="alert" style="display: none;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Oh snap!</strong> Something went wrong D:
+                </div>
      
         <form class="col-md-6 col-md-offset-3" action='?page=loan' method='POST' enctype="multipart/form-data">
           <div class="form-group">
@@ -77,6 +85,7 @@
                         <span class="input-group-addon">to</span>
                     <input type="text" class="input-sm form-control" id="end" name="end" />
                   </div>
+                       <?php echo $dateErrorMessage;?>
             </div>
             
               <div class="form-group">

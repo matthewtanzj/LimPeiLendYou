@@ -36,14 +36,23 @@ class loanController {
             $uploadImage-> uploadCoverPhoto($item_name, $owner);
                 
                 if (!$result) {
-                    $loanCreationError = true;
+                   // $loanCreationError = true;
+                    $submitError = true;
                     $loanCreationErrorMessage = "<p class=\"text-danger\">Loan Creation Failed! Please contact admin.</p>";
                 }
             
                 if (!$dateResult) {
-                    $dateError = true;
-                    $dateErrorMessage = "<p class=\"text-danger\">date Failed! Please contact admin.</p>";
+                    $submitError = true;
+                    $dateErrorMessage = "<p class=\"text-danger\">Date Failed! Please contact admin.</p>";
                 }
+            
+                if ($result) {    
+				    $submitSuccess = true;
+				} 
+                else {
+                    $submitError = true;
+                }
+                    
         }    
 
 
