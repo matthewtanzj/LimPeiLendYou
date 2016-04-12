@@ -9,6 +9,7 @@ include("controllers/uploadController.php");
 include("controllers/loanController.php");
 include("controllers/messageController.php");
 include("controllers/imageController.php");
+include("controllers/inboxController.php");
 
 if (!empty($_GET['page'])) {
 	switch ($_GET['page']) {
@@ -41,7 +42,11 @@ if (!empty($_GET['page'])) {
     		$message = new messageController();
     		$message->view();
     		break;
-        
+     
+    case 'inbox':
+    		$inbox = new inboxController();
+    		$inbox->view();
+    		break;
 		default:
 				$home = new homeController();
 				$home->view();

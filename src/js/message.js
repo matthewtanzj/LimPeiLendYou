@@ -22,3 +22,18 @@ function updateScroll(){
     var element = document.getElementById("msg-box");
     element.scrollTop = element.scrollHeight;
 }
+
+// $('#send-message-button').click(function()
+// {
+//     $.ajax({
+//         type:'POST',
+//         data:
+//         {
+
+//         },
+//         success: function(msg)
+//         {
+//             alert('Email Sent');
+//         } 
+//     });
+// });

@@ -73,7 +73,7 @@
         <?php if($_SESSION['loggedin']): ?>    
             <li><a class="btn" id="loanButton" href="index.php?page=loan">New Loan</a></li>
             <li>
-        				<a href="#" id="messageInboxIcon">
+        				<a href="index.php?page=inbox" id="messageInboxIcon">
         					<span class="glyphicon glyphicon-inbox"></span>
         				</a>
         		</li>
