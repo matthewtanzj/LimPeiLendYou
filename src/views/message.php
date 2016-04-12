@@ -1,5 +1,5 @@
 <!-- 
-  Relies heavily on the chat widget "Chat" by hardiksondagar on bootsnip.com
+  Relies on the chat widget "Chat" by hardiksondagar on bootsnip.com
   The original code snippet can be found here: http://bootsnipp.com/snippets/featured/chat
 -->
 
@@ -52,15 +52,15 @@
               </span>
               <span class="col-lg-1 item-toolbar-price">Bid Price: $'.$itemPrice.'
               </span>';
-
-          if($itemOwner == $currentUser && $bidStatus == "pending") {
+              // $itemOwner == $currentUser && 
+          if($bidStatus == "pending") {
             echo'
-              <form method="post" action="">
-                <button id="accept-button" class="item-toolbar-button col-lg-2 col-lg-offset-5">
+              <form method="post">
+                <button id="accept-button" class="item-toolbar-button col-lg-2 col-lg-offset-5" name="accept">
                   Accept
                   <span class="glyphicon glyphicon-ok"></span>
                 </button>
-                <button id="reject-button" class="item-toolbar-button col-lg-1">
+                <button id="reject-button" class="item-toolbar-button col-lg-1" name="reject">
                   Reject
                   <span class="glyphicon glyphicon-remove"></span>
                 </button>
@@ -72,7 +72,7 @@
           }
         ?>
 
-        <form>
+        <form method="post">
         <!-- Message container -->
         <div class="container message-container">
             <div class="row">
@@ -123,7 +123,7 @@
                     <!-- Send message box -->
                     <div class="send-wrap ">
 
-                        <textarea id="message-content" class="form-control send-message" rows="3" placeholder="Write a reply..."></textarea>
+                        <input type="textarea" id="message-content" class="form-control send-message" name="msg-content" rows="3" placeholder="Write a reply..."></input>
 
                         <!-- Focus on text area -->
                         <script>$('#message-content').focus();</script>
@@ -132,7 +132,7 @@
                     <!-- Additional buttons to include attachments -->
                     <div class="btn-panel">
                         <!-- <a href="" class=" col-lg-3 btn   send-message-btn " role="button"><i class="fa fa-cloud-upload"></i> Add Files</a> -->
-                        <a onclick="sendMessage('<?php echo $_SESSION['username']?>')" class=" col-lg-4 text-right btn send-message-btn pull-right"><i class="fa fa-plus"></i> Send Message</a>
+                        <button type="submit" class="col-lg-4 text-right btn send-message-btn pull-right"><i class="fa fa-plus"></i> Send Message</button>
                     </div>
 
                 </div>

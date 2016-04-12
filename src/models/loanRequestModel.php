@@ -81,7 +81,7 @@ class LoanRequestModel {
                   WHERE item_name = '$item_name'
                   AND owner = '$owner'
                   AND borrower = '$borrower'
-                  AND date_start = '$date_start' ";
+                  AND date_start = '$date_start'; ";
         $result = pg_query($query);
         return $result;
     }
@@ -92,7 +92,7 @@ class LoanRequestModel {
                   WHERE item_name = '$item_name'
                   AND owner = '$owner'
                   AND borrower = '$borrower'
-                  AND date_start = '$date_start' ";
+                  AND date_start = '$date_start'; ";
         $result = pg_query($query);
         return $result;
     }

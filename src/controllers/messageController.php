@@ -64,10 +64,10 @@ class MessageController {
     // Getting the loan request
     include ('models/loanRequestModel.php');
     $loanRequestModel = new loanRequestModel();
+
     $bidMade = $loanRequestModel->getLoanRequestByOwnerItemBorrower($itemOwner, $itemName, $itemBorrower);
 
     if ($bidMade != false) {
-
       $bid = pg_fetch_array($bidMade);
       $date_start = $bid['date_start'];
       $bidStatus = $bid['status'];
@@ -75,9 +75,36 @@ class MessageController {
       $isValidBid = $bid['is_valid'];
     }
 
+    // Checks if is an accept or reject
+    if (isset($_POST['accept'])) {
+      $loanRequestModel->acceptLoanRequest($itemName, $itemOwner, $itemBorrower, $date_start);
+      $bidStatus = 'accepted';
+    }
+
+    if (isset($_POST['reject'])) {
+      $loanRequestModel->rejectLoanRequest($itemName, $itemOwner, $itemBorrower, $date_start);
+      $bidStatus = 'declined';
+    }
+
     // get all past messages
     include('models/messageModel.php');
     $messageModel = new messageModel();
+
+    // Check for new message sent
+    if (isset($_POST['msg-content'])) {
+    	$content = $_POST['msg-content'];
+
+    	$sender = $itemBorrower;
+    	$receiver = $itemOwner;
+
+    	if($currentUser == $itemOwner) {
+    		$sender = $itemOwner;
+    		$receiver = $itemBorrower;
+    	}
+
+    	$messageModel->addMessage($itemName, $itemOwner, $sender, $receiver, $content);
+    }
+
     $chatHistory = $messageModel->getChatHistoryInOrder($itemName, $itemOwner, $itemBorrower);
 
     // get user profile images
