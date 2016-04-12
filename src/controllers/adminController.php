@@ -44,6 +44,10 @@ class adminController {
 				{
 					include('views/admin/admin-register.php');
 				}
+                else if ($_GET['action'] == 'add-entry')
+                {
+                    include('views/admin/admin-addentry.php');
+                }
 			}
 			else // empty get, display homepage
 			{

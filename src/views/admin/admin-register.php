@@ -4,10 +4,9 @@
 		include('models/memberModel.php');
 		$memberModel = new memberModel();
 		$result = $memberModel->addUser($_POST['username'], $_POST['password'], $_POST['email'], "admin");
-		var_dump($result);
 		if($result == true)
 		{
-			$result = "<p class='text-success'>Password Successfully Created!</p>";
+			$result = "<p class='text-success'>Admin Account Successfully Created!</p>";
 		}
 		else
 		{

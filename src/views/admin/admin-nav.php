@@ -23,6 +23,7 @@
 						<li class="divider"></li>
 						<li class="dropdown-header">Others</li>
 						<li><a href="admin-index.php?action=add-admin">Add Administrator</a></li>
+                        <li><a href="admin-index.php?action=add-entry">Add Database Entry</a></li>
 						<li><a href="#">More Features Incoming...</a></li>
 					</ul>
 				</li>

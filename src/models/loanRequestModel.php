@@ -54,7 +54,14 @@ class LoanRequestModel {
     
     public function getTotalLoanRequestsPastYear() {
         $query = "SELECT * FROM loan_request WHERE created_at > NOW() - INTERVAL '365 days'";
-		$result = pg_query($query);
-		return pg_num_rows($result);
+        $result = pg_query($query);
+        return pg_num_rows($result);
+    }
+
+    public function getAllAcceptedByItem($item_name, $owner) {
+        $query = "SELECT * FROM loan_request l WHERE 
+                    l.item_name like '$item_name' AND l.owner like '$owner' AND l.status like 'accepted'";
+        
+        return pg_query($query);
     }
 }
