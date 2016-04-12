@@ -1,5 +1,5 @@
 <!-- 
-  Relies heavily on the chat widget "Chat" by hardiksondagar on bootsnip.com
+  Relies on the chat widget "Chat" by hardiksondagar on bootsnip.com
   The original code snippet can be found here: http://bootsnipp.com/snippets/featured/chat
 -->
 
@@ -42,7 +42,38 @@
         <?php include 'views/navbar.php' ?>
         
         <!-- Item toolbar -->
+        <?php echo '
+          <div class="row">
+            <div class="item-toolbar">
+              <a class="media col-lg-1" href="index.php?page=item&owner='.$itemOwner.'&item='.$itemName.'">
+                <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width:64px; height:64px;" src="img/items/'.$itemImage.'">
+              </a>
+              <span class="col-lg-2 item-toolbar-price">Listed Price:<br> $'.$itemPrice.'
+              </span>
+              <span class="col-lg-1 item-toolbar-price">Bid Price: $'.$itemPrice.'
+              </span>';
+              // $itemOwner == $currentUser && 
+          if($bidStatus == "pending") {
+            echo'
+              <form method="post">
+                <button id="accept-button" class="item-toolbar-button col-lg-2 col-lg-offset-5" name="accept">
+                  Accept
+                  <span class="glyphicon glyphicon-ok"></span>
+                </button>
+                <button id="reject-button" class="item-toolbar-button col-lg-1" name="reject">
+                  Reject
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+              </form>
+            </div>
+          </div>';
+          } else {
+            echo '</div></div>';
+          }
+        ?>
 
+        <form method="post">
+        <!-- Message container -->
         <div class="container message-container">
             <div class="row">
                 <!-- Entire Chat box -->
@@ -53,10 +84,35 @@
 
                         <!-- Insert chat history -->
                         <?php
-                        	for ($i = 0; $i < sizeof($messageArray); $i++) {
-                        		echo '<div class="media msg "><a class="pull-left" href="#"><img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="img/display_pic/'.$messageArray[$i][1].'"></a><div class="media-body"><small class="pull-right time"><i class="fa fa-clock-o"></i>'.$messageArray[$i][3].'</small><h5 class="media-heading">'. $messageArray[$i][0].'</h5><small class="col-lg-10">'.$messageArray[$i][2].'</small></div></div>';
-                        	}
-                        ?>
+
+                          include('helpers/timestampParser.php');
+                          $timestampParser = new timestampParser();
+
+                          for ($i = 0; $i < sizeof($messageArray); $i++) {
+
+                            $msgSender = $messageArray[$i][0];
+                            $msgSenderIcon = $messageArray[$i][1];
+                            $msgContent = $messageArray[$i][2];
+                            $msgTimestamp = $messageArray[$i][3];
+                            $formattedTimestamp = $timestampParser->getFormattedTimestampForMessage($msgTimestamp);
+
+                            echo'
+                            <div class="media msg">
+                              <a class="pull-left" href="#">
+                                <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="img/display_pic/'.$msgSenderIcon.'">
+                              </a>
+                              <div class="media-body">
+                                <small class="pull-right time">
+                                  <i class="fa fa-clock-o"></i>'.$formattedTimestamp.'
+                                </small>
+                                <h5 class="media-heading">'. $msgSender.'
+                                </h5>
+                                <small class="col-lg-10">'.$msgContent.'</small>
+                              </div>
+                            </div>';}?>
+
+                        <!-- Scroll to latest message -->
+                        <script>updateScroll();</script>
 
                         <!-- date separator -->
                         <!-- <div class="alert alert-info msg-date">
@@ -67,19 +123,21 @@
                     <!-- Send message box -->
                     <div class="send-wrap ">
 
-                        <textarea id="message-content" class="form-control send-message" rows="3" placeholder="Write a reply..."></textarea>
+                        <input type="textarea" id="message-content" class="form-control send-message" name="msg-content" rows="3" placeholder="Write a reply..."></input>
 
+                        <!-- Focus on text area -->
+                        <script>$('#message-content').focus();</script>
                     </div>
 
                     <!-- Additional buttons to include attachments -->
                     <div class="btn-panel">
-                        <a href="" class=" col-lg-3 btn   send-message-btn " role="button"><i class="fa fa-cloud-upload"></i> Add Files</a>
-                        <a onclick="sendMessage('<?php echo $_SESSION['username']?>')" class=" col-lg-4 text-right btn send-message-btn pull-right"><i class="fa fa-plus"></i> Send Message</a>
+                        <!-- <a href="" class=" col-lg-3 btn   send-message-btn " role="button"><i class="fa fa-cloud-upload"></i> Add Files</a> -->
+                        <button type="submit" class="col-lg-4 text-right btn send-message-btn pull-right"><i class="fa fa-plus"></i> Send Message</button>
                     </div>
 
                 </div>
             </div>
         </div>
-
+        </form>
     </body>
 </html>
