@@ -95,4 +95,5 @@ class LoanRequestModel {
                   AND date_start = '$date_start' ";
         $result = pg_query($query);
         return $result;
+    }
 }
