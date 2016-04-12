@@ -18,10 +18,10 @@ class MessageModel{
             return $result;
     }
 
-    public function addMessage($itemName, $itemOwner, $sender, $receiver, $content, $createdAt)
+    public function addMessage($itemName, $itemOwner, $sender, $receiver, $content)
     {
-            $query ="INSERT INTO message (item_name, item_owner, sender, receiver, content, created_at)
-                            VALUES('$itemName', '$itemOwner', '$sender', '$receiver', '$content', '$createdAt')";
+            $query = "INSERT INTO message (item_name, item_owner, sender, receiver, content)
+                     VALUES('$itemName', '$itemOwner', '$sender', '$receiver', '$content')";
 
             $result = pg_query($query);
             return $result;	// true if successfully inserted, false otherwise
